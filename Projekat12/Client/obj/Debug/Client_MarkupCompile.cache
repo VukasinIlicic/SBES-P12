@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\Client\obj\Debug\
+=======
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\
+>>>>>>> 87f4e0141019fc9143ed4ca255fe6269f27f07b7
 Client
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\Client\App.xaml
 11151548125
 
 5-2017746502
 13738642453
 MainWindow.xaml;
+=======
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\App.xaml
+3-360406768
+
+7-1978691169
+15767094614
+MainWindow.xaml;Views\ConnectionWindow.xaml;Views\ShowInfo.xaml;
+>>>>>>> 87f4e0141019fc9143ed4ca255fe6269f27f07b7
 
 False
 

@@ -9,10 +9,24 @@ namespace Server
 {
     public class ServerClass : IServer
     {
-        public string Proba(string message)
+        public bool AzurirajPotrosnju(DataObj potrosac)
         {
-            Console.WriteLine("Stigla poruka: {0}", message);
-            return "Gde si Vule";
+            throw new NotImplementedException();
+        }
+
+        public bool DodajEntitet(DataObj noviPotrosac)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PrikazInformacija()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double SrednjaVrednostPotrosnje(string grad)
+        {
+            throw new NotImplementedException();
         }
     }
 }

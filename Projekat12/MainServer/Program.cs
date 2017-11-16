@@ -12,7 +12,7 @@ namespace MainServer
     {
         static void Main(string[] args)
         {
-            
+
         }
     }
 }

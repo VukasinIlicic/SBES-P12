@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe.config
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.pdb
@@ -6,3 +7,13 @@ C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\b
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.exe
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.pdb
 C:\Users\Administrator.P05-08\Desktop\Projekat2\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.csprojResolveAssemblyReference.cache
+=======
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe.config
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.pdb
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\bin\Debug\Common.dll
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\bin\Debug\Common.pdb
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.csprojResolveAssemblyReference.cache
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.exe
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.pdb
+>>>>>>> 87f4e0141019fc9143ed4ca255fe6269f27f07b7
