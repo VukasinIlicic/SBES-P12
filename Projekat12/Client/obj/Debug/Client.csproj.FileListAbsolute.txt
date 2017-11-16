@@ -32,3 +32,6 @@ C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\
 C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\Views\ShowInfo.g.cs
 C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\Views\ShowInfo.baml
 >>>>>>> 87f4e0141019fc9143ed4ca255fe6269f27f07b7
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\Views\AnnualConsumption.g.cs
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\Client\obj\Debug\Views\AnnualConsumption.baml

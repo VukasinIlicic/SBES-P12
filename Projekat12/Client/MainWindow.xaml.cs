@@ -34,8 +34,12 @@ namespace Client
 
         private void InformationSearchWindow(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new ShowInfo());
-            
+            _mainFrame.NavigationService.Navigate(new ShowInfo());  
+        }
+
+        private void AnnualConsumptionsWindow(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new AnnualConsumption());
         }
     }
 }
