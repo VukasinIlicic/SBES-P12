@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Client.Views.AddNewEntityWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="370">
+    <Grid>
+        <Label x:Name="TitleLabel" Content="Add new consumer: " HorizontalAlignment="Left" Height="29" Margin="129,10,0,0" VerticalAlignment="Top" Width="130"/>
+        <Label x:Name="IdLabel" Content="Consumer id: " HorizontalAlignment="Left" Height="29" Margin="75,56,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="RegionLabel" Content="Consumer region: " HorizontalAlignment="Left" Height="29" Margin="75,90,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="CityLabel" Content="City: " HorizontalAlignment="Left" Height="29" Margin="75,124,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="YearLabel" Content="Year: " HorizontalAlignment="Left" Height="29" Margin="75,158,0,0" VerticalAlignment="Top" Width="110"/>
+        <TextBox x:Name="ConsumerIdTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="ConsumerRegionTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="CityTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="YearTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <Button x:Name="ConfirmBtn" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="129,211,0,0" VerticalAlignment="Top" Width="123"/>
+    </Grid>
+</UserControl>

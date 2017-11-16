@@ -41,5 +41,15 @@ namespace Client
         {
             _mainFrame.NavigationService.Navigate(new AnnualConsumption());
         }
+
+        private void NewConsumptionWindow(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new SetConsumptionWindow());
+        }
+
+        private void AddNewEntity(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new AddNewEntityWindow());
+        }
     }
 }
