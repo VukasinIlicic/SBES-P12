@@ -11,19 +11,19 @@ namespace Server
     {
         public bool AzurirajPotrosnju(DataObj potrosac)
         {
-            Audit.AzuriranjePotrosnje();
+            //Audit.AzuriranjePotrosnje();
             return true;
         }
 
         public bool DodajEntitet(DataObj noviPotrosac)
         {
-            Audit.DodavanjeEntiteta();
+            //Audit.DodavanjeEntiteta();
             return true;
         }
 
         public bool ObrisiEntitet(string id)
         {
-            Audit.BrisanjeEntiteta();
+            //Audit.BrisanjeEntiteta();
             return true;
         }
 
