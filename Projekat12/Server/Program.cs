@@ -12,12 +12,9 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            ServiceHost svc = new ServiceHost(typeof(ServerClass));
-            svc.AddServiceEndpoint(typeof(IServer), binding, new Uri("net.tcp://localhost:11000/Server"));
-            svc.Open();
-
             Console.WriteLine("Otvorio");
+            VezaSaAuditom.PoveziSe();
+
             Console.ReadLine();
         }
     }

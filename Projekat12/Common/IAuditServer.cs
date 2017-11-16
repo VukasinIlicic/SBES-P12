@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 namespace Common
 {
     [ServiceContract]
-    public interface IServer
+    public interface IAuditServer
     {
-        
+        [OperationContract]
+        string[] DajKljuc(); // rukovanje
+
+        [OperationContract]
+        void PosaljiKljucSesije(string m);
     }
 }

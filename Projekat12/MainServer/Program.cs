@@ -12,14 +12,7 @@ namespace MainServer
     {
         static void Main(string[] args)
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            Console.WriteLine("Unesi adresu");
-            string adresa = Console.ReadLine();
-            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}:11000/Server", adresa)));
-            IServer proxy = factory.CreateChannel();
-
-            Console.WriteLine(proxy.Proba("caoooo"));
-            Console.ReadLine();
+            
         }
     }
 }
