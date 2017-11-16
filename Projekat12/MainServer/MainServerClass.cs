@@ -13,7 +13,7 @@ namespace MainServer
     {
         static string imeBaze = "Baza.xml";
 
-        public List<DataObj> IntegrityUpdate()
+        public List<DataObj> IntegrityUpdate(List<DataObj> lokalnaBazaServera)
         {
             List<DataObj> lista = IscitajIzXml();
             return lista;

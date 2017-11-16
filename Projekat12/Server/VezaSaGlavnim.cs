@@ -21,7 +21,7 @@ namespace Server
 
         public static void IntegrityUpdate()
         {
-            Program.lokalnaBaza = proxy.IntegrityUpdate();
+            Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza);
         }
     }
 }

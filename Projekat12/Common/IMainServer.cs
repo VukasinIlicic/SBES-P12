@@ -11,6 +11,6 @@ namespace Common
     public interface IMainServer
     {
         [OperationContract]
-        List<DataObj> IntegrityUpdate();
+        List<DataObj> IntegrityUpdate(List<DataObj> lokalnaBazaServera);
     }
 }
