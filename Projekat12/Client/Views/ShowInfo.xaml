@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="300">
+             mc:Ignorable="d" Height="280" Width="370">
     <Grid>
-        <Label x:Name="TitleLabel" Content="System informations:" HorizontalAlignment="Left" Height="26" Margin="92,10,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="TitleLabel" Content="System informations:" HorizontalAlignment="Left" Height="26" Margin="121,10,0,0" VerticalAlignment="Top" Width="135"/>
 
     </Grid>
 </UserControl>

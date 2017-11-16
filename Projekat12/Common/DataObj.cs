@@ -11,7 +11,7 @@ namespace Common
         private string id;
         private string grad;
         private int godina;
-        private double potrosnja;
+        private List<double> potrosnja = new List<double>();
 
         #region Getters_and_setters
         public string Id
@@ -53,7 +53,7 @@ namespace Common
             }
         }
 
-        public double Potrosnja
+        public List<double> Potrosnja
         {
             get
             {
@@ -73,13 +73,35 @@ namespace Common
 
         }
 
-        public DataObj(string id, string grad, int godina, double potrosnja)
+        public DataObj(string id, string grad, int godina, List<double> potrosnja)
         {
             this.id = id;
             this.godina = godina;
             this.grad = grad;
             this.potrosnja = potrosnja;
         }
+
+        //Konstruktor koji generise automatski potrosnju za svaki mesec u godini
+        public DataObj(string id, string grad, int godina)
+        {
+            this.id = id;
+            this.grad = grad;
+            this.godina = godina;
+            this.Potrosnja = GenerateRandomConsumption();
+        }
         #endregion
+
+        public List<double> GenerateRandomConsumption()
+        {
+            Random rnd = new Random();
+            List<double> consumptions = new List<double>();
+            for(int i=0; i<12; i++)
+            {
+                double newConsumption = rnd.NextDouble() * 1000;
+                consumptions.Add(newConsumption);
+            }
+
+            return consumptions;
+        }
     }
 }

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Client.Views.SetConsumptionWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="370">
+    <Grid>
+        <Label x:Name="TitleLabel" Content="Set new consumption:" HorizontalAlignment="Left" Height="32" Margin="144,11,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label x:Name="NewConsumption" Content="Enter new consumption: " HorizontalAlignment="Left" Height="26" Margin="116,49,0,0" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="ConsumptionTxtBox" HorizontalAlignment="Left" Height="24" Margin="116,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
+        <Label x:Name="MonthLabel" Content="Choose month: " HorizontalAlignment="Left" Height="27" Margin="116,122,0,0" VerticalAlignment="Top" Width="137"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="27" Margin="219,122,0,0" VerticalAlignment="Top" Width="81" SelectedIndex="0">
+            <ComboBoxItem Name="cbi1">January</ComboBoxItem>
+            <ComboBoxItem Name="cbi2">February</ComboBoxItem>
+            <ComboBoxItem Name="cbi3">March</ComboBoxItem>
+            <ComboBoxItem Name="cbi4">April</ComboBoxItem>
+            <ComboBoxItem Name="cbi5">May</ComboBoxItem>
+            <ComboBoxItem Name="cbi6">June</ComboBoxItem>
+            <ComboBoxItem Name="cbi7">July</ComboBoxItem>
+            <ComboBoxItem Name="cbi8">August</ComboBoxItem>
+            <ComboBoxItem Name="cbi9">September</ComboBoxItem>
+            <ComboBoxItem Name="cbi10">October</ComboBoxItem>
+            <ComboBoxItem Name="cbi11">November</ComboBoxItem>
+            <ComboBoxItem Name="cbi12">December</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="IdLabel" Content="Enter id: " HorizontalAlignment="Left" Height="27" Margin="116,169,0,0" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="IdTxtBox" HorizontalAlignment="Left" Height="24" Margin="116,196,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
+        <Button x:Name="ConfirmBtn" Content="Set new consumption" HorizontalAlignment="Left" Height="25" Margin="144,245,0,0" VerticalAlignment="Top" Width="123"/>
+
+    </Grid>
+</UserControl>
