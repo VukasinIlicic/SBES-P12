@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void ServerConnectionWindow(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new ConnectionWindow());
+        }
+
+        private void InformationSearchWindow(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new ShowInfo());
+            
         }
     }
 }

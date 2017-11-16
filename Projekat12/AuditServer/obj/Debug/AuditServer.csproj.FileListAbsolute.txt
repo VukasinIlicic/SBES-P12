@@ -1,0 +1,5 @@
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.exe.config
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.exe
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.pdb
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\AuditServer\obj\Debug\AuditServer.exe
+C:\Users\Administrator.P05-07\Desktop\Rep1\SBES-P12\Projekat12\AuditServer\obj\Debug\AuditServer.pdb
