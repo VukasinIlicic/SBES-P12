@@ -21,5 +21,8 @@ namespace Common
 
         [OperationContract]
         bool DodajEntitet(DataObj noviPotrosac);
+
+        [OperationContract]
+        bool ObrisiEntitet(string id);
     }
 }

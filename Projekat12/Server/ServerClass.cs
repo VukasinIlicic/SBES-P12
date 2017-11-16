@@ -11,12 +11,20 @@ namespace Server
     {
         public bool AzurirajPotrosnju(DataObj potrosac)
         {
-            throw new NotImplementedException();
+            Audit.AzuriranjePotrosnje();
+            return true;
         }
 
         public bool DodajEntitet(DataObj noviPotrosac)
         {
-            throw new NotImplementedException();
+            Audit.DodavanjeEntiteta();
+            return true;
+        }
+
+        public bool ObrisiEntitet(string id)
+        {
+            Audit.BrisanjeEntiteta();
+            return true;
         }
 
         public void PrikazInformacija()
