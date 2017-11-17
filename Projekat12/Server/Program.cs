@@ -23,39 +23,27 @@ namespace Server
         {
             //VezaSaAuditom.PoveziSe();
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-<<<<<<< HEAD
-=======
-
-
->>>>>>> cba22f443ea4db704930650aa599d9344275ebca
+            //OtvoriServer();
+            VezaSaGlavnim.PoveziSe();
             Thread t1 = new Thread(Update);
             t1.Start();
 
             Console.ReadLine();
             t1.Abort(); // proveri da li je ok
-<<<<<<< HEAD
-=======
-
->>>>>>> cba22f443ea4db704930650aa599d9344275ebca
-            //dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
-            //dt.Interval = TimeSpan.FromSeconds(sekunde);
-            //dt.Start();
-            OtvoriServer();
-            Console.ReadLine();
-            //dt.Stop();
-<<<<<<< HEAD
-=======
-
-            // ksks
-            int a = 5;
-
->>>>>>> cba22f443ea4db704930650aa599d9344275ebca
             svc.Close();
         }
 
         private static void Update()
         {
-            VezaSaGlavnim.IntegrityUpdate();
+            DateTime vreme = DateTime.Now;
+            while(true)
+            {
+                while ((DateTime.Now.Second % 30) != 0)
+                    Thread.Sleep(300);
+
+                VezaSaGlavnim.IntegrityUpdate();
+            }
+            
         }
 
         public static void OtvoriServer()

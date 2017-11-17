@@ -14,22 +14,23 @@ namespace MainServer
     {
         static string imeBaze = "Baza.xml";
         private static readonly Object lockObject = new Object();
-        static bool okidac = false;
+        private static readonly Object lockObject2 = new Object();
         static DateTime vreme;
-        static int sekunde = 2;
+        static List<string> imenaServera = new List<string>();
 
         public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera)
         {
             if (!Program.sviServeri.ContainsKey(imeServera))
-                Program.sviServeri.Add(imeServera, false);
-
-            if (!okidac)
             {
-                vreme = DateTime.Now.AddSeconds(sekunde + 1);
-                okidac = true;
+                Program.sviServeri.Add(imeServera, false);
+                imenaServera.Add(imeServera);
             }
+                
 
-            Program.sviServeri[imeServera] = true;
+            lock(lockObject2)
+            {
+                Program.sviServeri[imeServera] = true;
+            }
                 
             foreach (var lbs in lokalnaBazaServera)
             {
@@ -57,33 +58,54 @@ namespace MainServer
                 }
             }
 
-            Thread.Sleep(sekunde * 1000);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
+            Thread.Sleep(2500);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
             
             return Program.glavnaBaza;  
         }
 
         public static void Provera()
         {
-            while (!okidac)
-                Thread.Sleep(500);
-
-            while (DateTime.Now < vreme)
-                Thread.Sleep(500);
-
-            List<string> neprijavljeni = new List<string>();
-
-            foreach (var server in Program.sviServeri)
+            while(true)
             {
-                if (server.Value == false)
-                    neprijavljeni.Add(server.Key);
-                else
-                    Program.sviServeri[server.Key] = false;
-            }
+                while ((DateTime.Now.Second % 30) != 0) //!okidac
+                    Thread.Sleep(300);
 
-            if (neprijavljeni.Count > 0)
-                VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+                vreme = DateTime.Now.AddSeconds(3);
 
-            okidac = false;
+                while (DateTime.Now < vreme)
+                    Thread.Sleep(300);
+
+                string neprijavljeni = "";
+
+
+                lock(lockObject2)
+                {
+                    foreach (var server in imenaServera)
+                        if (Program.sviServeri[server] == false)
+                            neprijavljeni += server + ';';
+                        else
+                            Program.sviServeri[server] = false;
+                }
+                
+                if (neprijavljeni != "")
+                {
+                    int razlika;
+
+                    if ((razlika = (neprijavljeni.Length % 8)) != 0)
+                    {
+                        razlika = 8 - razlika;
+
+                        while (razlika > 0)
+                        {
+                            neprijavljeni += ';';
+                            razlika--;
+                        }
+
+                    }
+
+                    VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+                }
+            }    
         }
 
         public static void UpisiUXml(Dictionary<string, DataObj> dic)

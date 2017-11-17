@@ -1,8 +1,0 @@
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\bin\Debug\Server.exe.config
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\bin\Debug\Server.exe
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\bin\Debug\Server.pdb
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\bin\Debug\Common.dll
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\bin\Debug\Common.pdb
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\obj\Debug\Server.exe
-C:\Users\Administrator.P05-07\Desktop\hehe\SBES-P12\Projekat12\Server\obj\Debug\Server.pdb

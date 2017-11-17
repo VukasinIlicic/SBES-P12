@@ -17,6 +17,6 @@ namespace Common
         void PosaljiKljucSesije(string m);
 
         [OperationContract]
-        void PrijaviNeprijavljene(List<string> neprijavljeni);
+        void PrijaviNeprijavljene(byte[] neprijavljeni);
     }
 }
