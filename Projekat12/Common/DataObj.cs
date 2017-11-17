@@ -89,6 +89,7 @@ namespace Common
             }
         }
 
+        [DataMember]
         public string Region
         {
             get

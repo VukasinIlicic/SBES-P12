@@ -25,27 +25,37 @@ namespace Server
 
             lock(lockObject)
             {
-                Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
-            }
-            //Audit.DodavanjeEntiteta();
-            return true;
-        }
-
-        public bool ObrisiEntitet(string id)
-        {
-                if (Program.lokalnaBaza.ContainsKey(id))
+                try
                 {
-                    lock(lockObject)
-                    {
-                    Program.lokalnaBaza[id].Obrisan = true;
-                    }
-                    //Audit.BrisanjeEntiteta();
+                    Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
+                    //Audit.DodavanjeEntiteta();
                     return true;
                 }
+                catch { }
+            }
             
             return false;
         }
 
+        public bool ObrisiEntitet(string id)
+        {
+            if(Program.lokalnaBaza.ContainsKey(id))
+            {
+                lock(lockObject)
+                {
+                    try
+                    {
+                        Program.lokalnaBaza[id].Obrisan = true;
+                        //Audit.BrisanjeEntiteta();
+                        return true;
+                    }
+                    catch { }
+                }
+            }
+
+            return false;
+        }
+        
         public void PrikazInformacija()
         {
             throw new NotImplementedException();

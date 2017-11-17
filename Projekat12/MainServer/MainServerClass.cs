@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -16,21 +17,36 @@ namespace MainServer
 
         public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera)
         {
-            Dictionary<string, DataObj> povratni;
-
-            lock(lockObject)
+        
+            foreach (var lbs in lokalnaBazaServera)
             {
-                foreach (var lbs in lokalnaBazaServera)
-                    if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
-                        Program.glavnaBaza.Add(lbs.Key, lbs.Value);
-                    else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
-                        Program.glavnaBaza.Remove(lbs.Key);
-
-                UpisiUXml(Program.glavnaBaza);
-                povratni = Program.glavnaBaza;
+                if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
+                {
+                    lock (lockObject)
+                    {
+                        try
+                        {
+                            Program.glavnaBaza.Add(lbs.Key, lbs.Value);
+                        }
+                        catch { }
+                    }
+                }
+                else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
+                {
+                    lock (lockObject)
+                    {
+                        try
+                        {
+                            Program.glavnaBaza.Remove(lbs.Key);
+                        }
+                        catch { }
+                    }
+                }
             }
 
-            return povratni;  
+            Thread.Sleep(2 * 1000);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
+            
+            return Program.glavnaBaza;  
         }
 
         public static void UpisiUXml(Dictionary<string, DataObj> dic)
