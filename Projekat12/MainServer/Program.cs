@@ -16,13 +16,17 @@ namespace MainServer
     {
         static ServiceHost svc;
         public static Dictionary<string, DataObj> glavnaBaza = new Dictionary<string, DataObj>();
+        public static Dictionary<string, bool> sviServeri = new Dictionary<string, bool>();
 
         static void Main(string[] args)
         {
             //Audit.KreirajAudit("Proba", WindowsIdentity.GetCurrent().Name);
             OtvoriServer();
+            Thread t1 = new Thread(MainServerClass.Provera);    // odavde pokrecemo proveru
+            t1.Start();
 
             Console.ReadLine();
+            t1.Abort();
             svc.Close();
         }
 

@@ -1,10 +1,12 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
@@ -15,24 +17,22 @@ namespace Server
 
         static ServiceHost svc;
         public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
-        static DispatcherTimer dt = new DispatcherTimer();
-        static int sekunde = 30;
+        public static EventLog customLog;
 
         static void Main(string[] args)
         {
             //VezaSaAuditom.PoveziSe();
-            //Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
+            //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
 
-            dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
-            dt.Interval = TimeSpan.FromSeconds(sekunde);
-            dt.Start();
+            Thread t1 = new Thread(Update);
+            t1.Start();
 
             Console.ReadLine();
-            dt.Stop();
+            t1.Abort(); // proveri da li je ok
             svc.Close();
         }
 
-        private static void Dt_Tick(object sender, EventArgs e)
+        private static void Update()
         {
             VezaSaGlavnim.IntegrityUpdate();
         }
@@ -41,7 +41,10 @@ namespace Server
         {
             NetTcpBinding binding = new NetTcpBinding();
             svc = new ServiceHost(typeof(ServerClass));
-            svc.AddServiceEndpoint(typeof(IServer), binding, new Uri("net.tcp://localhost:31000/Server"));
+            Console.WriteLine("Unesi port");
+            string port = Console.ReadLine(); // pazi na validaciju
+
+            svc.AddServiceEndpoint(typeof(IServer), binding, new Uri(String.Format("net.tcp://localhost:{0}/Server", port)));
             svc.Open();
 
             Console.WriteLine("Otvorio");

@@ -13,8 +13,7 @@ namespace Server
 
         public bool AzurirajPotrosnju(string id, string month, double consumption)
         {
-            Audit.AzuriranjePotrosnje();
-            //Audit.AzuriranjePotrosnje();
+            //Audit.AzuriranjePotrosnje(Program.customLog);
             return true;
         }
 
@@ -28,7 +27,7 @@ namespace Server
                 try
                 {
                     Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
-                    //Audit.DodavanjeEntiteta();
+                    //Audit.DodavanjeEntiteta(Program.customLog);
                     return true;
                 }
                 catch { }
@@ -46,7 +45,7 @@ namespace Server
                     try
                     {
                         Program.lokalnaBaza[id].Obrisan = true;
-                        //Audit.BrisanjeEntiteta();
+                        //Audit.BrisanjeEntiteta(Program.customLog);
                         return true;
                     }
                     catch { }
