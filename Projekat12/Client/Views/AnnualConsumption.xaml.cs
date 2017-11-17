@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,14 @@ namespace Client.Views
     /// </summary>
     public partial class AnnualConsumption : UserControl
     {
-        public AnnualConsumption()
+        public AnnualConsumption(IServer proxy)
         {
             InitializeComponent();
+        }
+
+        private void GetConsumptionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

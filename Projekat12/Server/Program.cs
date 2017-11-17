@@ -19,7 +19,6 @@ namespace Server
             Audit.AzuriranjePotrosnje();
             Audit.DodavanjeEntiteta();
             Audit.BrisanjeEntiteta();
-
             Console.ReadLine();
         }
     }

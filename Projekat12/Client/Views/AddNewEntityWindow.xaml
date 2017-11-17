@@ -16,6 +16,6 @@
         <TextBox x:Name="ConsumerRegionTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="CityTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="YearTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
-        <Button x:Name="ConfirmBtn" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="129,211,0,0" VerticalAlignment="Top" Width="123"/>
+        <Button x:Name="ConfirmBtn" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="129,211,0,0" VerticalAlignment="Top" Width="123" Click="ConfirmBtn_Click"/>
     </Grid>
 </UserControl>

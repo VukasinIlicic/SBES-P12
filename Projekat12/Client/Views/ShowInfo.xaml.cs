@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace Client.Views
     /// </summary>
     public partial class ShowInfo : UserControl
     {
-        public ShowInfo()
+        public ShowInfo(IServer p)
         {
             InitializeComponent();
+            p.PrikazInformacija();
         }
     }
 }

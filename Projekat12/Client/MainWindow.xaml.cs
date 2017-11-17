@@ -1,7 +1,9 @@
 ﻿using Client.Views;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,25 +23,40 @@ namespace Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        public IServer proxy;
+
         public MainWindow()
         {
-            InitializeComponent();
+            
 
+        }
+
+        public IServer Proxy
+        {
+            get
+            {
+                return proxy;
+            }
+
+            set
+            {
+                proxy = value;
+            }
         }
 
         private void ServerConnectionWindow(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new ConnectionWindow());
+            _mainFrame.NavigationService.Navigate(new ConnectionWindow(this));
         }
 
         private void InformationSearchWindow(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new ShowInfo());  
+            _mainFrame.NavigationService.Navigate(new ShowInfo(proxy));  
         }
 
         private void AnnualConsumptionsWindow(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new AnnualConsumption());
+            _mainFrame.NavigationService.Navigate(new AnnualConsumption(proxy));
         }
 
         private void NewConsumptionWindow(object sender, RoutedEventArgs e)

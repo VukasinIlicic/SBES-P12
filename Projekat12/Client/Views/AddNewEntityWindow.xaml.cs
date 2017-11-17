@@ -24,5 +24,10 @@ namespace Client.Views
         {
             InitializeComponent();
         }
+
+        private void ConfirmBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

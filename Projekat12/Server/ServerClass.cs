@@ -12,6 +12,7 @@ namespace Server
         public bool AzurirajPotrosnju(DataObj potrosac)
         {
             Audit.AzuriranjePotrosnje();
+
             return true;
         }
 

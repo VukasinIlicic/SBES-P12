@@ -1,0 +1,4 @@
+C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Common\bin\Debug\Common.dll
+C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Common\bin\Debug\Common.pdb
+C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Common\obj\Debug\Common.dll
+C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Common\obj\Debug\Common.pdb
