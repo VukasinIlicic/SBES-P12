@@ -23,21 +23,17 @@ namespace Server
         {
             //VezaSaAuditom.PoveziSe();
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-
-<<<<<<< HEAD
             Thread t1 = new Thread(Update);
             t1.Start();
 
             Console.ReadLine();
             t1.Abort(); // proveri da li je ok
-=======
             //dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
             //dt.Interval = TimeSpan.FromSeconds(sekunde);
             //dt.Start();
             OtvoriServer();
             Console.ReadLine();
             //dt.Stop();
->>>>>>> 94f5834ad7a60a37454bec50f33fdb90102c33ad
             svc.Close();
         }
 
