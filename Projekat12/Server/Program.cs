@@ -23,7 +23,8 @@ namespace Server
         {
             //VezaSaAuditom.PoveziSe();
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-
+            //OtvoriServer();
+            VezaSaGlavnim.PoveziSe();
             Thread t1 = new Thread(Update);
             t1.Start();
 
@@ -39,13 +40,21 @@ namespace Server
 
             // ksks
             int a = 5;
-
+            
             svc.Close();
         }
 
         private static void Update()
         {
-            VezaSaGlavnim.IntegrityUpdate();
+            DateTime vreme = DateTime.Now;
+            while(true)
+            {
+                while ((DateTime.Now.Second % 30) != 0)
+                    Thread.Sleep(300);
+
+                VezaSaGlavnim.IntegrityUpdate();
+            }
+            
         }
 
         public static void OtvoriServer()

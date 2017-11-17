@@ -17,8 +17,8 @@ namespace AuditServer
 
         static ServiceHost svc;
 
-        public static Dictionary<string, double> kljuceviSesija = new Dictionary<string, double>();     // mada ce po izmeni ovde biti samo jedan, jer od sada vezujemo sa GS a necemo sa svim malim serverima
-        public static Dictionary<string, string[]> privateKey = new Dictionary<string, string[]>();
+        public static string kljucSesije;
+        public static Dictionary<string, string[]> privateKey = new Dictionary<string, string[]>(); // mada sad ovo i ne bi trebalo jer radimo samo povezivanje sa GS
         public static EventLog customLog;
 
         static void Main(string[] args)
