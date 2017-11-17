@@ -11,7 +11,7 @@ namespace Server
     {
         private static readonly Object lockObject = new Object();
 
-        public bool AzurirajPotrosnju(DataObj potrosac)
+        public bool AzurirajPotrosnju(string id, string month, double consumption)
         {
             Audit.AzuriranjePotrosnje();
             //Audit.AzuriranjePotrosnje();

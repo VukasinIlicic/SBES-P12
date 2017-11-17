@@ -61,7 +61,7 @@ namespace Client
 
         private void NewConsumptionWindow(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new SetConsumptionWindow());
+            _mainFrame.NavigationService.Navigate(new SetConsumptionWindow(proxy));
         }
 
         private void AddNewEntity(object sender, RoutedEventArgs e)

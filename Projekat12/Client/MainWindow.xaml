@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="380.8" Width="611">
     <Grid>
-        <Frame x:Name="_mainFrame" Margin="128,10,10,10" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Frame x:Name="_mainFrame" Margin="128,10,10,10" BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" NavigationUIVisibility="Hidden"/>
         <Button x:Name="ServerConnection" Content="Connect" HorizontalAlignment="Left" Height="26" Margin="10,33,0,0" VerticalAlignment="Top" Width="104" Click="ServerConnectionWindow" />
         <Button x:Name="SearchInfo" Content="Search info" HorizontalAlignment="Left" Height="26" Margin="10,64,0,0" VerticalAlignment="Top" Width="104" Click="InformationSearchWindow" />
         <Button x:Name="AnnualConsumptions" Content="Consumptions" HorizontalAlignment="Left" Height="26" Margin="10,95,0,0" VerticalAlignment="Top" Width="104" Click="AnnualConsumptionsWindow"/>

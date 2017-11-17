@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,64 @@ namespace Client.Views
     /// <summary>
     /// Interaction logic for SetConsumptionWindow.xaml
     /// </summary>
-    public partial class SetConsumptionWindow : UserControl
+    public partial class SetConsumptionWindow : UserControl, INotifyPropertyChanged
     {
-        public SetConsumptionWindow()
+        public IServer proxy;
+        private string validation = "";
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public SetConsumptionWindow(IServer proxy)
         {
             InitializeComponent();
+            this.DataContext = this;
+            this.proxy = proxy;
+        }
+
+        public string Validation
+        {
+            get
+            {
+                return validation;
+            }
+
+            set
+            {
+                validation = value;
+                OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Validation"));
+            }
+        }
+
+        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
+        }
+
+        private void ConfirmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string consumption = ConsumptionTxtBox.Text;
+            string month = comboBox.Text;
+            string userId = IdTxtBox.Text;
+            double consumption_;
+
+            if(consumption=="" || month=="" || userId=="")
+            {
+                Validation = "Invalid input.";
+                return;
+            }
+
+            try
+            {
+                consumption_ = Convert.ToDouble(consumption);
+                proxy.AzurirajPotrosnju(userId, month, consumption_);
+            }
+            catch
+            {
+                Validation = "Consumption must be a number.";
+                return;
+            }
         }
     }
 }
