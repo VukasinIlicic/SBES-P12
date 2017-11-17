@@ -66,7 +66,7 @@ namespace Client
 
         private void AddNewEntity(object sender, RoutedEventArgs e)
         {
-            _mainFrame.NavigationService.Navigate(new AddNewEntityWindow());
+            _mainFrame.NavigationService.Navigate(new AddNewEntityWindow(proxy));
         }
     }
 }

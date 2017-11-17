@@ -9,23 +9,41 @@ namespace Server
 {
     public class ServerClass : IServer
     {
+        private static readonly Object lockObject = new Object();
+
         public bool AzurirajPotrosnju(DataObj potrosac)
         {
             Audit.AzuriranjePotrosnje();
-
+            //Audit.AzuriranjePotrosnje();
             return true;
         }
 
         public bool DodajEntitet(DataObj noviPotrosac)
         {
-            Audit.DodavanjeEntiteta();
+            if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+                    return false;
+
+            lock(lockObject)
+            {
+                Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
+            }
+            //Audit.DodavanjeEntiteta();
             return true;
         }
 
         public bool ObrisiEntitet(string id)
         {
-            Audit.BrisanjeEntiteta();
-            return true;
+                if (Program.lokalnaBaza.ContainsKey(id))
+                {
+                    lock(lockObject)
+                    {
+                    Program.lokalnaBaza[id].Obrisan = true;
+                    }
+                    //Audit.BrisanjeEntiteta();
+                    return true;
+                }
+            
+            return false;
         }
 
         public void PrikazInformacija()

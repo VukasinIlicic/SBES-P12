@@ -24,7 +24,6 @@ namespace Client.Views
         public ShowInfo(IServer p)
         {
             InitializeComponent();
-            p.PrikazInformacija();
         }
     }
 }

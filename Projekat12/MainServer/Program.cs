@@ -14,34 +14,28 @@ namespace MainServer
 {
     class Program
     {
+        static ServiceHost svc;
+        public static Dictionary<string, DataObj> glavnaBaza = new Dictionary<string, DataObj>();
+
         static void Main(string[] args)
         {
-            Audit.KreirajAudit("Proba", WindowsIdentity.GetCurrent().Name);
-            Audit.AzuriranjePotrosnje();
+            //Audit.KreirajAudit("Proba", WindowsIdentity.GetCurrent().Name);
+            OtvoriServer();
 
             Console.ReadLine();
+            svc.Close();
         }
 
-        public static void UpisiUXml(List<DataObj> lista)
+        public static void OtvoriServer()
         {
-            using (StreamWriter streamWriter = new StreamWriter("Baza.xml"))
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<DataObj>));
-                xmlSerializer.Serialize(streamWriter, lista);
-            }
+            NetTcpBinding binding = new NetTcpBinding();
+            svc = new ServiceHost(typeof(MainServerClass));
+            svc.AddServiceEndpoint(typeof(IMainServer), binding, new Uri("net.tcp://localhost:51000/MainServer"));
+            svc.Open();
+
+            Console.WriteLine("Otvorio");
         }
 
-        public static List<DataObj> IscitajIzXml()
-        {
-            List<DataObj> lista;
-
-            using (StreamReader streamReader = new StreamReader("Baza.xml"))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<DataObj>));
-                lista = (List<DataObj>)serializer.Deserialize(streamReader);
-            }
-
-            return lista;
-        }
+        
     }
 }

@@ -13,6 +13,8 @@ namespace AuditServer
         static int minRandom = 50000;
         static int maxRandom = 550000;
 
+        static ServiceHost svc;
+
         public static Dictionary<string, double> kljuceviSesija = new Dictionary<string, double>();
         public static Dictionary<string, string[]> privateKey = new Dictionary<string, string[]>();
 
@@ -21,6 +23,7 @@ namespace AuditServer
             OtvoriServer();
 
             Console.ReadLine();
+            svc.Close();
         }
 
         public static string[] GenerisanjeRSAParametara()
@@ -64,7 +67,7 @@ namespace AuditServer
         public static void OtvoriServer()
         {
             NetTcpBinding binding = new NetTcpBinding();
-            ServiceHost svc = new ServiceHost(typeof(AuditServerClass));
+            svc = new ServiceHost(typeof(AuditServerClass));
             svc.AddServiceEndpoint(typeof(IAuditServer), binding, new Uri("net.tcp://localhost:11000/AuditServer"));
             svc.Open();
 

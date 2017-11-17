@@ -11,15 +11,30 @@ namespace Server
 {
     class Program
     {
+
+        static ServiceHost svc;
+        public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Otvorio");
             //VezaSaAuditom.PoveziSe();
             Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
             Audit.AzuriranjePotrosnje();
             Audit.DodavanjeEntiteta();
             Audit.BrisanjeEntiteta();
+            //Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
             Console.ReadLine();
+            svc.Close();
+        }
+
+        public static void OtvoriServer()
+        {
+            NetTcpBinding binding = new NetTcpBinding();
+            svc = new ServiceHost(typeof(ServerClass));
+            svc.AddServiceEndpoint(typeof(IServer), binding, new Uri("net.tcp://localhost:31000/Server"));
+            svc.Open();
+
+            Console.WriteLine("Otvorio");
         }
     }
 }
