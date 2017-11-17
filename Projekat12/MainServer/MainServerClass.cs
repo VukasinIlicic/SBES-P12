@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -13,24 +14,76 @@ namespace MainServer
     {
         static string imeBaze = "Baza.xml";
         private static readonly Object lockObject = new Object();
+        static bool okidac = false;
+        static DateTime vreme;
+        static int sekunde = 2;
 
-        public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera)
+        public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera)
         {
-            Dictionary<string, DataObj> povratni;
+            if (!Program.sviServeri.ContainsKey(imeServera))
+                Program.sviServeri.Add(imeServera, false);
 
-            lock(lockObject)
+            if (!okidac)
             {
-                foreach (var lbs in lokalnaBazaServera)
-                    if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
-                        Program.glavnaBaza.Add(lbs.Key, lbs.Value);
-                    else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
-                        Program.glavnaBaza.Remove(lbs.Key);
-
-                UpisiUXml(Program.glavnaBaza);
-                povratni = Program.glavnaBaza;
+                vreme = DateTime.Now.AddSeconds(sekunde + 1);
+                okidac = true;
             }
 
-            return povratni;  
+            Program.sviServeri[imeServera] = true;
+                
+            foreach (var lbs in lokalnaBazaServera)
+            {
+                if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
+                {
+                    lock (lockObject)
+                    {
+                        try
+                        {
+                            Program.glavnaBaza.Add(lbs.Key, lbs.Value);
+                        }
+                        catch { }
+                    }
+                }
+                else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
+                {
+                    lock (lockObject)
+                    {
+                        try
+                        {
+                            Program.glavnaBaza.Remove(lbs.Key);
+                        }
+                        catch { }
+                    }
+                }
+            }
+
+            Thread.Sleep(sekunde * 1000);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
+            
+            return Program.glavnaBaza;  
+        }
+
+        public static void Provera()
+        {
+            while (!okidac)
+                Thread.Sleep(500);
+
+            while (DateTime.Now < vreme)
+                Thread.Sleep(500);
+
+            List<string> neprijavljeni = new List<string>();
+
+            foreach (var server in Program.sviServeri)
+            {
+                if (server.Value == false)
+                    neprijavljeni.Add(server.Key);
+                else
+                    Program.sviServeri[server.Key] = false;
+            }
+
+            if (neprijavljeni.Count > 0)
+                VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+
+            okidac = false;
         }
 
         public static void UpisiUXml(Dictionary<string, DataObj> dic)

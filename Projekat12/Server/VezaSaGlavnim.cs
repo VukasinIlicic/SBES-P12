@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace Server
 
         public static void IntegrityUpdate()
         {
-            Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza);
+            Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);
         }
     }
 }

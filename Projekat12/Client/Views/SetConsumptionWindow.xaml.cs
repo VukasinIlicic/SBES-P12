@@ -61,6 +61,9 @@ namespace Client.Views
             string month = comboBox.Text;
             string userId = IdTxtBox.Text;
             double consumption_;
+            bool edited;
+
+            Validation = "";
 
             if(consumption=="" || month=="" || userId=="")
             {
@@ -71,11 +74,17 @@ namespace Client.Views
             try
             {
                 consumption_ = Convert.ToDouble(consumption);
-                proxy.AzurirajPotrosnju(userId, month, consumption_);
+                edited = proxy.AzurirajPotrosnju(userId, month, consumption_);
             }
             catch
             {
                 Validation = "Consumption must be a number.";
+                return;
+            }
+
+            if(!edited)
+            {
+                Validation = "Consumption isn't changed.";
                 return;
             }
         }

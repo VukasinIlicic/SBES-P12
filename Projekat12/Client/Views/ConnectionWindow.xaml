@@ -12,6 +12,6 @@
         <TextBox x:Name="ServerPort" HorizontalAlignment="Left" Height="20" Margin="48,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
         <Button x:Name="ConnectButton" Content="Connect with Server" HorizontalAlignment="Left" Height="21" Margin="87,202,0,0" VerticalAlignment="Top" Width="118" Click="ConnectButton_Click"/>
         <Label x:Name="TitleLabel" Content="Connect with server:" HorizontalAlignment="Left" Height="26" Margin="87,10,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="ValidationMsg"  Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="75,160,0,0" VerticalAlignment="Top" Width="157" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
+        <Label x:Name="ValidationMsg"  Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="10,160,0,0" VerticalAlignment="Top" Width="280" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
     </Grid>
 </UserControl>

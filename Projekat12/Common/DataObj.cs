@@ -89,6 +89,7 @@ namespace Common
             }
         }
 
+        [DataMember]
         public string Region
         {
             get
@@ -116,6 +117,7 @@ namespace Common
             this.grad = grad;
             this.region = region;
             this.potrosnja = potrosnja;
+            this.obrisan = false;
         }
 
         //Konstruktor koji generise automatski potrosnju za svaki mesec u godini
@@ -126,6 +128,7 @@ namespace Common
             this.region = region;
             this.godina = godina;
             this.Potrosnja = GenerateRandomConsumption();
+            this.obrisan = false;
         }
         #endregion
 

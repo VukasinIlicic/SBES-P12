@@ -1,7 +1,9 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +17,14 @@ namespace AuditServer
 
         static ServiceHost svc;
 
-        public static Dictionary<string, double> kljuceviSesija = new Dictionary<string, double>();
+        public static Dictionary<string, double> kljuceviSesija = new Dictionary<string, double>();     // mada ce po izmeni ovde biti samo jedan, jer od sada vezujemo sa GS a necemo sa svim malim serverima
         public static Dictionary<string, string[]> privateKey = new Dictionary<string, string[]>();
+        public static EventLog customLog;
 
         static void Main(string[] args)
         {
             OtvoriServer();
+            //customLog = Audit.KreirajAudit("AuditLogovi", WindowsIdentity.GetCurrent().Name);
 
             Console.ReadLine();
             svc.Close();

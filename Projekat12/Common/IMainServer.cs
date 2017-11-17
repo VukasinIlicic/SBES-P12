@@ -11,6 +11,6 @@ namespace Common
     public interface IMainServer
     {
         [OperationContract]
-        Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera);
+        Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera);
     }
 }

@@ -11,11 +11,9 @@ namespace Common
 {
     public class Audit
     {
-        static EventLog customLog;
-        
-        public static void KreirajAudit(string logName, string sourceName)
+        public static EventLog KreirajAudit(string logName, string sourceName)
         {
-            Console.WriteLine(sourceName);
+            EventLog customLog;
             try
             {
                 if (!EventLog.SourceExists(sourceName))
@@ -28,24 +26,26 @@ namespace Common
                 customLog = null;
                 Console.WriteLine("Error while trying to create log handle. Error = {0}", e.Message);
             }
+
+            return customLog;
         }
 
-        public static void AzuriranjePotrosnje()
+        public static void AzuriranjePotrosnje(EventLog customLog)
         {
-            UpisivanjeLoga("azurirao potrosnju");
+            UpisivanjeLoga("azurirao potrosnju", customLog);
         }
 
-        public static void DodavanjeEntiteta()
+        public static void DodavanjeEntiteta(EventLog customLog)
         {
-            UpisivanjeLoga("dodao entitet");
+            UpisivanjeLoga("dodao entitet", customLog);
         }
 
-        public static void BrisanjeEntiteta()
+        public static void BrisanjeEntiteta(EventLog customLog)
         {
-            UpisivanjeLoga("obrisao entitet");
+            UpisivanjeLoga("obrisao entitet", customLog);
         }
 
-        private static void UpisivanjeLoga(string nastavakPoruke)
+        private static void UpisivanjeLoga(string nastavakPoruke, EventLog customLog)
         {
             if (customLog != null)
             {
@@ -57,6 +57,18 @@ namespace Common
             }
             else
                 Console.WriteLine("CustomLog je null");
+        }
+
+        public static void AuditServerLog(EventLog customLog, string poruka)
+        {
+            if (customLog != null)
+            {
+                var audit = WindowsIdentity.GetCurrent();
+
+                customLog.WriteEntry(poruka, EventLogEntryType.Warning);
+            }
+            else
+                Console.WriteLine("AuditLog je null");
         }
 
     }
