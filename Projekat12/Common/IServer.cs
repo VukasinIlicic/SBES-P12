@@ -17,7 +17,7 @@ namespace Common
         double SrednjaVrednostPotrosnje(string grad);
 
         [OperationContract]
-        bool AzurirajPotrosnju(DataObj potrosac);
+        bool AzurirajPotrosnju(string id, string month, double consumption);
 
         [OperationContract]
         bool DodajEntitet(DataObj noviPotrosac);

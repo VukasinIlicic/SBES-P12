@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,67 @@ namespace Client.Views
     /// <summary>
     /// Interaction logic for AddNewEntityWindow.xaml
     /// </summary>
-    public partial class AddNewEntityWindow : UserControl
+    public partial class AddNewEntityWindow : UserControl, INotifyPropertyChanged
     {
-        public AddNewEntityWindow()
+        public IServer proxy;
+        private string validation = "";
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public AddNewEntityWindow(IServer proxy)
         {
             InitializeComponent();
+            this.proxy = proxy;
+            this.DataContext = this;
+        }
+
+        public string Validation
+        {
+            get
+            {
+                return validation;
+            }
+
+            set
+            {
+                validation = value;
+                OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Validation"));
+            }
+        }
+
+        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
+        }
+
+        private void ConfirmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string id = this.ConsumerIdTxtBox.Text;
+            string region = this.ConsumerRegionTxtBox.Text;
+            string city = this.CityTxtBox.Text;
+            string year = this.YearTxtBox.Text;
+            int year_;
+
+            if(id=="" || region=="" || city=="" || year=="")
+            {
+                Validation = "Invalid input.";
+                return;
+            }
+
+            try
+            {
+                year_ = Convert.ToInt32(year);
+                DataObj newConsumer = new DataObj(id, region, city, year_);
+                proxy.DodajEntitet(newConsumer);
+                return;
+            }
+            catch
+            {
+                Validation = "Year must be a number.";
+                return;
+            }
         }
     }
 }

@@ -10,7 +10,8 @@
         <Label x:Name="TitleLabel" Content="AnnualConsumption: " HorizontalAlignment="Left" Height="27" Margin="152,11,0,0" VerticalAlignment="Top" Width="181"/>
         <Label x:Name="CityNameLabel" Content="Enter city name: " HorizontalAlignment="Left" Height="27" Margin="119,54,0,0" VerticalAlignment="Top" Width="132"/>
         <TextBox x:Name="CityNameTxtBox" HorizontalAlignment="Left" Height="22" Margin="126,81,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-        <Button x:Name="GetConsumptionsBtn" Content="Get Consumptions" HorizontalAlignment="Left" Height="29" Margin="167,123,0,0" VerticalAlignment="Top" Width="104"/>
+        <Button x:Name="GetConsumptionsBtn" Content="Get Consumptions" HorizontalAlignment="Left" Height="29" Margin="167,141,0,0" VerticalAlignment="Top" Width="104" Click="GetConsumptionsBtn_Click"/>
+        <Label x:Name="ValidationMsg" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Margin="152,108,0,0" VerticalAlignment="Top" Width="137" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>

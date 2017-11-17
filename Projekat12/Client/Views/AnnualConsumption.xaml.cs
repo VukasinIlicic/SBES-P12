@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,11 +20,53 @@ namespace Client.Views
     /// <summary>
     /// Interaction logic for AnnualConsumption.xaml
     /// </summary>
-    public partial class AnnualConsumption : UserControl
+    public partial class AnnualConsumption : UserControl, INotifyPropertyChanged
     {
-        public AnnualConsumption()
+        public IServer proxy;
+        private string validation = "";
+
+        public AnnualConsumption(IServer proxy)
         {
             InitializeComponent();
+            this.proxy = proxy;
+            this.DataContext = this;
+        }
+
+        public string Validation
+        {
+            get
+            {
+                return validation;
+            }
+
+            set
+            {
+                validation = value;
+                OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("Validation"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
+        }
+
+        private void GetConsumptionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string cityName = this.CityNameTxtBox.Text;
+            if (cityName == "")
+            {
+                Validation = "Invalid input.";
+                return;
+            }
+            else
+            {
+                proxy.SrednjaVrednostPotrosnje(cityName);
+            }
         }
     }
 }

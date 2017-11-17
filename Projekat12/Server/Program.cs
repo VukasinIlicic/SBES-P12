@@ -18,8 +18,11 @@ namespace Server
         static void Main(string[] args)
         {
             //VezaSaAuditom.PoveziSe();
+            Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
+            Audit.AzuriranjePotrosnje();
+            Audit.DodavanjeEntiteta();
+            Audit.BrisanjeEntiteta();
             //Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-
             Console.ReadLine();
             svc.Close();
         }
