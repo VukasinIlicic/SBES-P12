@@ -13,32 +13,33 @@ namespace MainServer
     {
         static string imeBaze = "Baza.xml";
 
-        public List<DataObj> IntegrityUpdate(List<DataObj> lokalnaBazaServera)
+        public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera)
         {
-            List<DataObj> lista = IscitajIzXml();
-            return lista;
+            Dictionary<string, DataObj> glavnaBaza = IscitajIzXml();
+
+            return glavnaBaza;
         }
 
-        public static void UpisiUXml(List<DataObj> lista)
+        public static void UpisiUXml(Dictionary<string, DataObj> dic)
         {
             using (StreamWriter streamWriter = new StreamWriter(imeBaze))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<DataObj>));
-                xmlSerializer.Serialize(streamWriter, lista);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
+                xmlSerializer.Serialize(streamWriter, dic);
             }
         }
 
-        public static List<DataObj> IscitajIzXml()
+        public static Dictionary<string, DataObj> IscitajIzXml()
         {
-            List<DataObj> lista;
+            Dictionary<string, DataObj> dic;
 
             using (StreamReader streamReader = new StreamReader(imeBaze))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<DataObj>));
-                lista = (List<DataObj>)serializer.Deserialize(streamReader);
+                XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
+                dic = (Dictionary<string, DataObj>)serializer.Deserialize(streamReader);
             }
 
-            return lista;
+            return dic;
         }
     }
 }

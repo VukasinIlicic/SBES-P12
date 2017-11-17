@@ -19,13 +19,12 @@ namespace Server
 
         public bool DodajEntitet(DataObj noviPotrosac)
         {
-            foreach (var potrosac in Program.lokalnaBaza)
-                if (potrosac.Id == noviPotrosac.Id)
+            if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
                     return false;
 
             lock(lockObject)
             {
-                Program.lokalnaBaza.Add(noviPotrosac);
+                Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
             }
             //Audit.DodavanjeEntiteta();
             return true;
@@ -33,12 +32,11 @@ namespace Server
 
         public bool ObrisiEntitet(string id)
         {
-            foreach (var potrosac in Program.lokalnaBaza)
-                if (potrosac.Id == id)
+                if (Program.lokalnaBaza.ContainsKey(id))
                 {
                     lock(lockObject)
                     {
-                        potrosac.Obrisan = true;
+                    Program.lokalnaBaza[id].Obrisan = true;
                     }
                     //Audit.BrisanjeEntiteta();
                     return true;

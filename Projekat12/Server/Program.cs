@@ -13,7 +13,7 @@ namespace Server
     {
 
         static ServiceHost svc;
-        public static List<DataObj> lokalnaBaza = new List<DataObj>();
+        public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
 
         static void Main(string[] args)
         {
