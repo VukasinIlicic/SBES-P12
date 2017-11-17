@@ -62,7 +62,7 @@ namespace Client.Views
         {
             InitializeComponent();
             NetTcpBinding binding = new NetTcpBinding();
-            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://localhost:{0}/{1}", port, serverName)));
+            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}:{1}/Server", serverName, port)));
             this.proxy = factory.CreateChannel();
         }
 
@@ -91,6 +91,7 @@ namespace Client.Views
             try
             {
                 ConnectToServer(endpointName, portNo.ToString());
+                ConnectionCheck(proxy);
                 mw.ServerConnection.Visibility = Visibility.Hidden;
                 mw.Proxy = this.proxy;
                 mw._mainFrame.NavigationService.Navigate(new ShowInfo(proxy));
@@ -100,6 +101,11 @@ namespace Client.Views
                 Validation = "Port or server endpoint name is invalid.";
                 return;
             }
+        }
+
+        private void ConnectionCheck(IServer proxy)
+        {
+            proxy.PrikazInformacija();
         }
     }
 }

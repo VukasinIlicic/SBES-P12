@@ -1,0 +1,8 @@
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe.config
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.exe
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\bin\Debug\MainServer.pdb
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\bin\Debug\Common.dll
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\bin\Debug\Common.pdb
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.exe
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.pdb
+C:\Users\Administrator.P05-07\Desktop\RepoD3\SBES-P12\Projekat12\MainServer\obj\Debug\MainServer.csprojResolveAssemblyReference.cache

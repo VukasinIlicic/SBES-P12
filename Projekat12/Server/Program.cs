@@ -23,12 +23,12 @@ namespace Server
             //VezaSaAuditom.PoveziSe();
             //Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
 
-            dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
-            dt.Interval = TimeSpan.FromSeconds(sekunde);
-            dt.Start();
-
+            //dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
+            //dt.Interval = TimeSpan.FromSeconds(sekunde);
+            //dt.Start();
+            OtvoriServer();
             Console.ReadLine();
-            dt.Stop();
+            //dt.Stop();
             svc.Close();
         }
 

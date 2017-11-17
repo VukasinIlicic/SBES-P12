@@ -24,11 +24,23 @@ namespace Client.Views
     {
         public IServer proxy;
         private string validation = "";
+        private double annualConsumption;
+        private string stringResult;
 
         public AnnualConsumption(IServer proxy)
         {
             InitializeComponent();
             this.proxy = proxy;
+
+            try
+            {
+                Dictionary<string, DataObj> dic = proxy.PrikazInformacija();
+            }
+            catch
+            {
+            
+            }
+
             this.DataContext = this;
         }
 
@@ -46,6 +58,33 @@ namespace Client.Views
             }
         }
 
+        public double AnnualConsume
+        {
+            get
+            {
+                return annualConsumption;
+            }
+
+            set
+            {
+                annualConsumption = value;
+            }
+        }
+
+        public string StringResult
+        {
+            get
+            {
+                return stringResult;
+            }
+
+            set
+            {
+                stringResult = value;
+                OnPropertyChanged(new System.ComponentModel.PropertyChangedEventArgs("StringResult"));
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
@@ -58,14 +97,34 @@ namespace Client.Views
         private void GetConsumptionsBtn_Click(object sender, RoutedEventArgs e)
         {
             string cityName = this.CityNameTxtBox.Text;
-            if (cityName == "")
+            string year = this.YearTxtBox.Text;
+            int year_;
+
+            if (cityName == "" || year == "")
             {
                 Validation = "Invalid input.";
                 return;
             }
-            else
+
+            try
             {
-                proxy.SrednjaVrednostPotrosnje(cityName);
+                year_ = Convert.ToInt32(year);
+            }
+            catch
+            {
+                Validation = "Invalid input.";
+                return;
+            }
+
+            AnnualConsume = proxy.SrednjaVrednostPotrosnje(cityName, year_);
+
+            try
+            {
+                StringResult = (AnnualConsume.ToString()).Remove(7);
+            }
+            catch
+            {
+                StringResult = "0.0";
             }
         }
     }
