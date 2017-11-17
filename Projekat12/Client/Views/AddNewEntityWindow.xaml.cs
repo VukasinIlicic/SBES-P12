@@ -63,6 +63,9 @@ namespace Client.Views
             string year = this.YearTxtBox.Text;
             int year_;
 
+            //Svaki put kad uradi click, ukloni validaciju
+            Validation = "";
+
             if(id=="" || region=="" || city=="" || year=="")
             {
                 Validation = "Invalid input.";
@@ -73,7 +76,13 @@ namespace Client.Views
             {
                 year_ = Convert.ToInt32(year);
                 DataObj newConsumer = new DataObj(id, region, city, year_);
-                proxy.DodajEntitet(newConsumer);
+                bool added = proxy.DodajEntitet(newConsumer);
+
+                if (!added)
+                {
+                    Validation = "Database contains user with this id.";
+                }
+
                 return;
             }
             catch

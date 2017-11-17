@@ -7,6 +7,15 @@
              mc:Ignorable="d" Height="280" Width="370">
     <Grid>
         <Label x:Name="TitleLabel" Content="System informations:" HorizontalAlignment="Left" Height="26" Margin="121,10,0,0" VerticalAlignment="Top" Width="135"/>
-
+        <ListView FontSize="12" Margin="10,41,10,10" Name="lvDataBinding" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Region}"/>
+                    <GridViewColumn Header="City" DisplayMemberBinding="{Binding Grad}"/>
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Godina}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

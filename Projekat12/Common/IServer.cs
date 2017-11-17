@@ -11,10 +11,10 @@ namespace Common
     public interface IServer
     {
         [OperationContract]
-        void PrikazInformacija();
+        Dictionary<string,DataObj> PrikazInformacija();
 
         [OperationContract]
-        double SrednjaVrednostPotrosnje(string grad);
+        double SrednjaVrednostPotrosnje(string grad, int year);
 
         [OperationContract]
         bool AzurirajPotrosnju(string id, string month, double consumption);

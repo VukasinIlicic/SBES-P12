@@ -17,6 +17,6 @@
         <TextBox x:Name="CityTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="YearTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <Button x:Name="ConfirmBtn" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="129,227,0,0" VerticalAlignment="Top" Width="123" Click="ConfirmBtn_Click"/>
-        <Label x:Name="LabelMsg" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="103,192,0,0" VerticalAlignment="Top" Width="168" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
+        <Label x:Name="LabelMsg" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="10,192,0,0" VerticalAlignment="Top" Width="350" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
     </Grid>
 </UserControl>

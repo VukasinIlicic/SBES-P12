@@ -55,14 +55,45 @@ namespace Server
             return false;
         }
         
-        public void PrikazInformacija()
+        public Dictionary<string,DataObj> PrikazInformacija()
         {
-            throw new NotImplementedException();
+            return Program.lokalnaBaza;
         }
 
-        public double SrednjaVrednostPotrosnje(string grad)
+        public double SrednjaVrednostPotrosnje(string grad, int year)
         {
-            throw new NotImplementedException();
+            Dictionary<string, DataObj> info = Program.lokalnaBaza;
+            List<DataObj> objectList = new List<DataObj>();
+
+            foreach(KeyValuePair<string,DataObj> kv in info)
+            {
+                if(kv.Value.Grad == grad && kv.Value.Godina == year)
+                {
+                    objectList.Add(kv.Value);
+                }
+            }
+
+            double retVal = AnnualConsumption(objectList);
+            return retVal;
+        }
+
+        public double AnnualConsumption(List<DataObj> data)
+        {
+            double ac = 0;
+            foreach(DataObj obj in data)
+            {
+                double personalConsumption = 0;
+                for(int i=0; i<obj.Potrosnja.Count; i++)
+                {
+                    personalConsumption += obj.Potrosnja[i];
+                }
+
+                personalConsumption /= obj.Potrosnja.Count;
+                ac += personalConsumption;
+            }
+
+            ac /= data.Count;
+            return ac;
         }
     }
 }
