@@ -15,6 +15,7 @@ namespace MainServer
     class Program
     {
         static ServiceHost svc;
+        public static Dictionary<string, DataObj> glavnaBaza = new Dictionary<string, DataObj>();
 
         static void Main(string[] args)
         {

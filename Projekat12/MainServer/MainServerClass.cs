@@ -12,12 +12,25 @@ namespace MainServer
     public class MainServerClass : IMainServer
     {
         static string imeBaze = "Baza.xml";
+        private static readonly Object lockObject = new Object();
 
         public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera)
         {
-            Dictionary<string, DataObj> glavnaBaza = IscitajIzXml();
+            Dictionary<string, DataObj> povratni;
 
-            return glavnaBaza;
+            lock(lockObject)
+            {
+                foreach (var lbs in lokalnaBazaServera)
+                    if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
+                        Program.glavnaBaza.Add(lbs.Key, lbs.Value);
+                    else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
+                        Program.glavnaBaza.Remove(lbs.Key);
+
+                UpisiUXml(Program.glavnaBaza);
+                povratni = Program.glavnaBaza;
+            }
+
+            return povratni;  
         }
 
         public static void UpisiUXml(Dictionary<string, DataObj> dic)
