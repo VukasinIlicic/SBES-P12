@@ -26,12 +26,11 @@ namespace MainServer
                 imenaServera.Add(imeServera);
             }
                 
-
             lock(lockObject2)
             {
                 Program.sviServeri[imeServera] = true;
             }
-                
+   
             foreach (var lbs in lokalnaBazaServera)
             {
                 if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
@@ -67,16 +66,12 @@ namespace MainServer
         {
             while(true)
             {
-                while ((DateTime.Now.Second % 30) != 0) //!okidac
+                while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0) //!okidac
                     Thread.Sleep(300);
 
-                vreme = DateTime.Now.AddSeconds(3);
-
-                while (DateTime.Now < vreme)
-                    Thread.Sleep(300);
+                Thread.Sleep(3 * 1000);
 
                 string neprijavljeni = "";
-
 
                 lock(lockObject2)
                 {
@@ -88,23 +83,10 @@ namespace MainServer
                 }
                 
                 if (neprijavljeni != "")
-                {
-                    int razlika;
-
-                    if ((razlika = (neprijavljeni.Length % 8)) != 0)
-                    {
-                        razlika = 8 - razlika;
-
-                        while (razlika > 0)
-                        {
-                            neprijavljeni += ';';
-                            razlika--;
-                        }
-
-                    }
-
+                {   
                     VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
                 }
+                Console.WriteLine("hehe");
             }    
         }
 

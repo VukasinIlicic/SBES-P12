@@ -48,6 +48,24 @@ namespace MainServer
 
         private static byte[] Enkripcija(string original)
         {
+            int razlika;
+
+            if ((razlika = (original.Length % 8)) != 0)
+            {
+                razlika = 8 - razlika;
+
+                /*while (razlika > 0)
+                {
+                    original += ';';
+                    razlika--;
+                }*/
+
+                StringBuilder sb = new StringBuilder(original);
+                sb.Append(';', razlika);
+
+                original = sb.ToString();
+            }
+
             byte[] org = Encoding.ASCII.GetBytes(original);
 
             DESCryptoServiceProvider desCrypto = new DESCryptoServiceProvider();

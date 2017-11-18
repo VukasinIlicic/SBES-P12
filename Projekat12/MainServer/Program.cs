@@ -26,12 +26,6 @@ namespace MainServer
             t1.Start();
             VezaSaAuditom.PoveziSe();
 
-
-
-
-
-
-
             Console.ReadLine();
             t1.Abort();
             svc.Close();

@@ -47,6 +47,7 @@
     <Compile Include="DataObj.cs" />
     <Compile Include="IMainServer.cs" />
     <Compile Include="IServer.cs" />
+    <Compile Include="Konstanta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

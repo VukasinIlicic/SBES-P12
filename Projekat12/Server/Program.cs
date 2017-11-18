@@ -29,18 +29,7 @@ namespace Server
             t1.Start();
 
             Console.ReadLine();
-            t1.Abort(); // proveri da li je ok
-
-            //dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
-            //dt.Interval = TimeSpan.FromSeconds(sekunde);
-            //dt.Start();
-            OtvoriServer();
-            Console.ReadLine();
-            //dt.Stop();
-
-            // ksks
-            int a = 5;
-            
+            t1.Abort(); // proveri da li je ok      
             svc.Close();
         }
 
@@ -49,12 +38,11 @@ namespace Server
             DateTime vreme = DateTime.Now;
             while(true)
             {
-                while ((DateTime.Now.Second % 30) != 0)
+                while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
                     Thread.Sleep(300);
 
                 VezaSaGlavnim.IntegrityUpdate();
-            }
-            
+            }          
         }
 
         public static void OtvoriServer()

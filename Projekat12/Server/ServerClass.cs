@@ -13,13 +13,13 @@ namespace Server
 
         public bool AzurirajPotrosnju(string id, string month, double consumption)
         {
-            //Audit.AzuriranjePotrosnje(Program.customLog);
-            int month_ = convertMonthToIndex(month);
-
             if(consumption<0)
             {
                 return false;
             }
+
+            //Audit.AzuriranjePotrosnje(Program.customLog);
+            int month_ = ConvertMonthToIndex(month);
 
             try
             {
@@ -95,18 +95,18 @@ namespace Server
             return retVal;
         }
 
-        public double AnnualConsumption(List<DataObj> data)
+        private double AnnualConsumption(List<DataObj> data)
         {
             double ac = 0;
-            foreach(DataObj obj in data)
+            foreach (DataObj obj in data)
             {
                 double personalConsumption = 0;
-                for(int i=0; i<obj.Potrosnja.Count; i++)
+                for (int i = 0; i < obj.Potrosnja.Count; i++)
                 {
                     personalConsumption += obj.Potrosnja[i];
                 }
 
-                
+
                 personalConsumption /= obj.Potrosnja.Count;
                 ac += personalConsumption;
             }
@@ -117,7 +117,7 @@ namespace Server
             return ac;
         }
 
-        public int convertMonthToIndex(string month)
+        private int ConvertMonthToIndex(string month)
         {
             switch(month)
             {
