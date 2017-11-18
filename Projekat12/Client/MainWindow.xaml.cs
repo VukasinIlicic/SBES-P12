@@ -68,5 +68,10 @@ namespace Client
         {
             _mainFrame.NavigationService.Navigate(new AddNewEntityWindow(proxy));
         }
+
+        private void DeleteConsumer(object sender, RoutedEventArgs e)
+        {
+            _mainFrame.NavigationService.Navigate(new DeleteEntity(proxy));
+        }
     }
 }

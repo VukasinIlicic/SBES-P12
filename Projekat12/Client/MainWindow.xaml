@@ -13,5 +13,6 @@
         <Button x:Name="AnnualConsumptions" Content="Consumptions" HorizontalAlignment="Left" Height="26" Margin="10,95,0,0" VerticalAlignment="Top" Width="104" Click="AnnualConsumptionsWindow"/>
         <Button x:Name="NewConsumtion" Content="SetConsumption" HorizontalAlignment="Left" Height="26" Margin="10,126,0,0" VerticalAlignment="Top" Width="104" Click="NewConsumptionWindow"/>
         <Button x:Name="AddConsumerBtn" Content="Add Consumer" HorizontalAlignment="Left" Height="26" Margin="10,157,0,0" VerticalAlignment="Top" Width="104" Click="AddNewEntity"/>
+        <Button x:Name="DeleteConsumerBtn" Content="Delete Consumer" HorizontalAlignment="Left" Height="26" Margin="10,188,0,0" VerticalAlignment="Top" Width="104" Click="DeleteConsumer"/>
     </Grid>
 </Window>

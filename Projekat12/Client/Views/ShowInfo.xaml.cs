@@ -27,7 +27,7 @@ namespace Client.Views
             //DataObj dd = new DataObj("1", "Vojvodina", "NS", 2017);
             //Dictionary<string, DataObj> infoDic = new Dictionary<string, DataObj>();
             //infoDic.Add("1", dd);
-            Dictionary<string,DataObj> infoDic = p.PrikazInformacija();
+            Dictionary<string, DataObj> infoDic = p.PrikazInformacija();
             List<DataObj> dataObjList = getDataObjList(infoDic);
             this.DataContext = dataObjList;
             lvDataBinding.ItemsSource = dataObjList;
