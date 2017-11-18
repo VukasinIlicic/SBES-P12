@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Client.Views.DeleteEntity"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="280" d:DesignWidth="370" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+    <Grid >
+        <Label x:Name="TitleLabel" Content="Delete consumer:" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Top" Width="132"/>
+        <Label x:Name="IdLabel" Content="Enter user id:" HorizontalAlignment="Left" Height="26" Margin="15,40,0,0" VerticalAlignment="Top" Width="81"/>
+        <TextBox x:Name="IdTxtBox" HorizontalAlignment="Left" Height="26" Margin="101,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="125"/>
+        <Label x:Name="ValidationLabel" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" Height="29" Margin="1,87,0,0" VerticalAlignment="Top" Width="240" Foreground="Red"/>
+        <Button x:Name="DeleteBtn" Content="Delete consumer" HorizontalAlignment="Left" Height="27" Margin="58,121,0,0" VerticalAlignment="Top" Width="111" Click="DeleteConsumer"/>
+    </Grid>
+</UserControl>

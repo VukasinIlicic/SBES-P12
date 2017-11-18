@@ -63,7 +63,10 @@ namespace Server
                         //Audit.BrisanjeEntiteta(Program.customLog);
                         return true;
                     }
-                    catch { }
+                    catch
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -82,7 +85,7 @@ namespace Server
 
             foreach(KeyValuePair<string,DataObj> kv in info)
             {
-                if(kv.Value.Grad == grad && kv.Value.Godina == year)
+                if(kv.Value.Grad == grad && kv.Value.Godina == year && kv.Value.Obrisan == false)
                 {
                     objectList.Add(kv.Value);
                 }

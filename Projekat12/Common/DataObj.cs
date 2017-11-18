@@ -62,6 +62,7 @@ namespace Common
             }
         }
 
+        [DataMember]
         public bool Obrisan
         {
             get

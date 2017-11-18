@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Client\obj\Debug\
+C:\Users\Admin\Desktop\Repoz\SBES-P12\Projekat12\Client\obj\Debug\
 Client
 none
 false
 DEBUG;TRACE
-C:\Users\Admin\Desktop\Repozitorijum\SBES-P12\Projekat12\Client\App.xaml
-6-1950803488
+C:\Users\Admin\Desktop\Repoz\SBES-P12\Projekat12\Client\App.xaml
+7-1496204819
 
-14-2080295654
-17-978077278
-MainWindow.xaml;Views\AddNewEntityWindow.xaml;Views\AnnualConsumption.xaml;Views\ConnectionWindow.xaml;Views\SetConsumptionWindow.xaml;Views\ShowInfo.xaml;
+15-781352297
+17-510929465
+MainWindow.xaml;Views\AddNewEntityWindow.xaml;Views\AnnualConsumption.xaml;Views\ConnectionWindow.xaml;Views\DeleteEntity.xaml;Views\SetConsumptionWindow.xaml;Views\ShowInfo.xaml;
 
 False
 
