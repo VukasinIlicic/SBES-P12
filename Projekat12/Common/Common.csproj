@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -43,12 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit.cs" />
+    <Compile Include="CertificateManager.cs" />
+    <Compile Include="ClientCertValidator.cs" />
+    <Compile Include="Formatter.cs" />
     <Compile Include="IAuditServer.cs" />
     <Compile Include="DataObj.cs" />
     <Compile Include="IMainServer.cs" />
     <Compile Include="IServer.cs" />
     <Compile Include="Konstanta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCertValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

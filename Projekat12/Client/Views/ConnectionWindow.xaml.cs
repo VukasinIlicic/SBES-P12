@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography.X509Certificates;
+using System.ServiceModel.Security;
 
 namespace Client.Views
 {
@@ -62,7 +65,17 @@ namespace Client.Views
         {
             InitializeComponent();
             NetTcpBinding binding = new NetTcpBinding();
-            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}:{1}/Server", serverName, port)));
+            //binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+            //string cltCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+            //X509Certificate2 srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+
+            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(new Uri(String.Format("net.tcp://{0}:{1}/Server", serverName, port))/*, new X509CertificateEndpointIdentity(srvCert)*/));
+            //factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.PeerTrust;
+            //factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
+            //factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+
+            //factory.Credentials.ClientCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+
             this.proxy = factory.CreateChannel();
         }
 
@@ -98,8 +111,9 @@ namespace Client.Views
                 mw.Proxy = this.proxy;
                 mw._mainFrame.NavigationService.Navigate(new ShowInfo(proxy));
             }
-            catch
+            catch(Exception ee)
             {
+                MessageBox.Show(ee.Message);
                 Validation = "Port or server endpoint name is invalid.";
                 return;
             }

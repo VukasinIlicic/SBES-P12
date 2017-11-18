@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.ServiceModel;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,10 +25,10 @@ namespace Server
         {
             //VezaSaAuditom.PoveziSe();
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-            //OtvoriServer();
-            VezaSaGlavnim.PoveziSe();
+            OtvoriServer();
+            //VezaSaGlavnim.PoveziSe();
             Thread t1 = new Thread(Update);
-            t1.Start();
+            //t1.Start();
 
             Console.ReadLine();
             t1.Abort(); // proveri da li je ok      
@@ -36,23 +38,34 @@ namespace Server
         private static void Update()
         {
             DateTime vreme = DateTime.Now;
-            while(true)
+            while (true)
             {
                 while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
                     Thread.Sleep(300);
 
                 VezaSaGlavnim.IntegrityUpdate();
-            }          
+            }
         }
 
         public static void OtvoriServer()
         {
             NetTcpBinding binding = new NetTcpBinding();
+            //binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+
             svc = new ServiceHost(typeof(ServerClass));
             Console.WriteLine("Unesi port");
-            string port = Console.ReadLine(); // pazi na validaciju
+            string port = "13000";//Console.ReadLine(); // pazi na validaciju
 
             svc.AddServiceEndpoint(typeof(IServer), binding, new Uri(String.Format("net.tcp://localhost:{0}/Server", port)));
+            //svc.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.PeerTrust;
+            ////svc.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new ServiceCertValidator();
+
+            //svc.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+
+            //svc.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+
+            Console.WriteLine(Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+
             svc.Open();
 
             Console.WriteLine("Otvorio");

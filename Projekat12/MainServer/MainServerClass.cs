@@ -15,7 +15,6 @@ namespace MainServer
         static string imeBaze = "Baza.xml";
         private static readonly Object lockObject = new Object();
         private static readonly Object lockObject2 = new Object();
-        static DateTime vreme;
         static List<string> imenaServera = new List<string>();
 
         public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera)
