@@ -30,6 +30,17 @@ namespace Server
 
             Console.ReadLine();
             t1.Abort(); // proveri da li je ok
+
+            //dt.Tick += Dt_Tick; // krenuce u razlicitom vremenu, pazi kod mainServera kako onda da budu konzistentni
+            //dt.Interval = TimeSpan.FromSeconds(sekunde);
+            //dt.Start();
+            OtvoriServer();
+            Console.ReadLine();
+            //dt.Stop();
+
+            // ksks
+            int a = 5;
+            
             svc.Close();
         }
 

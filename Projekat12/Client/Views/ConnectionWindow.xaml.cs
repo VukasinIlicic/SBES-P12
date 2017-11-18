@@ -72,6 +72,8 @@ namespace Client.Views
             string port = ServerPort.Text;
             int portNo;
 
+            Validation = "";
+
             if (endpointName == "" || port == "")
             {
                 Validation = "Your input is invalid.";

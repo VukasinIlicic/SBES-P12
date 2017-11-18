@@ -28,7 +28,7 @@
         <Label x:Name="IdLabel" Content="Enter id: " HorizontalAlignment="Left" Height="27" Margin="116,163,0,0" VerticalAlignment="Top" Width="137"/>
         <TextBox x:Name="IdTxtBox" HorizontalAlignment="Left" Height="24" Margin="116,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
         <Button x:Name="ConfirmBtn" Content="Set new consumption" HorizontalAlignment="Left" Height="25" Margin="144,245,0,0" VerticalAlignment="Top" Width="123" Click="ConfirmBtn_Click"/>
-        <Label x:Name="label" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="26" Margin="116,219,0,0" VerticalAlignment="Top" Width="184" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
+        <Label x:Name="label" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="26" Margin="53,219,0,0" VerticalAlignment="Top" Width="298" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
 
     </Grid>
 </UserControl>

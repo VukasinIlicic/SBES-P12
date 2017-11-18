@@ -100,6 +100,8 @@ namespace Client.Views
             string year = this.YearTxtBox.Text;
             int year_;
 
+            Validation = "";
+
             if (cityName == "" || year == "")
             {
                 Validation = "Invalid input.";
@@ -118,13 +120,13 @@ namespace Client.Views
 
             AnnualConsume = proxy.SrednjaVrednostPotrosnje(cityName, year_);
 
-            try
+            if((AnnualConsume.ToString()).Length>8)
             {
                 StringResult = (AnnualConsume.ToString()).Remove(7);
             }
-            catch
+            else
             {
-                StringResult = "0.0";
+                StringResult = AnnualConsume.ToString();
             }
         }
     }

@@ -14,7 +14,22 @@ namespace Server
         public bool AzurirajPotrosnju(string id, string month, double consumption)
         {
             //Audit.AzuriranjePotrosnje(Program.customLog);
-            return true;
+            int month_ = convertMonthToIndex(month);
+
+            if(consumption<0)
+            {
+                return false;
+            }
+
+            try
+            {
+                Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool DodajEntitet(DataObj noviPotrosac)
@@ -88,12 +103,48 @@ namespace Server
                     personalConsumption += obj.Potrosnja[i];
                 }
 
+                
                 personalConsumption /= obj.Potrosnja.Count;
                 ac += personalConsumption;
             }
 
-            ac /= data.Count;
+            if (data.Count != 0)
+                ac /= data.Count;
+
             return ac;
+        }
+
+        public int convertMonthToIndex(string month)
+        {
+            switch(month)
+            {
+                case "January":
+                    return 0;
+                case "February":
+                    return 1;
+                case "March":
+                    return 2;
+                case "April":
+                    return 3;
+                case "May":
+                    return 4;
+                case "June":
+                    return 5;
+                case "July":
+                    return 6;
+                case "August":
+                    return 7;
+                case "September":
+                    return 8;
+                case "October":
+                    return 9;
+                case "November":
+                    return 10;
+                case "December":
+                    return 11;
+                default:
+                    return 0;
+            }
         }
     }
 }

@@ -75,6 +75,13 @@ namespace Client.Views
             try
             {
                 year_ = Convert.ToInt32(year);
+
+                if (year_ < 0)
+                {
+                    Validation = "Year can't be negative number.";
+                    return;
+                }
+
                 DataObj newConsumer = new DataObj(id, region, city, year_);
                 bool added = proxy.DodajEntitet(newConsumer);
 
