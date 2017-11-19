@@ -47,10 +47,10 @@
     <Compile Include="CertManager\CertificateManager.cs" />
     <Compile Include="CertManager\ClientCertValidator.cs" />
     <Compile Include="Formatter.cs" />
-    <Compile Include="IAuditServer.cs" />
+    <Compile Include="Contracts\IAuditServer.cs" />
     <Compile Include="DataObj.cs" />
-    <Compile Include="IMainServer.cs" />
-    <Compile Include="IServer.cs" />
+    <Compile Include="Contracts\IMainServer.cs" />
+    <Compile Include="Contracts\IServer.cs" />
     <Compile Include="Konstanta.cs" />
     <Compile Include="MergeBaza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

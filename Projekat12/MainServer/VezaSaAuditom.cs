@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Contracts;
 
 namespace MainServer
 {

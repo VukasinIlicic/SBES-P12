@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
 using Common.CertManager;
+using Common.Contracts;
 
 namespace Client.Views
 {

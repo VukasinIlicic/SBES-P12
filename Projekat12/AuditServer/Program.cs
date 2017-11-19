@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Contracts;
 
 namespace AuditServer
 {

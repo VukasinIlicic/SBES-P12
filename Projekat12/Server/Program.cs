@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Common.CertManager;
+using Common.Contracts;
 
 namespace Server
 {
