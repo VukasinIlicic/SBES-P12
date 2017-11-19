@@ -52,6 +52,7 @@
     <Compile Include="IMainServer.cs" />
     <Compile Include="IServer.cs" />
     <Compile Include="Konstanta.cs" />
+    <Compile Include="MergeBaza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCertValidator.cs" />
   </ItemGroup>

@@ -9,7 +9,7 @@ namespace Server
 {
     public class ServerClass : IServer
     {
-        private static readonly Object lockObject = new Object();
+        public static readonly Object lockObject = new Object();
 
         public bool AzurirajPotrosnju(string id, string month, double consumption)
         {
@@ -24,6 +24,8 @@ namespace Server
             try
             {
                 Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
+                Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
+
                 return true;
             }
             catch

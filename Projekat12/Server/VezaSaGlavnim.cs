@@ -12,6 +12,7 @@ namespace Server
     public class VezaSaGlavnim
     {
         static IMainServer proxy;
+        private static Dictionary<string, DataObj> rezultatGlavneBaze = new Dictionary<string, DataObj>();
 
         public static void PoveziSe()
         {
@@ -22,7 +23,17 @@ namespace Server
 
         public static void IntegrityUpdate()
         {
-            Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);
+            rezultatGlavneBaze = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);        
+            lock(ServerClass.lockObject)
+            {
+                //Program.mb.Merge(rezultatGlavneBaze, Program.lokalnaBaza);
+                //Program.lokalnaBaza = rezultatGlavneBaze;
+                Program.lokalnaBaza = rezultatGlavneBaze;
+            }
+            
+
+
+            //Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);
         }
     }
 }

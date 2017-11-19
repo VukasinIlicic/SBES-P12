@@ -17,6 +17,7 @@ namespace MainServer
         static ServiceHost svc;
         public static Dictionary<string, DataObj> glavnaBaza = new Dictionary<string, DataObj>();
         public static Dictionary<string, bool> sviServeri = new Dictionary<string, bool>();
+        public static MergeBaza mb = new MergeBaza();
 
         static void Main(string[] args)
         {

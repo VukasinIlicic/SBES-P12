@@ -24,42 +24,19 @@ namespace MainServer
                 Program.sviServeri.Add(imeServera, false);
                 imenaServera.Add(imeServera);
             }
-                
-            lock(lockObject2)
+
+            lock (lockObject2)
             {
                 Program.sviServeri[imeServera] = true;
             }
-   
-            foreach (var lbs in lokalnaBazaServera)
-            {
-                if (!Program.glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
-                {
-                    lock (lockObject)
-                    {
-                        try
-                        {
-                            Program.glavnaBaza.Add(lbs.Key, lbs.Value);
-                        }
-                        catch { }
-                    }
-                }
-                else if (lbs.Value.Obrisan == true && Program.glavnaBaza.ContainsKey(lbs.Key))  // brisanje
-                {
-                    lock (lockObject)
-                    {
-                        try
-                        {
-                            Program.glavnaBaza.Remove(lbs.Key);
-                        }
-                        catch { }
-                    }
-                }
-            }
+
+            Program.mb.Merge(lokalnaBazaServera, Program.glavnaBaza);
 
             Thread.Sleep(2500);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
-            
-            return Program.glavnaBaza;  
-        }
+
+            return Program.glavnaBaza;
+
+        } 
 
         public static void Provera()
         {
@@ -85,7 +62,8 @@ namespace MainServer
                 {   
                     VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
                 }
-                Console.WriteLine("hehe");
+
+                Console.WriteLine("Proverio");
             }    
         }
 
