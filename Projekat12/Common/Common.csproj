@@ -46,8 +46,8 @@
     <Compile Include="Audit.cs" />
     <Compile Include="CertManager\CertificateManager.cs" />
     <Compile Include="CertManager\ClientCertValidator.cs" />
-    <Compile Include="Formatter.cs" />
     <Compile Include="Contracts\IAuditServer.cs" />
+    <Compile Include="Formatter.cs" />
     <Compile Include="DataObj.cs" />
     <Compile Include="Contracts\IMainServer.cs" />
     <Compile Include="Contracts\IServer.cs" />

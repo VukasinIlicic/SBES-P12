@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Admin\Desktop\Rep\SBES-P12\Projekat12\Client\obj\Debug\
+D:\FTN\4.godina\Sigurnost i bezbednost\SBES-P12\Projekat12\Client\obj\Debug\
 Client
 none
 false
 DEBUG;TRACE
-C:\Users\Admin\Desktop\Rep\SBES-P12\Projekat12\Client\App.xaml
+D:\FTN\4.godina\Sigurnost i bezbednost\SBES-P12\Projekat12\Client\App.xaml
 7-1496204819
 
-15-781352297
-181845207360
+15-244951136
+181199545447
 MainWindow.xaml;Views\AddNewEntityWindow.xaml;Views\AnnualConsumption.xaml;Views\ConnectionWindow.xaml;Views\DeleteEntity.xaml;Views\SetConsumptionWindow.xaml;Views\ShowInfo.xaml;
 
-False
+True
 
