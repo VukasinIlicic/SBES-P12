@@ -30,6 +30,7 @@ namespace Client.Views
         {
             InitializeComponent();
             this.proxy = proxy;
+            SetIdComboBox();
             this.DataContext = this;
         }
 
@@ -57,11 +58,12 @@ namespace Client.Views
 
         private void DeleteConsumer(object sender, RoutedEventArgs e)
         {
-            string id = IdTxtBox.Text;
+            string id = IdComboBox.Text;
             bool deleted = false;
             Validation = "";
+            CheckImg.Visibility = Visibility.Hidden;
 
-            if(id=="")
+            if (id=="")
             {
                 Validation = "Invalid input.";
                 return;
@@ -81,6 +83,29 @@ namespace Client.Views
             {
                 Validation = "There is no user with this id.";
             }
+
+            SetIdComboBox();
+            CheckImg.Visibility = Visibility.Visible;
+        }
+
+        public List<string> GetAllConsumersId(Dictionary<string, DataObj> consumers)
+        {
+            List<string> idList = new List<string>();
+
+            foreach (KeyValuePair<string, DataObj> kv in consumers)
+            {
+                if(!kv.Value.Obrisan)
+                    idList.Add(kv.Value.Id);
+            }
+
+            return idList;
+        }
+
+        public void SetIdComboBox()
+        {
+            Dictionary<string, DataObj> consumers = proxy.PrikazInformacija();
+            List<string> idList = GetAllConsumersId(consumers);
+            IdComboBox.ItemsSource = idList;
         }
     }
 }
