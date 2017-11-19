@@ -16,6 +16,7 @@ namespace Common
         private int godina;
         private bool obrisan;
         private string region;
+        private List<bool> azuriran = Enumerable.Range(0, 12).Select(i => false).ToList();
         private List<double> potrosnja = new List<double>();
 
         #region Getters_and_setters
@@ -26,7 +27,6 @@ namespace Common
             {
                 return id;
             }
-
             set
             {
                 id = value;
@@ -41,7 +41,6 @@ namespace Common
             {
                 return grad;
             }
-
             set
             {
                 grad = value;
@@ -55,7 +54,6 @@ namespace Common
             {
                 return godina;
             }
-
             set
             {
                 godina = value;
@@ -69,24 +67,9 @@ namespace Common
             {
                 return obrisan;
             }
-            
             set
             {
                 obrisan = value;
-            }
-        }
-
-        [DataMember]
-        public List<double> Potrosnja
-        {
-            get
-            {
-                return potrosnja;
-            }
-
-            set
-            {
-                potrosnja = value;
             }
         }
 
@@ -97,12 +80,39 @@ namespace Common
             {
                 return region;
             }
-
             set
             {
                 region = value;
             }
         }
+
+        [DataMember]
+        public List<bool> Azuriran
+        {
+            get
+            {
+                return azuriran;
+            }
+            set
+            {
+                azuriran = value;
+            }
+        }
+
+        [DataMember]
+        public List<double> Potrosnja
+        {
+            get
+            {
+                return potrosnja;
+            }
+            set
+            {
+                potrosnja = value;
+            }
+        }
+
+        
         #endregion
 
         #region Constructors
@@ -129,9 +139,19 @@ namespace Common
             this.region = region;
             this.godina = godina;
             this.Potrosnja = GenerateRandomConsumption();
+            //this.azuriran = NapraviAzurirane();
             this.obrisan = false;
         }
         #endregion
+
+        /*private List<bool> NapraviAzurirane()
+        {
+            List<bool> pomocna = new List<bool>();
+            for (int i = 0; i < 12; i++)
+                pomocna[i] = false;
+
+            return pomocna;
+        }*/
 
         public List<double> GenerateRandomConsumption()
         {
@@ -144,6 +164,16 @@ namespace Common
             }
 
             return consumptions;
+        }
+
+        public bool AzuriranaPotrosnja(int indeks)
+        {
+            return azuriran[indeks];
+        }
+
+        public void AzurirajPotrosnju(int indeks, bool vrednost)
+        {
+            azuriran[indeks] = vrednost;
         }
     }
 }

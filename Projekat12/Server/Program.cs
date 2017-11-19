@@ -15,37 +15,53 @@ using Common.CertManager;
 
 namespace Server
 {
-	internal class Program
-	{
-		private static ServiceHost svc;
-		public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
-		public static EventLog customLog;
+    class Program
+    {
 
-		private static void Main(string[] args)
-		{
-			//VezaSaAuditom.PoveziSe();
-			//customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
-			OtvoriServer();
-			//VezaSaGlavnim.PoveziSe();
-			Thread t1 = new Thread(Update);
-			//t1.Start();
+        static ServiceHost svc;
+        public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
+        public static EventLog customLog;
+        static ServerClass sc = new ServerClass();
+        public static MergeBaza mb = new MergeBaza();
 
-			Console.ReadLine();
-			t1.Abort(); // proveri da li je ok      
-			svc.Close();
-		}
+        static void Main(string[] args)
+        {
+            //VezaSaAuditom.PoveziSe();
+            //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
+            OtvoriServer();
+            VezaSaGlavnim.PoveziSe();
 
-		private static void Update()
-		{
-			DateTime vreme = DateTime.Now;
-			while (true)
-			{
-				while ((DateTime.Now.Second%Konstanta.Vreme_Azuriranja) != 0)
-					Thread.Sleep(300);
+            Thread t1 = new Thread(Update);
+            t1.Start();
 
-				VezaSaGlavnim.IntegrityUpdate();
-			}
-		}
+            //sc.DodajEntitet(new DataObj("1", "sss", "sss", 2017));
+            
+
+            Console.ReadLine();
+            t1.Abort(); // proveri da li je ok      
+            svc.Close();
+        }
+
+        private static void Update()
+        {
+            DateTime vreme = DateTime.Now;
+            int i = 0;
+            while (true)
+            {
+                while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
+                    Thread.Sleep(300);
+
+                Console.WriteLine("Javljam se");
+                VezaSaGlavnim.IntegrityUpdate();
+
+                //if(i == 0)
+                //{
+                //    sc.AzurirajPotrosnju("1", "March", 50);
+                //    i++;
+                //}
+                
+            }
+        }
 
 		public static void OtvoriServer()
 		{

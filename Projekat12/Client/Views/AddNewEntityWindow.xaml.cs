@@ -65,8 +65,9 @@ namespace Client.Views
 
             //Svaki put kad uradi click, ukloni validaciju
             Validation = "";
+            CheckImg.Visibility = Visibility.Hidden;
 
-            if(id=="" || region=="" || city=="" || year=="")
+            if (id=="" || region=="" || city=="" || year=="")
             {
                 Validation = "Invalid input.";
                 return;
@@ -88,6 +89,10 @@ namespace Client.Views
                 if (!added)
                 {
                     Validation = "Database contains user with this id.";
+                }
+                else
+                {
+                    CheckImg.Visibility = Visibility.Visible;
                 }
 
                 return;

@@ -8,6 +8,6 @@ namespace Common
 {
     public class Konstanta
     {
-        public const int Vreme_Azuriranja = 10;
+        public const int Vreme_Azuriranja = 60;
     }
 }

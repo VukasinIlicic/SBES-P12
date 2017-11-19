@@ -29,8 +29,12 @@ namespace Client.Views
         public SetConsumptionWindow(IServer proxy)
         {
             InitializeComponent();
-            this.DataContext = this;
             this.proxy = proxy;
+
+            Dictionary<string, DataObj> consumers = proxy.PrikazInformacija();
+            List<string> idList = GetAllConsumersId(consumers);
+            IdComboBox.ItemsSource = idList;
+            this.DataContext = this;
         }
 
         public string Validation
@@ -59,13 +63,14 @@ namespace Client.Views
         {
             string consumption = ConsumptionTxtBox.Text;
             string month = comboBox.Text;
-            string userId = IdTxtBox.Text;
+            string userId = IdComboBox.Text;
             double consumption_;
             bool edited;
 
             Validation = "";
+            CheckImg.Visibility = Visibility.Hidden;
 
-            if(consumption=="" || month=="" || userId=="")
+            if (consumption=="" || month=="" || userId=="")
             {
                 Validation = "Invalid input.";
                 return;
@@ -75,6 +80,7 @@ namespace Client.Views
             {
                 consumption_ = Convert.ToDouble(consumption);
                 edited = proxy.AzurirajPotrosnju(userId, month, consumption_);
+                CheckImg.Visibility = Visibility.Visible;
             }
             catch
             {
@@ -87,6 +93,19 @@ namespace Client.Views
                 Validation = "Consumption isn't changed.";
                 return;
             }
+        }
+
+        public List<string> GetAllConsumersId(Dictionary<string,DataObj> consumers)
+        {
+            List<string> idList = new List<string>();
+
+            foreach(KeyValuePair<string,DataObj> kv in consumers)
+            {
+                if(!kv.Value.Obrisan)
+                    idList.Add(kv.Value.Id);
+            }
+
+            return idList;
         }
     }
 }
