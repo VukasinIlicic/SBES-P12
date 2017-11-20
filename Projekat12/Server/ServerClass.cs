@@ -131,12 +131,11 @@ namespace Server
             return ac;
         }
 
-        /*
+        
         private int ConvertMonthToIndex(string month)
         {
 			return DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month - 1;
 		}
-<<<<<<< HEAD
 
         public Dictionary<string, DataObj> IntegrityUpdate()
         {
@@ -187,8 +186,5 @@ namespace Server
                     }
             }
         }
-=======
-        */
->>>>>>> 7271acaa48c1298da8b715b63bd0bc28dacf619d
     }
 }
