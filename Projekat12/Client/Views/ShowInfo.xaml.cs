@@ -30,6 +30,7 @@ namespace Client.Views
             //infoDic.Add("1", dd);
             Dictionary<string, DataObj> infoDic = p.PrikazInformacija();
             List<DataObj> dataObjList = GetDataObjList(infoDic);
+            dataObjList = dataObjList.OrderBy(o => o.Id).ToList();
             this.DataContext = dataObjList;
             lvDataBinding.ItemsSource = dataObjList;
         }

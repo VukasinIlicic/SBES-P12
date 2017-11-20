@@ -1,0 +1,4 @@
+C:\Users\Administrator.P05-07\Desktop\Repoz\SBES-P12\Projekat12\Common\bin\Debug\Common.dll
+C:\Users\Administrator.P05-07\Desktop\Repoz\SBES-P12\Projekat12\Common\bin\Debug\Common.pdb
+C:\Users\Administrator.P05-07\Desktop\Repoz\SBES-P12\Projekat12\Common\obj\Debug\Common.dll
+C:\Users\Administrator.P05-07\Desktop\Repoz\SBES-P12\Projekat12\Common\obj\Debug\Common.pdb
