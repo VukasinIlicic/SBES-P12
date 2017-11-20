@@ -51,7 +51,7 @@ namespace Server
 
 			svc = new ServiceHost(typeof (ServerClass));
 			Console.WriteLine("Unesi port");
-			string port = Console.ReadLine(); // pazi na validaciju
+			string port = Console.ReadLine(); //pazi na validaciju
             portServera = Convert.ToInt32(port);
 
 			//var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
