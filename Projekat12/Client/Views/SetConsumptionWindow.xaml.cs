@@ -64,6 +64,7 @@ namespace Client.Views
         {
             string consumption = ConsumptionTxtBox.Text;
             string month = comboBox.Text;
+            int monthIndex = comboBox.SelectedIndex;
             string userId = IdComboBox.Text;
             double consumption_;
             bool edited;
@@ -80,7 +81,7 @@ namespace Client.Views
             try
             {
                 consumption_ = Convert.ToDouble(consumption);
-                edited = proxy.AzurirajPotrosnju(userId, month, consumption_);
+                edited = proxy.AzurirajPotrosnju(userId, monthIndex, consumption_);
                 CheckImg.Visibility = Visibility.Visible;
             }
             catch
