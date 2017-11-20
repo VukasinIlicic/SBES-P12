@@ -129,5 +129,17 @@ namespace Client.Views
         {
             proxy.PrikazInformacija();
         }
+
+        private void CheckBoxCheck(object sender, RoutedEventArgs e)
+        {
+            ServerAddress.Text = "localhost";
+            ServerAddress.IsReadOnly = true;
+        }
+
+        private void CheckBoxUncheck(object sender, RoutedEventArgs e)
+        {
+            ServerAddress.Text = "";
+            ServerAddress.IsReadOnly = false;
+        }
     }
 }
