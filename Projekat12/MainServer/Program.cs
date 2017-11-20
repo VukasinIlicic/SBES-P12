@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Common.Contracts;
+using Common.Entiteti;
 
 namespace MainServer
 {

@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using Common.CertManager;
 using Common.Contracts;
 using System.Collections.Concurrent;
+using Common.Entiteti;
 
 namespace Server
 {

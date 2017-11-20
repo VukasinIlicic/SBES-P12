@@ -10,13 +10,14 @@ using System.Xml.Serialization;
 using Common.Contracts;
 using System.ServiceModel;
 using System.Collections.Concurrent;
+using Common.Entiteti;
 
 namespace MainServer
 {
     public class MainServerClass : IMainServer
     {
         static string imeBaze = "Baza.xml";
-        static ConcurrentDictionary<string, Serveri> serveri = new ConcurrentDictionary<string, Serveri>();
+        static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
 
         public static void Provera()
         {
@@ -76,7 +77,7 @@ namespace MainServer
         {
             NetTcpBinding binding = new NetTcpBinding();
             ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}/Server", adresa)));
-            serveri.TryAdd(imeServera, new Serveri() { Ime = imeServera, Proxy = factory.CreateChannel()});  
+            serveri.TryAdd(imeServera, new Server() { Ime = imeServera, Proxy = factory.CreateChannel()});  
         }
 
 
