@@ -24,6 +24,7 @@ namespace Server
         public static EventLog customLog;
         static ServerClass sc = new ServerClass();
         public static MergeBaza mb = new MergeBaza();
+        public static bool tajm = false;
 
         static void Main(string[] args)
         {
@@ -46,42 +47,35 @@ namespace Server
         private static void Update()
         {
             DateTime vreme = DateTime.Now;
-            int i = 0;
             while (true)
             {
+                tajm = false;
                 while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
                     Thread.Sleep(300);
 
-                Console.WriteLine("Javljam se");
-                VezaSaGlavnim.IntegrityUpdate();
-
-                //if(i == 0)
-                //{
-                //    sc.AzurirajPotrosnju("1", "March", 50);
-                //    i++;
-                //}
-                
+                tajm = true;    
+                VezaSaGlavnim.IntegrityUpdate();                
             }
         }
 
 		public static void OtvoriServer()
 		{
 			var binding = new NetTcpBinding();
-			binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+			//binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
 
 			svc = new ServiceHost(typeof (ServerClass));
 			Console.WriteLine("Unesi port");
-			string port = "13000"; //Console.ReadLine(); // pazi na validaciju
+			string port = Console.ReadLine(); // pazi na validaciju
 
-			var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+			//var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 			svc.AddServiceEndpoint(typeof (IServer), binding, new Uri(String.Format("net.tcp://localhost:{0}/Server", port)));
-			svc.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
-			svc.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new ServiceCertValidator();
+			//svc.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+			//svc.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new ServiceCertValidator();
 
-			svc.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+			//svc.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
-			svc.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,
-				StoreLocation.LocalMachine, srvCertCN);
+			//svc.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,
+			//	StoreLocation.LocalMachine, srvCertCN);
 
 			svc.Open();
 

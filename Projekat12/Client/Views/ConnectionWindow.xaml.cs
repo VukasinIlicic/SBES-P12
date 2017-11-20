@@ -68,16 +68,16 @@ namespace Client.Views
             InitializeComponent();
 
             var binding = new NetTcpBinding();
-			binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-			var cltCertCN = "wcfservice";
-			var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+			//binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+			//var cltCertCN = "wcfservice";
+			//var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
 
-			var factory = new ChannelFactory<IServer>(binding, new EndpointAddress(new Uri(String.Format("net.tcp://{0}:{1}/Server", serverName, port)), new X509CertificateEndpointIdentity(srvCert)));
-			factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
-			factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
-			factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+			var factory = new ChannelFactory<IServer>(binding, new EndpointAddress(new Uri(String.Format("net.tcp://{0}:{1}/Server", serverName, port))/*, new X509CertificateEndpointIdentity(srvCert)*/));
+			//factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+			//factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
+			//factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
-			factory.Credentials.ClientCertificate.Certificate = srvCert;
+			//factory.Credentials.ClientCertificate.Certificate = srvCert;
 
 			proxy = factory.CreateChannel();
         }

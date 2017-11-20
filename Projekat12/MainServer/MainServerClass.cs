@@ -31,10 +31,11 @@ namespace MainServer
                 Program.sviServeri[imeServera] = true;
             }
 
-            Program.mb.Merge(lokalnaBazaServera, Program.glavnaBaza);
+            Program.mb.Merge(lokalnaBazaServera, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
 
-            Thread.Sleep(2500);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
+            Thread.Sleep(11 * 1000);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
 
+            Program.mb.obrisani.Clear();
             return Program.glavnaBaza;
 
         } 

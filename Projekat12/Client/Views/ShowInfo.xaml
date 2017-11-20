@@ -14,6 +14,7 @@
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Region}"/>
                     <GridViewColumn Header="City" DisplayMemberBinding="{Binding Grad}"/>
                     <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Godina}"/>
+                    <!--<GridViewColumn Header="Treci" DisplayMemberBinding="{Binding Treci}"/>-->
                 </GridView>
             </ListView.View>
         </ListView>

@@ -25,6 +25,9 @@ namespace Server
 
             try
             {
+                if (Program.tajm)
+                    Program.lokalnaBaza[id].AzuriranUTajmu[month_] = true;
+
                 Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
                 Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
 
@@ -39,12 +42,20 @@ namespace Server
         public bool DodajEntitet(DataObj noviPotrosac)
         {
             if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+            {
+                if(Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
                     return false;
+
+                Program.lokalnaBaza.Remove(noviPotrosac.Id);
+            }                    
 
             lock(lockObject)
             {
                 try
                 {
+                    if (Program.tajm)
+                        noviPotrosac.DodatUTajmu = true;
+
                     Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
                     //Audit.DodavanjeEntiteta(Program.customLog);
                     return true;

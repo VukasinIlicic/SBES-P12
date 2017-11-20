@@ -9,48 +9,62 @@ namespace Common
     public class MergeBaza
     {
         private static readonly Object lockObject = new Object();
+        public List<string> obrisani = new List<string>();  // prvi koji prodje kroz foreach obrise, sledeci kad naidje prvi if ce ga pustiti da doda (zato ovde pamtimo izbrisane pa pre dodavanja proverimo da nisu ovde )
 
         public MergeBaza()
         {
 
         }
 
-        public void Merge(Dictionary<string, DataObj> lokalnaBazaServera, Dictionary<string, DataObj> glavnaBaza)
+        public void Merge(Dictionary<string, DataObj> lokalnaBazaServera, Dictionary<string, DataObj> glavnaBaza, int merge)
         {
             foreach (var lbs in lokalnaBazaServera)
             {
                 List<int> indeksiAzuriranja = new List<int>();
                 List<bool> azurirani = (lbs.Value as DataObj).Azuriran;
-                if (!glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
+
+                lock(lockObject)
                 {
-                    lock (lockObject)
+                    if (!glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false) // dodavanje
                     {
-                        try
-                        {
-                            glavnaBaza.Add(lbs.Key, lbs.Value);
-                        }
-                        catch { }
-                    }
-                }
-                else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == true)  // brisanje
-                {
-                    lock (lockObject)
-                    {
-                        try
-                        {
-                            glavnaBaza.Remove(lbs.Key);
-                        }
-                        catch { }
-                    }
-                }
-                else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false && ProveraAzuriranja(indeksiAzuriranja, azurirani))  // azuriranje
-                {
-                    for (int i = 0; i < indeksiAzuriranja.Count; i++)
-                    {
-                        lock (lockObject)
+                        if(!obrisani.Contains(lbs.Key))
                         {
                             try
                             {
+                                if(merge == Konstanta.MERGE_SA_GLAVNIN || (merge == Konstanta.MERGE_SA_LOKALNIM && lbs.Value.DodatUTajmu))
+                                {
+                                    lbs.Value.DodatUTajmu = false;
+                                    glavnaBaza.Add(lbs.Key, lbs.Value);
+                                }
+                                    
+                            }
+                            catch { }
+                        }   
+                    }
+                    else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == true)  // brisanje
+                    {
+                        if(merge == Konstanta.MERGE_SA_LOKALNIM)
+                        {
+                            glavnaBaza[lbs.Key].Obrisan = true;
+                            continue;
+                        }
+
+                        try
+                        {
+                            glavnaBaza.Remove(lbs.Key);
+                            obrisani.Add(lbs.Key);
+                        }
+                        catch { }   
+                    }
+                    else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false && ProveraAzuriranja(indeksiAzuriranja, azurirani))  // azuriranje
+                    {
+                        for (int i = 0; i < indeksiAzuriranja.Count; i++)
+                        {
+                            try
+                            {
+                                //if (merge == Konstanta.MERGE_SA_LOKALNIM)
+                                //    glavnaBaza[lbs.Key].AzuriranUTajmu[indeksiAzuriranja[i]] = true;
+
                                 glavnaBaza[lbs.Key].Potrosnja[indeksiAzuriranja[i]] = (lbs.Value as DataObj).Potrosnja[indeksiAzuriranja[i]];
                             }
                             catch { }
@@ -58,6 +72,7 @@ namespace Common
                     }
 
                 }
+                
             }
 
         }

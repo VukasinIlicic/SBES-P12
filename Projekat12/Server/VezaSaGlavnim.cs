@@ -27,14 +27,48 @@ namespace Server
             rezultatGlavneBaze = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);        
             lock(ServerClass.lockObject)
             {
-                //Program.mb.Merge(rezultatGlavneBaze, Program.lokalnaBaza);
-                //Program.lokalnaBaza = rezultatGlavneBaze;
+                Dictionary<string, bool[]> pomocniDic = NapraviDic();
+                Program.mb.Merge(Program.lokalnaBaza, rezultatGlavneBaze, Konstanta.MERGE_SA_LOKALNIM);
                 Program.lokalnaBaza = rezultatGlavneBaze;
+                ProveraAzuriranjaUTajmu(pomocniDic);
             }
-            
 
-
-            //Program.lokalnaBaza = proxy.IntegrityUpdate(Program.lokalnaBaza, WindowsIdentity.GetCurrent().Name);
         }
+
+        private static Dictionary<string, bool[]> NapraviDic()
+        {
+            Dictionary<string, bool[]> dic = new Dictionary<string, bool[]>();
+
+            foreach(var lb in Program.lokalnaBaza)
+            {
+                bool[] pomocni = new bool[12];
+                for (int i = 0; i < 12; i++)
+                    pomocni[i] = lb.Value.AzuriranUTajmu[i];
+
+                if(!dic.ContainsKey(lb.Key))
+                    dic.Add(lb.Key, pomocni);
+            }
+
+            return dic; 
+        }
+
+        private static void ProveraAzuriranjaUTajmu(Dictionary<string, bool[]> dic)
+        {
+            foreach(var lb in Program.lokalnaBaza)
+            {
+                if (!dic.ContainsKey(lb.Key))
+                    continue;
+
+                bool[] hehe = dic[lb.Key];
+                for(int i = 0; i < 12; i++)
+                    if(hehe[i])
+                    {
+                        lb.Value.Azuriran[i] = true;
+                        lb.Value.AzuriranUTajmu[i] = false;
+                    }
+            }
+        }
+        
+
     }
 }

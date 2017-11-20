@@ -9,5 +9,7 @@ namespace Common
     public class Konstanta
     {
         public const int Vreme_Azuriranja = 60;
+        public const int MERGE_SA_GLAVNIN = 0;
+        public const int MERGE_SA_LOKALNIM = 1;
     }
 }

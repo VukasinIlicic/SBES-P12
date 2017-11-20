@@ -29,12 +29,12 @@ namespace Client.Views
             //Dictionary<string, DataObj> infoDic = new Dictionary<string, DataObj>();
             //infoDic.Add("1", dd);
             Dictionary<string, DataObj> infoDic = p.PrikazInformacija();
-            List<DataObj> dataObjList = getDataObjList(infoDic);
+            List<DataObj> dataObjList = GetDataObjList(infoDic);
             this.DataContext = dataObjList;
             lvDataBinding.ItemsSource = dataObjList;
         }
 
-        public List<DataObj> getDataObjList(Dictionary<string,DataObj> data)
+        public List<DataObj> GetDataObjList(Dictionary<string,DataObj> data)
         {
             List<DataObj> returnList = new List<DataObj>();
 

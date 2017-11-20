@@ -16,7 +16,9 @@ namespace Common
         private int godina;
         private bool obrisan;
         private string region;
+        private bool dodatUTajmu;
         private List<bool> azuriran = Enumerable.Range(0, 12).Select(i => false).ToList();
+        List<bool> azuriranUTajmu = Enumerable.Range(0, 12).Select(i => false).ToList();
         private List<double> potrosnja = new List<double>();
 
         #region Getters_and_setters
@@ -87,6 +89,20 @@ namespace Common
         }
 
         [DataMember]
+        [DefaultValue(false)]
+        public bool DodatUTajmu
+        {
+            get
+            {
+                return dodatUTajmu;
+            }
+            set
+            {
+                dodatUTajmu = value;
+            }
+        }
+
+        [DataMember]
         public List<bool> Azuriran
         {
             get
@@ -96,6 +112,19 @@ namespace Common
             set
             {
                 azuriran = value;
+            }
+        }
+
+        [DataMember]
+        public List<bool> AzuriranUTajmu
+        {
+            get
+            {
+                return azuriranUTajmu;
+            }
+            set
+            {
+                azuriranUTajmu = value;
             }
         }
 
@@ -112,6 +141,18 @@ namespace Common
             }
         }
 
+        //[DataMember]
+        //public double Treci
+        //{
+        //    get
+        //    {
+        //        return potrosnja[2];
+        //    }
+        //    set
+        //    {
+        //        potrosnja[2] = value;
+        //    }
+        //}
         
         #endregion
 
