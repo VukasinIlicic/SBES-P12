@@ -68,18 +68,21 @@ namespace Client.Views
             InitializeComponent();
 
             var binding = new NetTcpBinding();
-			//binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-			//var cltCertCN = "wcfservice";
-			//var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, cltCertCN);
+            //binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
+            //var srvCertCN = "wcfservice";
+            //var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, srvCertCN);
 
-			var factory = new ChannelFactory<IServer>(binding, new EndpointAddress(new Uri(String.Format("net.tcp://{0}:{1}/Server", serverName, port))/*, new X509CertificateEndpointIdentity(srvCert)*/));
-			//factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
-			//factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
-			//factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+            var factory = new ChannelFactory<IServer>(binding, new EndpointAddress(new Uri(String.Format("net.tcp://{0}:{1}/Server", serverName, port))/*, new X509CertificateEndpointIdentity(srvCert)*/));
+            //factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+            //factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
+            //factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
-			//factory.Credentials.ClientCertificate.Certificate = srvCert;
+            //var clientCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+            //var clientCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, clientCertCN);
 
-			proxy = factory.CreateChannel();
+            //factory.Credentials.ClientCertificate.Certificate = clientCert;
+
+            proxy = factory.CreateChannel();
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)

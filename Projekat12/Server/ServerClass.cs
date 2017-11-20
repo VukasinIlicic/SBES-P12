@@ -13,7 +13,7 @@ namespace Server
     {
         public static readonly Object lockObject = new Object();
 
-        public bool AzurirajPotrosnju(string id, string month, double consumption)
+        public bool AzurirajPotrosnju(string id, int month_, double consumption)
         {
             if(consumption<0)
             {
@@ -21,7 +21,6 @@ namespace Server
             }
 
             //Audit.AzuriranjePotrosnje(Program.customLog);
-            int month_ = ConvertMonthToIndex(month);
 
             try
             {
@@ -132,10 +131,12 @@ namespace Server
             return ac;
         }
 
+        /*
         private int ConvertMonthToIndex(string month)
         {
 			return DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month - 1;
 		}
+<<<<<<< HEAD
 
         public Dictionary<string, DataObj> IntegrityUpdate()
         {
@@ -186,5 +187,8 @@ namespace Server
                     }
             }
         }
+=======
+        */
+>>>>>>> 7271acaa48c1298da8b715b63bd0bc28dacf619d
     }
 }
