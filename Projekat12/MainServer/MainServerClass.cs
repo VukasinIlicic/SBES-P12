@@ -16,7 +16,6 @@ namespace MainServer
 {
     public class MainServerClass : IMainServer
     {
-        static string imeBaze = "Baza.xml";
         static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
 
         public static void Provera()
@@ -59,7 +58,6 @@ namespace MainServer
             }    
         }
 
-
         public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
         {
             if (!serveri.ContainsKey(imeServera))
@@ -79,30 +77,5 @@ namespace MainServer
             ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}/Server", adresa)));
             serveri.TryAdd(imeServera, new Server() { Ime = imeServera, Proxy = factory.CreateChannel()});  
         }
-
-
-        //public static void UpisiUXml(Dictionary<string, DataObj> dic)
-        //{
-        //    using (StreamWriter streamWriter = new StreamWriter(imeBaze))
-        //    {
-        //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
-        //        xmlSerializer.Serialize(streamWriter, dic);
-        //    }
-        //}
-
-        //public static Dictionary<string, DataObj> IscitajIzXml()
-        //{
-        //    Dictionary<string, DataObj> dic;
-
-        //    using (StreamReader streamReader = new StreamReader(imeBaze))
-        //    {
-        //        XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
-        //        dic = (Dictionary<string, DataObj>)serializer.Deserialize(streamReader);
-        //    }
-
-        //    return dic;
-        //}
-
-        
     }
 }
