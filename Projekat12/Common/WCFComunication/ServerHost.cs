@@ -27,7 +27,6 @@ namespace Common
 				binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
 				_serviceHost.AddServiceEndpoint(typeof (TInterface), binding, endpoint);
 				_serviceHost.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
-
 				_serviceHost.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
 				_serviceHost.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,

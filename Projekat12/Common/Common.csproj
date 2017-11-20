@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Audit.cs" />
     <Compile Include="CertManager\CertificateManager.cs" />
-    <Compile Include="CertManager\ClientCertValidator.cs" />
     <Compile Include="WCFComunication\ClientProxy.cs" />
     <Compile Include="Contracts\IAuditServer.cs" />
     <Compile Include="Contracts\IUpdate.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="Konstanta.cs" />
     <Compile Include="MergeBaza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CertManager\ServiceCertValidator.cs" />
     <Compile Include="Entiteti\Server.cs" />
     <Compile Include="WCFComunication\ServerHost.cs" />
   </ItemGroup>
