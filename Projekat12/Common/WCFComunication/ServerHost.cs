@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Helpers;
 
 namespace Common
 {

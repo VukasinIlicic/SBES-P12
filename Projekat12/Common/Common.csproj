@@ -48,11 +48,11 @@
     <Compile Include="WCFComunication\ClientProxy.cs" />
     <Compile Include="Contracts\IAuditServer.cs" />
     <Compile Include="Contracts\IUpdate.cs" />
-    <Compile Include="Formatter.cs" />
+    <Compile Include="Helpers\Formatter.cs" />
     <Compile Include="Entiteti\DataObj.cs" />
     <Compile Include="Contracts\IMainServer.cs" />
     <Compile Include="Contracts\IServer.cs" />
-    <Compile Include="IPAdressHelper.cs" />
+    <Compile Include="Helpers\IPAdressHelper.cs" />
     <Compile Include="Konstanta.cs" />
     <Compile Include="MergeBaza.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

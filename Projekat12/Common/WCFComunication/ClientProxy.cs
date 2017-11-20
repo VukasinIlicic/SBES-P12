@@ -10,12 +10,13 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Helpers;
 
 namespace Common
 {
 	public class ClientProxy
 	{
-		public static TInterface GetProxy<TInterface>(string address, int port, string endpointName, bool useCertAuth = false)
+		public static TInterface GetProxy<TInterface>(string address, string port, string endpointName, bool useCertAuth = false)
 		{
 			var binding = new NetTcpBinding();
 			ChannelFactory<TInterface> factory;

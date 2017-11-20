@@ -11,6 +11,7 @@ using Common.Contracts;
 using System.ServiceModel;
 using System.Collections.Concurrent;
 using Common.Entiteti;
+using Common.Helpers;
 
 namespace MainServer
 {
