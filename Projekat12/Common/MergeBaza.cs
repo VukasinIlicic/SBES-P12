@@ -62,9 +62,6 @@ namespace Common
                         {
                             try
                             {
-                                //if (merge == Konstanta.MERGE_SA_LOKALNIM)
-                                //    glavnaBaza[lbs.Key].AzuriranUTajmu[indeksiAzuriranja[i]] = true;
-
                                 glavnaBaza[lbs.Key].Potrosnja[indeksiAzuriranja[i]] = (lbs.Value as DataObj).Potrosnja[indeksiAzuriranja[i]];
                             }
                             catch { }

@@ -4,7 +4,7 @@ using System.ServiceModel;
 namespace Common.Contracts
 {
 	[ServiceContract]
-	public interface IServer
+	public interface IServer : IUpdate
 	{
 		[OperationContract]
 		Dictionary<string, DataObj> PrikazInformacija();
@@ -19,6 +19,6 @@ namespace Common.Contracts
 		bool DodajEntitet(DataObj noviPotrosac);
 
 		[OperationContract]
-		bool ObrisiEntitet(string id);
-	}
+		bool ObrisiEntitet(string id); 
+    }
 }

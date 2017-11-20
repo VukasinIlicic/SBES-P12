@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Threading;
 using Common.CertManager;
 using Common.Contracts;
+using System.Collections.Concurrent;
 
 namespace Server
 {
@@ -25,6 +26,7 @@ namespace Server
         static ServerClass sc = new ServerClass();
         public static MergeBaza mb = new MergeBaza();
         public static bool tajm = false;
+        public static int portServera;
 
         static void Main(string[] args)
         {
@@ -32,30 +34,14 @@ namespace Server
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
             OtvoriServer();
             VezaSaGlavnim.PoveziSe();
+            VezaSaGlavnim.PosaljiPodatke();
 
-            Thread t1 = new Thread(Update);
-            t1.Start();
 
             //sc.DodajEntitet(new DataObj("1", "sss", "sss", 2017));
             
 
-            Console.ReadLine();
-            t1.Abort(); // proveri da li je ok      
+            Console.ReadLine();    
             svc.Close();
-        }
-
-        private static void Update()
-        {
-            DateTime vreme = DateTime.Now;
-            while (true)
-            {
-                tajm = false;
-                while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
-                    Thread.Sleep(300);
-
-                tajm = true;    
-                VezaSaGlavnim.IntegrityUpdate();                
-            }
         }
 
 		public static void OtvoriServer()
@@ -66,18 +52,19 @@ namespace Server
 			svc = new ServiceHost(typeof (ServerClass));
 			Console.WriteLine("Unesi port");
 			string port = Console.ReadLine(); // pazi na validaciju
+            portServera = Convert.ToInt32(port);
 
 			//var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 			svc.AddServiceEndpoint(typeof (IServer), binding, new Uri(String.Format("net.tcp://localhost:{0}/Server", port)));
-			//svc.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
-			//svc.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new ServiceCertValidator();
+            //svc.Credentials.ClientCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
+            //svc.Credentials.ClientCertificate.Authentication.CustomCertificateValidator = new ServiceCertValidator();
 
-			//svc.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
+            //svc.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
-			//svc.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,
-			//	StoreLocation.LocalMachine, srvCertCN);
+            //svc.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,
+            //	StoreLocation.LocalMachine, srvCertCN);
 
-			svc.Open();
+            svc.Open();
 
 			Console.WriteLine("Otvorio");
 		}

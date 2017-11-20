@@ -8,87 +8,100 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Common.Contracts;
+using System.ServiceModel;
+using System.Collections.Concurrent;
 
 namespace MainServer
 {
     public class MainServerClass : IMainServer
     {
         static string imeBaze = "Baza.xml";
-        private static readonly Object lockObject = new Object();
-        private static readonly Object lockObject2 = new Object();
-        static List<string> imenaServera = new List<string>();
-
-        public Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera)
-        {
-            if (!Program.sviServeri.ContainsKey(imeServera))
-            {
-                Program.sviServeri.Add(imeServera, false);
-                imenaServera.Add(imeServera);
-            }
-
-            lock (lockObject2)
-            {
-                Program.sviServeri[imeServera] = true;
-            }
-
-            Program.mb.Merge(lokalnaBazaServera, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
-
-            Thread.Sleep(11 * 1000);  // cekamo da svi zavrse kako bi glavna baza bila ista za sve
-
-            Program.mb.obrisani.Clear();
-            return Program.glavnaBaza;
-
-        } 
+        static ConcurrentDictionary<string, Serveri> serveri = new ConcurrentDictionary<string, Serveri>();
 
         public static void Provera()
         {
             while(true)
             {
-                while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0) //!okidac
-                    Thread.Sleep(300);
-
-                Thread.Sleep(3 * 1000);
+                Thread.Sleep(Konstanta.Vreme_Azuriranja * 1000);
 
                 string neprijavljeni = "";
 
-                lock(lockObject2)
+                foreach (var s in serveri)
                 {
-                    foreach (var server in imenaServera)
-                        if (Program.sviServeri[server] == false)
-                            neprijavljeni += server + ';';
-                        else
-                            Program.sviServeri[server] = false;
+                    Dictionary<string, DataObj> lokalna = null;
+                    try
+                    {
+                        lokalna = s.Value.Proxy.IntegrityUpdate();
+                        s.Value.JavioSe = true;
+                        Program.mb.Merge(lokalna, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
+                    }
+                    catch(Exception e)
+                    {
+                        neprijavljeni += s.Key + ';';
+                    }
                 }
-                
+                  
                 if (neprijavljeni != "")
-                {   
-                    VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+                {
+                    //VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+                    Console.WriteLine(neprijavljeni);
                 }
 
-                Console.WriteLine("Proverio");
+                foreach(var s in serveri)
+                {
+                    if(s.Value.JavioSe)
+                    {
+                        s.Value.JavioSe = false;
+                        s.Value.Proxy.VratiKonzistentnuBazu(Program.glavnaBaza);
+                    }
+                }
             }    
         }
 
-        public static void UpisiUXml(Dictionary<string, DataObj> dic)
+
+        public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
         {
-            using (StreamWriter streamWriter = new StreamWriter(imeBaze))
+            if (!serveri.ContainsKey(imeServera))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
-                xmlSerializer.Serialize(streamWriter, dic);
-            }
+                if (adresa.Equals(IPAdressHelper.VratiIP()))
+                    adresa = String.Format("localhost:{0}", port.ToString());
+                else
+                    adresa += ':' + port.ToString();
+
+                DodajProxy(adresa, imeServera);
+            }    
         }
 
-        public static Dictionary<string, DataObj> IscitajIzXml()
+        private void DodajProxy(string adresa, string imeServera)
         {
-            Dictionary<string, DataObj> dic;
-
-            using (StreamReader streamReader = new StreamReader(imeBaze))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
-                dic = (Dictionary<string, DataObj>)serializer.Deserialize(streamReader);
-            }
-
-            return dic;
+            NetTcpBinding binding = new NetTcpBinding();
+            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}/Server", adresa)));
+            serveri.TryAdd(imeServera, new Serveri() { Ime = imeServera, Proxy = factory.CreateChannel()});  
         }
+
+
+        //public static void UpisiUXml(Dictionary<string, DataObj> dic)
+        //{
+        //    using (StreamWriter streamWriter = new StreamWriter(imeBaze))
+        //    {
+        //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
+        //        xmlSerializer.Serialize(streamWriter, dic);
+        //    }
+        //}
+
+        //public static Dictionary<string, DataObj> IscitajIzXml()
+        //{
+        //    Dictionary<string, DataObj> dic;
+
+        //    using (StreamReader streamReader = new StreamReader(imeBaze))
+        //    {
+        //        XmlSerializer serializer = new XmlSerializer(typeof(Dictionary<string, DataObj>));
+        //        dic = (Dictionary<string, DataObj>)serializer.Deserialize(streamReader);
+        //    }
+
+        //    return dic;
+        //}
+
+        
     }
 }

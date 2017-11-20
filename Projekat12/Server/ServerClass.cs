@@ -9,7 +9,7 @@ using Common.Contracts;
 
 namespace Server
 {
-    public class ServerClass : IServer
+    public class ServerClass : IServer, IUpdate
     {
         public static readonly Object lockObject = new Object();
 
@@ -44,7 +44,7 @@ namespace Server
             if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
             {
                 if(Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
-                    return false;
+                    return false;                                           // mora novo polje
 
                 Program.lokalnaBaza.Remove(noviPotrosac.Id);
             }                    
@@ -136,5 +136,55 @@ namespace Server
         {
 			return DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month - 1;
 		}
+
+        public Dictionary<string, DataObj> IntegrityUpdate()
+        {
+            return Program.lokalnaBaza;
+        }
+
+        public void VratiKonzistentnuBazu(Dictionary<string, DataObj> glavna)
+        {
+            lock (ServerClass.lockObject)
+            {
+                Dictionary<string, bool[]> pomocniDic = NapraviDic();
+                Program.mb.Merge(Program.lokalnaBaza, glavna, Konstanta.MERGE_SA_LOKALNIM);
+                Program.lokalnaBaza = glavna;
+                ProveraAzuriranjaUTajmu(pomocniDic);
+            }
+        }
+
+        private static Dictionary<string, bool[]> NapraviDic()
+        {
+            Dictionary<string, bool[]> dic = new Dictionary<string, bool[]>();
+
+            foreach (var lb in Program.lokalnaBaza)
+            {
+                bool[] pomocni = new bool[12];
+                for (int i = 0; i < 12; i++)
+                    pomocni[i] = lb.Value.AzuriranUTajmu[i];
+
+                if (!dic.ContainsKey(lb.Key))
+                    dic.Add(lb.Key, pomocni);
+            }
+
+            return dic;
+        }
+
+        private static void ProveraAzuriranjaUTajmu(Dictionary<string, bool[]> dic)
+        {
+            foreach (var lb in Program.lokalnaBaza)
+            {
+                if (!dic.ContainsKey(lb.Key))
+                    continue;
+
+                bool[] hehe = dic[lb.Key];
+                for (int i = 0; i < 12; i++)
+                    if (hehe[i])
+                    {
+                        lb.Value.Azuriran[i] = true;
+                        lb.Value.AzuriranUTajmu[i] = false;
+                    }
+            }
+        }
     }
 }
