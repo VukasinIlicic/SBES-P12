@@ -15,6 +15,7 @@ namespace Common.Entiteti
         private bool obrisan;
         private string region;
         private bool dodatUTajmu;
+        private bool azuriranCeo;
         private List<bool> azuriran = Enumerable.Range(0, 12).Select(i => false).ToList();
         List<bool> azuriranUTajmu = Enumerable.Range(0, 12).Select(i => false).ToList();
         private List<double> potrosnja = new List<double>();
@@ -101,6 +102,20 @@ namespace Common.Entiteti
         }
 
         [DataMember]
+        [DefaultValue(false)]
+        public bool AzuriranCeo
+        {
+            get
+            {
+                return azuriranCeo;
+            }
+            set
+            {
+                azuriranCeo = value;
+            }
+        }
+
+        [DataMember]
         public List<bool> Azuriran
         {
             get
@@ -144,14 +159,14 @@ namespace Common.Entiteti
         //{
         //    get
         //    {
-        //        return potrosnja[2];
+        //        return potrosnja[0];
         //    }
         //    set
         //    {
-        //        potrosnja[2] = value;
+        //        potrosnja[0] = value;
         //    }
         //}
-        
+
         #endregion
 
         #region Constructors

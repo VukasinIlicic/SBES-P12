@@ -24,6 +24,8 @@ namespace MainServer
             while(true)
             {
                 Thread.Sleep(Konstanta.Vreme_Azuriranja * 1000);
+                //while ((DateTime.Now.Second % Konstanta.Vreme_Azuriranja) != 0)
+                //    Thread.Sleep(1000);
 
                 string neprijavljeni = "";
 
@@ -36,17 +38,21 @@ namespace MainServer
                         s.Value.JavioSe = true;
                         Program.mb.Merge(lokalna, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
                     }
-                    catch(Exception e)
+                    catch
                     {
                         neprijavljeni += s.Key + ';';
                     }
                 }
-                  
+
+                Program.mb.obrisani.Clear();
+
                 if (neprijavljeni != "")
                 {
                     //VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
                     Console.WriteLine(neprijavljeni);
                 }
+
+                Thread.Sleep(5000);
 
                 foreach(var s in serveri)
                 {

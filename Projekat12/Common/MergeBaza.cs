@@ -57,8 +57,20 @@ namespace Common
                         }
                         catch { }   
                     }
-                    else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false && ProveraAzuriranja(indeksiAzuriranja, azurirani))  // azuriranje
+                    else if (glavnaBaza.ContainsKey(lbs.Key) && lbs.Value.Obrisan == false && (lbs.Value.AzuriranCeo || ProveraAzuriranja(indeksiAzuriranja, azurirani)))  // azuriranje
                     {
+                        if(lbs.Value.AzuriranCeo)
+                        {
+                            glavnaBaza[lbs.Key].Godina = lbs.Value.Godina;
+                            glavnaBaza[lbs.Key].Grad = lbs.Value.Grad;
+                            glavnaBaza[lbs.Key].Region = lbs.Value.Region;
+
+                            for (int i = 0; i < 12; i++)
+                                glavnaBaza[lbs.Key].Potrosnja[i] = lbs.Value.Potrosnja[i];
+
+                            continue;
+                        }
+
                         for (int i = 0; i < indeksiAzuriranja.Count; i++)
                         {
                             try

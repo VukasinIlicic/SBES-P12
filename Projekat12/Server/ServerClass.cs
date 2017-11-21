@@ -25,18 +25,21 @@ namespace Server
 
             try
             {
-                if (Program.tajm)
-                    Program.lokalnaBaza[id].AzuriranUTajmu[month_] = true;
+                lock(lockObject)
+                {
+                    if (Program.tajm)
+                        Program.lokalnaBaza[id].AzuriranUTajmu[month_] = true;
 
-                Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
-                Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
-
+                    Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
+                    Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
+                }
+                
                 return true;
             }
             catch
             {
                 return false;
-            }
+            }       
         }
 
         public bool DodajEntitet(DataObj noviPotrosac)
@@ -46,22 +49,29 @@ namespace Server
                 if(Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
                     return false;                                           // mora novo polje
 
-                Program.lokalnaBaza.Remove(noviPotrosac.Id);
+                lock(lockObject)
+                {
+                    Program.lokalnaBaza.Remove(noviPotrosac.Id);
+                    noviPotrosac.AzuriranCeo = true;
+                }  
             }                    
 
-            lock(lockObject)
+            
+            try
             {
-                try
+                lock(lockObject)
                 {
                     if (Program.tajm)
                         noviPotrosac.DodatUTajmu = true;
 
                     Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
-                    //Audit.DodavanjeEntiteta(Program.customLog);
-                    return true;
                 }
-                catch { }
+    
+                //Audit.DodavanjeEntiteta(Program.customLog);
+                return true;
             }
+            catch { }
+            
             
             return false;
         }
@@ -70,19 +80,21 @@ namespace Server
         {
             if(Program.lokalnaBaza.ContainsKey(id))
             {
-                lock(lockObject)
+                try
                 {
-                    try
+                    lock(lockObject)
                     {
                         Program.lokalnaBaza[id].Obrisan = true;
-                        //Audit.BrisanjeEntiteta(Program.customLog);
-                        return true;
                     }
-                    catch
-                    {
-                        return false;
-                    }
+                        
+                    //Audit.BrisanjeEntiteta(Program.customLog);
+                    return true;
                 }
+                catch
+                {
+                    return false;
+                }
+                
             }
 
             return false;
@@ -140,6 +152,7 @@ namespace Server
 
         public Dictionary<string, DataObj> IntegrityUpdate()
         {
+            Program.tajm = true;
             return Program.lokalnaBaza;
         }
 
@@ -152,6 +165,7 @@ namespace Server
                 Program.lokalnaBaza = glavna;
                 ProveraAzuriranjaUTajmu(pomocniDic);
             }
+            Program.tajm = false; // ili mozda pre ovoga
         }
 
         private static Dictionary<string, bool[]> NapraviDic()
