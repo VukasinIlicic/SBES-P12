@@ -19,10 +19,7 @@ namespace MainServer
 
         public static void PoveziSe()
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            ChannelFactory<IAuditServer> factory = new ChannelFactory<IAuditServer>(binding, new EndpointAddress(String.Format("net.tcp://localhost:11000/AuditServer")));
-            proxy = factory.CreateChannel();
-
+	        proxy = ClientProxy.GetProxy<IAuditServer>("localhost", "11000", "AuditServer");
             GenerisiKljucSesije();
         }
 

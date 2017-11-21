@@ -10,7 +10,7 @@ using Common.Entiteti;
 
 namespace Server
 {
-    public class ServerClass : IServer, IUpdate
+    public class ServerClass : IServer
     {
         public static readonly Object lockObject = new Object();
 
@@ -131,12 +131,6 @@ namespace Server
 
             return ac;
         }
-
-        
-        private int ConvertMonthToIndex(string month)
-        {
-			return DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month - 1;
-		}
 
         public Dictionary<string, DataObj> IntegrityUpdate()
         {

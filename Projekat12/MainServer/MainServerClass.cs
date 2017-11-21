@@ -15,68 +15,62 @@ using Common.Helpers;
 
 namespace MainServer
 {
-    public class MainServerClass : IMainServer
-    {
-        static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
+	public class MainServerClass : IMainServer
+	{
+		private static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
 
-        public static void Provera()
-        {
-            while(true)
-            {
-                Thread.Sleep(Konstanta.Vreme_Azuriranja * 1000);
+		public static void Provera()
+		{
+			while (true)
+			{
+				Thread.Sleep(Konstanta.Vreme_Azuriranja*1000);
 
-                string neprijavljeni = "";
+				string neprijavljeni = "";
 
-                foreach (var s in serveri)
-                {
-                    Dictionary<string, DataObj> lokalna = null;
-                    try
-                    {
-                        lokalna = s.Value.Proxy.IntegrityUpdate();
-                        s.Value.JavioSe = true;
-                        Program.mb.Merge(lokalna, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
-                    }
-                    catch(Exception e)
-                    {
-                        neprijavljeni += s.Key + ';';
-                    }
-                }
-                  
-                if (neprijavljeni != "")
-                {
-                    //VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
-                    Console.WriteLine(neprijavljeni);
-                }
+				foreach (var server in serveri)
+				{
+					try
+					{
+						var lokalnaBazaServera = server.Value.Proxy.IntegrityUpdate();
+						server.Value.JavioSe = true;
+						Program.mb.Merge(lokalnaBazaServera, Program.glavnaBaza, Konstanta.MERGE_SA_GLAVNIN);
+					}
+					catch (Exception e)
+					{
+						neprijavljeni += server.Key + ';';
+					}
+				}
 
-                foreach(var s in serveri)
-                {
-                    if(s.Value.JavioSe)
-                    {
-                        s.Value.JavioSe = false;
-                        s.Value.Proxy.VratiKonzistentnuBazu(Program.glavnaBaza);
-                    }
-                }
-            }    
-        }
+				if (neprijavljeni != "")
+				{
+					//VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+					Console.WriteLine(neprijavljeni);
+				}
 
-        public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
-        {
-            if (!serveri.ContainsKey(imeServera))
-            {
-                if (adresa.Equals(IPAdressHelper.VratiIP()))
-                    adresa = String.Format("localhost:{0}", port.ToString());
-                else
-                    adresa += ':' + port.ToString();
+				foreach (var s in serveri)
+				{
+					if (s.Value.JavioSe)
+					{
+						s.Value.JavioSe = false;
+						s.Value.Proxy.VratiKonzistentnuBazu(Program.glavnaBaza);
+					}
+				}
+			}
+		}
 
-                DodajProxy(adresa, imeServera);
-            }    
-        }
+		public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
+		{
+			if (serveri.ContainsKey(imeServera)) return;
 
-        private void DodajProxy(string adresa, string imeServera)
-        {
-            NetTcpBinding binding = new NetTcpBinding();
-            ChannelFactory<IServer> factory = new ChannelFactory<IServer>(binding, new EndpointAddress(String.Format("net.tcp://{0}/Server", adresa)));
-            serveri.TryAdd(imeServera, new Server() { Ime = imeServera, Proxy = factory.CreateChannel()});  
-        }
-    }
+			if (adresa.Equals(IPAdressHelper.VratiIP()))
+				adresa = "localhost";
+
+			DodajProxy(adresa, port.ToString(), imeServera);
+		}
+
+		private void DodajProxy(string adresa, string port, string imeServera)
+		{
+			serveri.TryAdd(imeServera, new Server() {Ime = imeServera, Proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server")});
+		}
+	}
 }
