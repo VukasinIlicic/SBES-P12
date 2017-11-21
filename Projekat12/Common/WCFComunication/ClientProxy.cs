@@ -10,12 +10,13 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Helpers;
 
 namespace Common
 {
 	public class ClientProxy
 	{
-		public static TInterface GetProxy<TInterface>(string address, int port, string endpointName, bool useCertAuth = false)
+		public static TInterface GetProxy<TInterface>(string address, string port, string endpointName, bool useCertAuth = false)
 		{
 			var binding = new NetTcpBinding();
 			ChannelFactory<TInterface> factory;
@@ -23,12 +24,11 @@ namespace Common
 			if (useCertAuth)
 			{
 				binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-				var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, "wcfservice");
+				var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.My, StoreLocation.LocalMachine, Konstanta.SRV_CERT_CN);
 
 				factory = new ChannelFactory<TInterface>(binding,
 					new EndpointAddress(new Uri($"net.tcp://{address}:{port}/{endpointName}"), new X509CertificateEndpointIdentity(srvCert)));
-				factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.Custom;
-				factory.Credentials.ServiceCertificate.Authentication.CustomCertificateValidator = new ClientCertValidator();
+				factory.Credentials.ServiceCertificate.Authentication.CertificateValidationMode = X509CertificateValidationMode.ChainTrust;
 				factory.Credentials.ServiceCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;
 
 				var clientCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);

@@ -7,6 +7,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Contracts;
+using Common.Helpers;
 
 namespace Server
 {
