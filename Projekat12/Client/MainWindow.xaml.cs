@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Common.Contracts;
+using System.Windows.Threading;
 
 namespace Client
 {
@@ -30,6 +31,7 @@ namespace Client
         {
             InitializeComponent();
             HideMenu();
+            StartClock();
         }
 
         public IServer Proxy
@@ -81,6 +83,19 @@ namespace Client
             NewConsumtion.Visibility = Visibility.Hidden;
             AddConsumerBtn.Visibility = Visibility.Hidden;
             DeleteConsumerBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void StartClock()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += TickEvent;
+            timer.Start();
+        }
+
+        private void TickEvent(object sender, EventArgs e)
+        {
+            datelbl.Text = DateTime.Now.ToString();
         }
     }
 }
