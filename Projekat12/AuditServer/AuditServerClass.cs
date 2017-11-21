@@ -54,8 +54,8 @@ namespace AuditServer
                 if(server != "")
                     poruka += String.Format("Server {0} se nije javio\n", server);
 
-            Console.WriteLine(poruka);
-            //Audit.AuditServerLog(Program.customLog, poruka);
+            //Console.WriteLine(poruka);
+            Audit.AuditServerLog(Program.customLog, poruka);
         }
 
         private static string Dekripcija(byte[] enkriptovani, string kljuc)

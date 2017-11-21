@@ -32,17 +32,22 @@ namespace Common
 
         public static void AzuriranjePotrosnje(EventLog customLog)
         {
-            UpisivanjeLoga("azurirao potrosnju", customLog);
+            UpisivanjeLoga("je azurirao potrosnju", customLog);
         }
 
         public static void DodavanjeEntiteta(EventLog customLog)
         {
-            UpisivanjeLoga("dodao entitet", customLog);
+            UpisivanjeLoga("je dodao entitet", customLog);
         }
 
         public static void BrisanjeEntiteta(EventLog customLog)
         {
-            UpisivanjeLoga("obrisao entitet", customLog);
+            UpisivanjeLoga("je obrisao entitet", customLog);
+        }
+
+        public static void IntegrityUpdate(EventLog customLog)
+        {
+            UpisivanjeLoga("radi IntegrityUpdate", customLog);
         }
 
         private static void UpisivanjeLoga(string nastavakPoruke, EventLog customLog)
@@ -51,9 +56,9 @@ namespace Common
             {
                 var klijent = WindowsIdentity.GetCurrent();
 
-                string poruka = String.Format("Klijent: {0} je {1}", klijent.Name, nastavakPoruke);
+                string poruka = String.Format("Klijent: {0} {1}", klijent.Name, nastavakPoruke);
 
-                customLog.WriteEntry(poruka, EventLogEntryType.Information);
+                customLog.WriteEntry(poruka, EventLogEntryType.Information);    // mozda pokreces sa istog user-a 2 aplikacije
             }
             else
                 Console.WriteLine("CustomLog je null");

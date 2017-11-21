@@ -19,7 +19,7 @@ namespace MainServer
 
         public static void PoveziSe()
         {
-	        proxy = ClientProxy.GetProxy<IAuditServer>("localhost", "11000", "AuditServer");
+	        proxy = ClientProxy.GetProxy<IAuditServer>("localhost", "13000", "AuditServer");
             GenerisiKljucSesije();
         }
 

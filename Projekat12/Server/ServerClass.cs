@@ -21,7 +21,7 @@ namespace Server
                 return false;
             }
 
-            //Audit.AzuriranjePotrosnje(Program.customLog);
+            Audit.AzuriranjePotrosnje(Program.customLog);
 
             try
             {
@@ -67,7 +67,7 @@ namespace Server
                     Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
                 }
     
-                //Audit.DodavanjeEntiteta(Program.customLog);
+                Audit.DodavanjeEntiteta(Program.customLog);
                 return true;
             }
             catch { }
@@ -87,7 +87,7 @@ namespace Server
                         Program.lokalnaBaza[id].Obrisan = true;
                     }
                         
-                    //Audit.BrisanjeEntiteta(Program.customLog);
+                    Audit.BrisanjeEntiteta(Program.customLog);
                     return true;
                 }
                 catch
@@ -146,6 +146,7 @@ namespace Server
 
         public Dictionary<string, DataObj> IntegrityUpdate()
         {
+            Audit.IntegrityUpdate(Program.customLog);
             Program.tajm = true;
             return Program.lokalnaBaza;
         }

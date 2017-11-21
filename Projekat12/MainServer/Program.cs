@@ -22,7 +22,7 @@ namespace MainServer
 
 		public static void Main(string[] args)
 		{
-			//Audit.KreirajAudit("Proba", WindowsIdentity.GetCurrent().Name);
+			//Audit.KreirajAudit("MainServer", WindowsIdentity.GetCurrent().Name);
 			OtvoriServer();
 			Thread t1 = new Thread(MainServerClass.Provera); // odavde pokrecemo proveru
 			t1.Start();

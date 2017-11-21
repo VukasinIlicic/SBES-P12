@@ -15,6 +15,7 @@ using Common.CertManager;
 using Common.Contracts;
 using System.Collections.Concurrent;
 using Common.Entiteti;
+using Common.Helpers;
 
 namespace Server
 {
@@ -31,15 +32,10 @@ namespace Server
 
         public static void Main(string[] args)
         {
-            //VezaSaAuditom.PoveziSe();
-            //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
+            string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
+            customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
-
-	        Console.ReadLine();
-
             VezaSaGlavnim.PoveziSe();
-
-            //sc.DodajEntitet(new DataObj("1", "sss", "sss", 2017));
             
             Console.ReadLine();    
             svc.Close();

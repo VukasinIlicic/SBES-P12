@@ -8,6 +8,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Contracts;
+using Common.Helpers;
 
 namespace AuditServer
 {
@@ -25,7 +26,7 @@ namespace AuditServer
         static void Main(string[] args)
         {
             OtvoriServer();
-            //customLog = Audit.KreirajAudit("AuditLogovi", WindowsIdentity.GetCurrent().Name);
+            customLog = Audit.KreirajAudit("AuditLogovi", Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
 
             Console.ReadLine();
             svc.Close();
@@ -73,7 +74,7 @@ namespace AuditServer
         {
             NetTcpBinding binding = new NetTcpBinding();
             svc = new ServiceHost(typeof(AuditServerClass));
-            svc.AddServiceEndpoint(typeof(IAuditServer), binding, new Uri("net.tcp://localhost:11000/AuditServer"));
+            svc.AddServiceEndpoint(typeof(IAuditServer), binding, new Uri("net.tcp://localhost:13000/AuditServer"));
             svc.Open();
 
             Console.WriteLine("Otvorio");
