@@ -40,23 +40,28 @@ namespace MainServer
 						neprijavljeni += server.Key + ';';
 					}
 				}
+                }
 
-				if (neprijavljeni != "")
-				{
-					//VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
-					Console.WriteLine(neprijavljeni);
-				}
+                Program.mb.obrisani.Clear();
 
-				foreach (var s in serveri)
-				{
-					if (s.Value.JavioSe)
-					{
-						s.Value.JavioSe = false;
-						s.Value.Proxy.VratiKonzistentnuBazu(Program.glavnaBaza);
-					}
-				}
-			}
-		}
+                if (neprijavljeni != "")
+                {
+                    //VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
+                    Console.WriteLine(neprijavljeni);
+                }
+
+                Thread.Sleep(5000);
+
+                foreach(var s in serveri)
+                {
+                    if(s.Value.JavioSe)
+                    {
+                        s.Value.JavioSe = false;
+                        s.Value.Proxy.VratiKonzistentnuBazu(Program.glavnaBaza);
+                    }
+                }
+            }    
+        }
 
 		public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
 		{
