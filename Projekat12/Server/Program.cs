@@ -35,6 +35,10 @@ namespace Server
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea7dbefb258ad5af2306be867aae852f591447a3
             VezaSaGlavnim.PoveziSe();
             
             Console.ReadLine();    

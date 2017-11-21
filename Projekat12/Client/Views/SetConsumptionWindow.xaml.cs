@@ -83,7 +83,9 @@ namespace Client.Views
             {
                 consumption_ = Convert.ToDouble(consumption);
                 edited = proxy.AzurirajPotrosnju(userId, monthIndex, consumption_);
-                CheckImg.Visibility = Visibility.Visible;
+
+                if(edited)
+                    CheckImg.Visibility = Visibility.Visible;
             }
             catch
             {

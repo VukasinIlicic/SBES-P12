@@ -100,11 +100,11 @@ namespace Client.Views
                 ConnectionCheck();
                 mw.ServerConnection.Visibility = Visibility.Hidden;
                 mw.Proxy = proxy;
+                ShowMenu();
                 mw._mainFrame.NavigationService.Navigate(new ShowInfo(proxy));
             }
-            catch(Exception ee)
+            catch
             {
-                MessageBox.Show(ee.Message);
                 Validation = "Port or server endpoint name is invalid.";
                 return;
             }
@@ -125,6 +125,15 @@ namespace Client.Views
         {
             ServerAddress.Text = "";
             ServerAddress.IsReadOnly = false;
+        }
+
+        private void ShowMenu()
+        {
+            mw.SearchInfo.Visibility = Visibility.Visible;
+            mw.AnnualConsumptions.Visibility = Visibility.Visible;
+            mw.NewConsumtion.Visibility = Visibility.Visible;
+            mw.AddConsumerBtn.Visibility = Visibility.Visible;
+            mw.DeleteConsumerBtn.Visibility = Visibility.Visible;
         }
     }
 }
