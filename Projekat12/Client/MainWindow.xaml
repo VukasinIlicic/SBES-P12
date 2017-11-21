@@ -9,11 +9,11 @@
         Title="Projekat 12" Height="380.8" Width="611">
     <Grid Background="LightBlue" >
         <Frame x:Name="_mainFrame" Background="White" Margin="128,10,10,10"  BorderBrush="SteelBlue" BorderThickness="3" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" NavigationUIVisibility="Hidden"/>
-        <Button x:Name="ServerConnection" Content="Connect" HorizontalAlignment="Left" Height="26" Margin="10,33,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="ServerConnectionWindow" />
-        <Button x:Name="SearchInfo" Content="Search info" HorizontalAlignment="Left" Height="26" Margin="10,64,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="InformationSearchWindow" />
-        <Button x:Name="AnnualConsumptions" Content="Consumptions" HorizontalAlignment="Left" Height="26" Margin="10,95,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="AnnualConsumptionsWindow"/>
-        <Button x:Name="NewConsumtion" Content="SetConsumption" HorizontalAlignment="Left" Height="26" Margin="10,126,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="NewConsumptionWindow"/>
-        <Button x:Name="AddConsumerBtn" Content="Add Consumer" HorizontalAlignment="Left" Height="26" Margin="10,157,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="AddNewEntity"/>
-        <Button x:Name="DeleteConsumerBtn" Content="Delete Consumer" HorizontalAlignment="Left" Height="26" Margin="10,188,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="DeleteConsumer"/>
+        <Button x:Name="ServerConnection" Content="Connect" HorizontalAlignment="Left" Height="26" Margin="10,143,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="ServerConnectionWindow" />
+        <Button x:Name="SearchInfo" Content="Search info" HorizontalAlignment="Left" Height="26" Margin="10,81,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="InformationSearchWindow" />
+        <Button x:Name="AnnualConsumptions" Content="Consumptions" HorizontalAlignment="Left" Height="26" Margin="10,112,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="AnnualConsumptionsWindow"/>
+        <Button x:Name="NewConsumtion" Content="SetConsumption" HorizontalAlignment="Left" Height="26" Margin="10,143,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="NewConsumptionWindow"/>
+        <Button x:Name="AddConsumerBtn" Content="Add Consumer" HorizontalAlignment="Left" Height="26" Margin="10,174,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="AddNewEntity"/>
+        <Button x:Name="DeleteConsumerBtn" Content="Delete Consumer" HorizontalAlignment="Left" Height="26" Margin="10,205,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="DeleteConsumer"/>
     </Grid>
 </Window>

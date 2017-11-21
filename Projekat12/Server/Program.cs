@@ -35,8 +35,6 @@ namespace Server
             //customLog = Audit.KreirajAudit("LogovanjaServera", WindowsIdentity.GetCurrent().Name);
             OtvoriServer();
 
-	        Console.ReadLine();
-
             VezaSaGlavnim.PoveziSe();
 
             //sc.DodajEntitet(new DataObj("1", "sss", "sss", 2017));

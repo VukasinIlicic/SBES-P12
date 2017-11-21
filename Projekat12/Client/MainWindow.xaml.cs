@@ -28,8 +28,8 @@ namespace Client
 
         public MainWindow()
         {
-            
-
+            InitializeComponent();
+            HideMenu();
         }
 
         public IServer Proxy
@@ -73,6 +73,14 @@ namespace Client
         private void DeleteConsumer(object sender, RoutedEventArgs e)
         {
             _mainFrame.NavigationService.Navigate(new DeleteEntity(proxy));
+        }
+        private void HideMenu()
+        {
+            SearchInfo.Visibility = Visibility.Hidden;
+            AnnualConsumptions.Visibility = Visibility.Hidden;
+            NewConsumtion.Visibility = Visibility.Hidden;
+            AddConsumerBtn.Visibility = Visibility.Hidden;
+            DeleteConsumerBtn.Visibility = Visibility.Hidden;
         }
     }
 }
