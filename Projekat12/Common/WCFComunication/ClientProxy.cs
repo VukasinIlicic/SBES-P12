@@ -11,17 +11,18 @@ using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Helpers;
+using Common.Entiteti;
 
 namespace Common
 {
 	public class ClientProxy
 	{
-		public static TInterface GetProxy<TInterface>(string address, string port, string endpointName, bool useCertAuth = false)
+		public static TInterface GetProxy<TInterface>(string address, string port, string endpointName, AuthType authType = AuthType.NoAuth)
 		{
 			var binding = new NetTcpBinding();
 			ChannelFactory<TInterface> factory;
 
-			if (useCertAuth)
+			if (authType == AuthType.CertAuth)
 			{
 				binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
 				var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, Konstanta.SRV_CERT_CN);
@@ -36,7 +37,11 @@ namespace Common
 
 				factory.Credentials.ClientCertificate.Certificate = clientCert;
 			}
-			else
+            else if (authType == AuthType.WinAuth)
+            {
+                factory = new ChannelFactory<TInterface>(binding, new EndpointAddress($"net.tcp://{address}:{port}/{endpointName}"));
+            }
+            else
 			{
 				factory = new ChannelFactory<TInterface>(binding, new EndpointAddress($"net.tcp://{address}:{port}/{endpointName}"));
 			}

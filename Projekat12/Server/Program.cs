@@ -48,7 +48,7 @@ namespace Server
 			string port = Console.ReadLine(); //pazi na validaciju
             portServera = Convert.ToInt32(port);
 
-			svc = new ServerHost<IServer,ServerClass>("Server", port, true);
+			svc = new ServerHost<IServer,ServerClass>("Server", port, AuthType.CertAuth);
 			svc.Open();
 			Console.WriteLine("Otvorio");
 		}

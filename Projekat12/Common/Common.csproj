@@ -48,6 +48,7 @@
     <Compile Include="Authorization\CustomAuthorizationPolicy.cs" />
     <Compile Include="Authorization\CustomPrincipal.cs" />
     <Compile Include="CertManager\CertificateManager.cs" />
+    <Compile Include="Entiteti\AuthType.cs" />
     <Compile Include="WCFComunication\ClientProxy.cs" />
     <Compile Include="Contracts\IAuditServer.cs" />
     <Compile Include="Contracts\IUpdate.cs" />

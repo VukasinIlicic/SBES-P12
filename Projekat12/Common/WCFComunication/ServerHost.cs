@@ -12,6 +12,7 @@ using Common.Helpers;
 using Common.Authorization;
 using System.IdentityModel.Policy;
 using System.ServiceModel.Description;
+using Common.Entiteti;
 
 namespace Common
 {
@@ -19,12 +20,13 @@ namespace Common
 	{
 		private ServiceHost _serviceHost;
 
-		public ServerHost(string endpointName, string port, bool useCertAuth = false)
+		public ServerHost(string endpointName, string port, AuthType authType = AuthType.NoAuth)
 		{
 			var endpoint = $"net.tcp://localhost:{port}/{endpointName}";
 			_serviceHost = new ServiceHost(typeof (TClass));
 			var binding = new NetTcpBinding();
-			if (useCertAuth)
+
+			if (authType == AuthType.CertAuth)
 			{
 				var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
@@ -43,7 +45,12 @@ namespace Common
 
                 _serviceHost.Authorization.PrincipalPermissionMode = PrincipalPermissionMode.Custom;
             }
-			else
+            else if (authType == AuthType.WinAuth)
+            {
+                _serviceHost.AddServiceEndpoint(typeof(TInterface), binding, endpoint);
+
+            }
+            else if(authType == AuthType.NoAuth)
 			{
 				_serviceHost.AddServiceEndpoint(typeof (TInterface), binding, endpoint);
             }

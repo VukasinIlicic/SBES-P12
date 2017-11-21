@@ -20,6 +20,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Security;
 using Common.CertManager;
 using Common.Contracts;
+using Common.Entiteti;
 
 namespace Client.Views
 {
@@ -67,7 +68,7 @@ namespace Client.Views
         {
             InitializeComponent();
 
-	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", true);
+	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", AuthType.CertAuth);
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
