@@ -67,7 +67,7 @@ namespace Client.Views
         {
             InitializeComponent();
 
-	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server");
+	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", true);
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)

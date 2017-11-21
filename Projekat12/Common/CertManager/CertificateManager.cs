@@ -12,7 +12,21 @@ namespace Common.CertManager
 
             var certCollection = store.Certificates.Find(X509FindType.FindBySubjectName, subjectName, true);
 
-	        return certCollection.Cast<X509Certificate2>().FirstOrDefault(c => c.SubjectName.Name.Equals($"CN={subjectName}"));
+            return certCollection.Cast<X509Certificate2>().FirstOrDefault(c => IsEqual(c.SubjectName.Name, subjectName));
+        }
+
+        private static bool IsEqual(string param, string subjectName)
+        {
+            var grupe = param.Split(' ');
+            if (grupe.Length > 1 && grupe[0].Equals($"CN=\"{subjectName}"))
+            {
+                return true;
+            }
+            else if (grupe[0].Equals($"CN={subjectName}"))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

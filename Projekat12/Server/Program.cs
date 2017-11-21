@@ -35,11 +35,8 @@ namespace Server
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
-<<<<<<< HEAD
-=======
 
->>>>>>> ea7dbefb258ad5af2306be867aae852f591447a3
-            VezaSaGlavnim.PoveziSe();
+           //VezaSaGlavnim.PoveziSe();
             
             Console.ReadLine();    
             svc.Close();
@@ -51,7 +48,7 @@ namespace Server
 			string port = Console.ReadLine(); //pazi na validaciju
             portServera = Convert.ToInt32(port);
 
-			svc = new ServerHost<IServer,ServerClass>("Server", port);
+			svc = new ServerHost<IServer,ServerClass>("Server", port, true);
 			svc.Open();
 			Console.WriteLine("Otvorio");
 		}

@@ -9,6 +9,9 @@ using System.ServiceModel.Security;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Helpers;
+using Common.Authorization;
+using System.IdentityModel.Policy;
+using System.ServiceModel.Description;
 
 namespace Common
 {
@@ -32,11 +35,18 @@ namespace Common
 
 				_serviceHost.Credentials.ServiceCertificate.Certificate = CertificateManager.GetCertificateFromStorage(StoreName.My,
 					StoreLocation.LocalMachine, srvCertCN);
-			}
+
+                _serviceHost.Authorization.ServiceAuthorizationManager = new CustomAuthorizationManager();
+                List<IAuthorizationPolicy> policies = new List<IAuthorizationPolicy>();
+                policies.Add(new CustomAuthorizationPolicy());
+                _serviceHost.Authorization.ExternalAuthorizationPolicies = policies.AsReadOnly();
+
+                _serviceHost.Authorization.PrincipalPermissionMode = PrincipalPermissionMode.Custom;
+            }
 			else
 			{
 				_serviceHost.AddServiceEndpoint(typeof (TInterface), binding, endpoint);
-			}
+            }
 		}
 
 		public void Open()
