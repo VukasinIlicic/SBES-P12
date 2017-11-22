@@ -16,6 +16,7 @@ namespace Server
 	public class ServerClass : IServer
 	{
 		public static readonly Object lockObject = new Object();
+        private readonly XmlRepository _xR = new XmlRepository();
 
         public List<string> GetRoles()
         {
@@ -40,8 +41,6 @@ namespace Server
 				return false;
 			}
 
-			Audit.AzuriranjePotrosnje(Program.customLog);
-
 			try
 			{
 				lock (lockObject)
@@ -51,7 +50,10 @@ namespace Server
 
 					Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
 					Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
-				}
+                    Audit.AzuriranjePotrosnje(Program.customLog);
+                    _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
+                    
+                }
 
 				return true;
 			}
@@ -86,11 +88,11 @@ namespace Server
 					if (Program.tajm)
 						noviPotrosac.DodatUTajmu = true;
 
-					Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
-				}
-
-				Audit.DodavanjeEntiteta(Program.customLog);
-				return true;
+					Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);  
+                }
+                Audit.DodavanjeEntiteta(Program.customLog);
+                _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
+                return true;
 			}
 			catch { }
 
@@ -112,9 +114,9 @@ namespace Server
 					{
 						Program.lokalnaBaza[id].Obrisan = true;
 					}
-
 					Audit.BrisanjeEntiteta(Program.customLog);
-					return true;
+                    _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
+                    return true;
 				}
 				catch
 				{

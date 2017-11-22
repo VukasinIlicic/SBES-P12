@@ -24,6 +24,9 @@ namespace Common
 		{
 			Dictionary<string, DataObj> podaci;
 
+            if (!File.Exists(imeBaze))
+                return new Dictionary<string, DataObj>();
+
 			using (var streamReader = new StreamReader(imeBaze))
 			{
 				var serializer = new XmlSerializer(typeof (Dictionary<string, DataObj>));
