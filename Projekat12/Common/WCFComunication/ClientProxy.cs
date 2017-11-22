@@ -39,6 +39,9 @@ namespace Common
 			}
             else if (authType == AuthType.WinAuth)
             {
+                binding.Security.Mode = SecurityMode.Transport;
+                binding.Security.Transport.ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign;
+                binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Windows;
                 factory = new ChannelFactory<TInterface>(binding, new EndpointAddress($"net.tcp://{address}:{port}/{endpointName}"));
             }
             else

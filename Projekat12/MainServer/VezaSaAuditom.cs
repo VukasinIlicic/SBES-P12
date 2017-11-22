@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Contracts;
+using Common.Entiteti;
 
 namespace MainServer
 {
@@ -19,7 +20,7 @@ namespace MainServer
 
         public static void PoveziSe()
         {
-	        proxy = ClientProxy.GetProxy<IAuditServer>("localhost", "13000", "AuditServer");
+	        proxy = ClientProxy.GetProxy<IAuditServer>("localhost", "13000", "AuditServer", AuthType.WinAuth);
             GenerisiKljucSesije();
         }
 

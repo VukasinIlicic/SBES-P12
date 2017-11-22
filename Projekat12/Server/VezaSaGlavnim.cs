@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Common.Helpers;
+using Common.Entiteti;
 
 namespace Server
 {
@@ -17,7 +18,7 @@ namespace Server
 
 		public static void PoveziSe()
 		{
-			proxy = ClientProxy.GetProxy<IMainServer>("localhost", "51000", "MainServer");
+			proxy = ClientProxy.GetProxy<IMainServer>("localhost", "51000", "MainServer", AuthType.WinAuth);
 			string myIp = IPAdressHelper.VratiIP();
 			proxy.PosaljiSvojePodatke(myIp, Program.portServera, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
 		}

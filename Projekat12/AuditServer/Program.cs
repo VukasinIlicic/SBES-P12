@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Common.Helpers;
+using Common.Entiteti;
 
 namespace AuditServer
 {
@@ -17,7 +18,7 @@ namespace AuditServer
         static int minRandom = 50000;
         static int maxRandom = 550000;
 
-        static ServiceHost svc;
+        static ServerHost<IAuditServer, AuditServerClass> svc;
 
         public static string kljucSesije;
         public static Dictionary<string, string[]> privateKey = new Dictionary<string, string[]>(); // mada sad ovo i ne bi trebalo jer radimo samo povezivanje sa GS
@@ -72,9 +73,7 @@ namespace AuditServer
 
         public static void OtvoriServer()
         {
-            NetTcpBinding binding = new NetTcpBinding();
-            svc = new ServiceHost(typeof(AuditServerClass));
-            svc.AddServiceEndpoint(typeof(IAuditServer), binding, new Uri("net.tcp://localhost:13000/AuditServer"));
+            svc = new ServerHost<IAuditServer, AuditServerClass>("localhost", "13000", AuthType.WinAuth);
             svc.Open();
 
             Console.WriteLine("Otvorio");

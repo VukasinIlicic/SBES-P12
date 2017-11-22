@@ -35,7 +35,7 @@ namespace MainServer
 
 		private static void OtvoriServer()
 		{
-			svc = new ServerHost<IMainServer, MainServerClass>("MainServer", "51000");
+			svc = new ServerHost<IMainServer, MainServerClass>("MainServer", "51000", AuthType.WinAuth);
 			svc.Open();
 			Console.WriteLine("Otvorio");
 		}
