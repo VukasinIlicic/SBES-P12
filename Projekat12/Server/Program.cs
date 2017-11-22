@@ -36,8 +36,8 @@ namespace Server
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
 
-            VezaSaGlavnim.PoveziSe();
-
+           //VezaSaGlavnim.PoveziSe();
+            
             Console.ReadLine();    
             svc.Close();
         }
