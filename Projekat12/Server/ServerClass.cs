@@ -18,6 +18,11 @@ namespace Server
 
         public List<string> GetRoles()
         {
+            List<string> roles = new List<string>();
+            roles.Add("reader");
+
+            return roles;
+
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
             return principal.Roles;
@@ -126,8 +131,8 @@ namespace Server
         {
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("PrikazInformacija"))
-                return null;
+            //if (!principal.IsInRole("PrikazInformacija"))
+                //return null;
             
             return Program.lokalnaBaza;
         }
@@ -136,8 +141,8 @@ namespace Server
         {
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("PrikazInformacija"))
-                return -1;
+            //if (!principal.IsInRole("PrikazInformacija"))
+                //return -1;
 
             Dictionary<string, DataObj> info = Program.lokalnaBaza;
             List<DataObj> objectList = new List<DataObj>();

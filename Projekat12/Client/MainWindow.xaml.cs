@@ -78,11 +78,11 @@ namespace Client
         }
         private void HideMenu()
         {
-            SearchInfo.Visibility = Visibility.Hidden;
-            AnnualConsumptions.Visibility = Visibility.Hidden;
-            NewConsumtion.Visibility = Visibility.Hidden;
-            AddConsumerBtn.Visibility = Visibility.Hidden;
-            DeleteConsumerBtn.Visibility = Visibility.Hidden;
+            SearchInfo.Visibility = Visibility.Collapsed;
+            AnnualConsumptions.Visibility = Visibility.Collapsed;
+            NewConsumtion.Visibility = Visibility.Collapsed;
+            AddConsumerBtn.Visibility = Visibility.Collapsed;
+            DeleteConsumerBtn.Visibility = Visibility.Collapsed;
         }
 
         private void StartClock()

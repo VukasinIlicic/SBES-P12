@@ -31,6 +31,7 @@ namespace Client.Views
     {
         public IServer proxy;
         private string validation = "";
+        private List<string> roles = new List<string>();
         private MainWindow mw;
 
         public ConnectionWindow(MainWindow mw)
@@ -102,7 +103,7 @@ namespace Client.Views
                 mw.ServerConnection.Visibility = Visibility.Hidden;
                 mw.Proxy = proxy;
                 ShowMenu();
-                mw._mainFrame.NavigationService.Navigate(new ShowInfo(proxy));
+                mw._mainFrame.NavigationService.Navigate(new BlankPage());
             }
             catch
             {
@@ -113,7 +114,7 @@ namespace Client.Views
 
         private void ConnectionCheck()
         {
-            proxy.PrikazInformacija();
+            roles = proxy.GetRoles();
         }
 
         private void CheckBoxCheck(object sender, RoutedEventArgs e)
@@ -130,11 +131,23 @@ namespace Client.Views
 
         private void ShowMenu()
         {
-            mw.SearchInfo.Visibility = Visibility.Visible;
-            mw.AnnualConsumptions.Visibility = Visibility.Visible;
-            mw.NewConsumtion.Visibility = Visibility.Visible;
-            mw.AddConsumerBtn.Visibility = Visibility.Visible;
-            mw.DeleteConsumerBtn.Visibility = Visibility.Visible;
+            foreach(string role in roles)
+            {
+                if(role=="admin")
+                {
+                    mw.AddConsumerBtn.Visibility = Visibility.Visible;
+                    mw.DeleteConsumerBtn.Visibility = Visibility.Visible;
+                }
+                else if(role=="editor")
+                {
+                    mw.NewConsumtion.Visibility = Visibility.Visible;
+                }
+                else if(role=="reader")
+                {
+                    mw.SearchInfo.Visibility = Visibility.Visible;
+                    mw.AnnualConsumptions.Visibility = Visibility.Visible;
+                }
+            }
         }
     }
 }
