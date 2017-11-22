@@ -67,11 +67,11 @@ namespace Server
 
 		public bool DodajEntitet(DataObj noviPotrosac)
 		{
-			var principal = Thread.CurrentPrincipal as CustomPrincipal;
+            var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-			if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
+            if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
 
-			if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+            if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
 			{
 				if (Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
 					return false;                                           // mora novo polje

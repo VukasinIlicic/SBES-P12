@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 
 namespace Common.Entiteti
 {
+    [Serializable]
     [DataContract]
     public class DataObj
     {
