@@ -41,7 +41,7 @@ namespace Client.Views {
     public partial class SetConsumptionWindow : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 21 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 20 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label TitleLabel;
         
@@ -49,7 +49,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 22 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 21 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label NewConsumption;
         
@@ -57,7 +57,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 23 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 22 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox ConsumptionTxtBox;
         
@@ -65,7 +65,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 24 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 23 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label MonthLabel;
         
@@ -73,7 +73,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 25 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 24 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox comboBox;
         
@@ -81,7 +81,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 26 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 25 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi1;
         
@@ -89,7 +89,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 27 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 26 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi2;
         
@@ -97,7 +97,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 28 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 27 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi3;
         
@@ -105,7 +105,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 29 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 28 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi4;
         
@@ -113,7 +113,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 30 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 29 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi5;
         
@@ -121,7 +121,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 31 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 30 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi6;
         
@@ -129,7 +129,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 32 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 31 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi7;
         
@@ -137,7 +137,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 33 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 32 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi8;
         
@@ -145,7 +145,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 34 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 33 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi9;
         
@@ -153,7 +153,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 35 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 34 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi10;
         
@@ -161,7 +161,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 36 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 35 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi11;
         
@@ -169,7 +169,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 37 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 36 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBoxItem cbi12;
         
@@ -177,7 +177,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 39 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 38 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label IdLabel;
         
@@ -185,7 +185,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 40 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 39 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button ConfirmBtn;
         
@@ -193,7 +193,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 41 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 40 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label label;
         
@@ -201,7 +201,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 42 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 41 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.ComboBox IdComboBox;
         
@@ -209,7 +209,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 43 "..\..\..\Views\SetConsumptionWindow.xaml"
+        #line 42 "..\..\..\Views\SetConsumptionWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Image CheckImg;
         
@@ -303,7 +303,7 @@ namespace Client.Views {
             case 19:
             this.ConfirmBtn = ((System.Windows.Controls.Button)(target));
             
-            #line 40 "..\..\..\Views\SetConsumptionWindow.xaml"
+            #line 39 "..\..\..\Views\SetConsumptionWindow.xaml"
             this.ConfirmBtn.Click += new System.Windows.RoutedEventHandler(this.ConfirmBtn_Click);
             
             #line default

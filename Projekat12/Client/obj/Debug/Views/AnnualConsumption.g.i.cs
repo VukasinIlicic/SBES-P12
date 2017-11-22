@@ -41,7 +41,7 @@ namespace Client.Views {
     public partial class AnnualConsumption : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 20 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 21 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label TitleLabel;
         
@@ -49,7 +49,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 21 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 22 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label CityNameLabel;
         
@@ -57,7 +57,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 22 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 23 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox CityNameTxtBox;
         
@@ -65,7 +65,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 23 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 24 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label YearLabel;
         
@@ -73,7 +73,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 24 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 25 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox YearTxtBox;
         
@@ -81,7 +81,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 25 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 26 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button GetConsumptionsBtn;
         
@@ -89,7 +89,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 26 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 27 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label ValidationMsg;
         
@@ -97,7 +97,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 27 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 28 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label ResultLabel;
         
@@ -105,7 +105,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 28 "..\..\..\Views\AnnualConsumption.xaml"
+        #line 29 "..\..\..\Views\AnnualConsumption.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label Res;
         
@@ -160,7 +160,7 @@ namespace Client.Views {
             case 6:
             this.GetConsumptionsBtn = ((System.Windows.Controls.Button)(target));
             
-            #line 25 "..\..\..\Views\AnnualConsumption.xaml"
+            #line 26 "..\..\..\Views\AnnualConsumption.xaml"
             this.GetConsumptionsBtn.Click += new System.Windows.RoutedEventHandler(this.GetConsumptionsBtn_Click);
             
             #line default

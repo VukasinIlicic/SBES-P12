@@ -41,7 +41,7 @@ namespace Client.Views {
     public partial class AddNewEntityWindow : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 20 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 21 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label TitleLabel;
         
@@ -49,7 +49,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 21 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 22 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label IdLabel;
         
@@ -57,7 +57,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 22 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 23 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label RegionLabel;
         
@@ -65,7 +65,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 23 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 24 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label CityLabel;
         
@@ -73,7 +73,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 24 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 25 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label YearLabel;
         
@@ -81,7 +81,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 25 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 26 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox ConsumerIdTxtBox;
         
@@ -89,7 +89,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 26 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 27 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox ConsumerRegionTxtBox;
         
@@ -97,7 +97,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 27 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 28 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox CityTxtBox;
         
@@ -105,7 +105,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 28 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 29 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox YearTxtBox;
         
@@ -113,7 +113,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 29 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 30 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button ConfirmBtn;
         
@@ -121,7 +121,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 30 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 31 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Label LabelMsg;
         
@@ -129,7 +129,7 @@ namespace Client.Views {
         #line hidden
         
         
-        #line 31 "..\..\..\Views\AddNewEntityWindow.xaml"
+        #line 32 "..\..\..\Views\AddNewEntityWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Image CheckImg;
         
@@ -196,7 +196,7 @@ namespace Client.Views {
             case 10:
             this.ConfirmBtn = ((System.Windows.Controls.Button)(target));
             
-            #line 29 "..\..\..\Views\AddNewEntityWindow.xaml"
+            #line 30 "..\..\..\Views\AddNewEntityWindow.xaml"
             this.ConfirmBtn.Click += new System.Windows.RoutedEventHandler(this.ConfirmBtn_Click);
             
             #line default

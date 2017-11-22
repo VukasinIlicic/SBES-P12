@@ -11,18 +11,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
                 <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/TextboxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
         <Label x:Name="IpLabel" Content="Enter server address: " HorizontalAlignment="Left" Height="28" Margin="48,41,0,0" VerticalAlignment="Top" Width="184"/>
-        <TextBox x:Name="ServerAddress" HorizontalAlignment="Left" Height="20" Margin="48,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <Label x:Name="ServerPortLabel" Content="Enter server port:" HorizontalAlignment="Left" Height="26" Margin="48,112,0,0" VerticalAlignment="Top" Width="200"/>
-        <TextBox x:Name="ServerPort" HorizontalAlignment="Left" Height="20" Margin="48,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
-        <Button x:Name="ConnectButton"  Style="{StaticResource ResourceKey=ButtonTemp}" Content="Connect with Server" HorizontalAlignment="Left" Height="21" Margin="87,210,0,0" VerticalAlignment="Top" Width="118" Click="ConnectButton_Click" IsDefault="True"/>
+        <TextBox x:Name="ServerAddress" HorizontalAlignment="Left" Height="25" Margin="48,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <Label x:Name="ServerPortLabel" Content="Enter server port:" HorizontalAlignment="Left" Height="26" Margin="48,117,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox x:Name="ServerPort" HorizontalAlignment="Left" Height="25" Margin="48,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="ConnectButton"  Style="{StaticResource ResourceKey=ButtonTemp}" Content="Connect with Server" HorizontalAlignment="Left" Height="21" Margin="87,215,0,0" VerticalAlignment="Top" Width="118" Click="ConnectButton_Click" IsDefault="True"/>
         <Label x:Name="TitleLabel" Style="{StaticResource LabelTxt}" Content="Connect with server:" HorizontalAlignment="Left" Height="31" Margin="61,10,0,0" VerticalAlignment="Top" Width="177"/>
-        <Label x:Name="ValidationMsg"  Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="10,168,0,0" VerticalAlignment="Top" Width="280" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
-        <CheckBox x:Name="LocalHostCheckBox" Content="localhost" HorizontalAlignment="Left" Height="20" Margin="48,94,0,0" VerticalAlignment="Top" Width="101" Checked="CheckBoxCheck" Unchecked="CheckBoxUncheck"/>
+        <Label x:Name="ValidationMsg"  Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="10,173,0,0" VerticalAlignment="Top" Width="280" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
+        <CheckBox x:Name="LocalHostCheckBox" Content="localhost" HorizontalAlignment="Left" Height="20" Margin="53,99,0,0" VerticalAlignment="Top" Width="101" Checked="CheckBoxCheck" Unchecked="CheckBoxUncheck"/>
     </Grid>
 </UserControl>

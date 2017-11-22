@@ -1,0 +1,8 @@
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\bin\Debug\Server.exe.config
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\bin\Debug\Server.exe
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\bin\Debug\Server.pdb
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\bin\Debug\Common.dll
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\bin\Debug\Common.pdb
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\obj\Debug\Server.exe
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\Server\obj\Debug\Server.pdb

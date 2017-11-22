@@ -1,0 +1,8 @@
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.exe.config
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.exe
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\bin\Debug\AuditServer.pdb
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\bin\Debug\Common.dll
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\bin\Debug\Common.pdb
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\obj\Debug\AuditServer.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\obj\Debug\AuditServer.exe
+C:\Users\Admin\Desktop\RepFinal\SBES-P12\Projekat12\AuditServer\obj\Debug\AuditServer.pdb

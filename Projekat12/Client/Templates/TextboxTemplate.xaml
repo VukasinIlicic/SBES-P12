@@ -1,0 +1,26 @@
+﻿<ResourceDictionary x:Class="Client.Templates.TextoxTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Client.Templates"
+             mc:Ignorable="d">
+
+    <Style TargetType="TextBox">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="Margin" Value="0,40,10,10"/>
+        <Style.Triggers>
+            <Trigger Property="TextBox.IsFocused" Value="True">
+                <Setter Property="TextBox.BorderBrush" Value="SteelBlue" />
+                <Setter Property="TextBox.BorderThickness" Value="3" />
+            </Trigger>
+
+            <Trigger Property="TextBox.IsFocused" Value="False">
+                <Setter Property="TextBox.BorderBrush" Value="SteelBlue" />
+                <Setter Property="TextBox.BorderThickness" Value="1" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
