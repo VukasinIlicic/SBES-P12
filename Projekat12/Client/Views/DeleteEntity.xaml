@@ -6,8 +6,20 @@
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
              d:DesignHeight="280" d:DesignWidth="370" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="LabelTxt">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Margin" Value="0,40,10,10"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid >
-        <Label x:Name="TitleLabel" Content="Delete consumer:" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Top" Width="132"/>
+        <Label x:Name="TitleLabel" Style="{StaticResource LabelTxt}" Content="Delete consumer:" HorizontalAlignment="Left" Margin="49,-14,0,0" VerticalAlignment="Top" Width="162"/>
         <Label x:Name="IdLabel" Content="Enter user id:" HorizontalAlignment="Left" Height="26" Margin="15,40,0,0" VerticalAlignment="Top" Width="81"/>
         <ComboBox x:Name="IdComboBox" HorizontalAlignment="Left" Height="24" Margin="101,42,0,0" VerticalAlignment="Top" Width="124" SelectedIndex="0"/>
         <Label x:Name="ValidationLabel" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" Height="29" Margin="1,87,0,0" VerticalAlignment="Top" Width="240" Foreground="Red"/>

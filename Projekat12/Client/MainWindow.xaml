@@ -12,7 +12,13 @@
     Title="Projekat 12" Height="380.8" Width="611">
 
     <Window.Resources>
-
+        <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="DockPanel.Dock" Value="Bottom"/>
+        </Style>
     </Window.Resources>
 
     <Grid Background="LightBlue" >
@@ -23,6 +29,6 @@
         <Button x:Name="NewConsumtion" Content="SetConsumption" HorizontalAlignment="Left" Height="26" Margin="10,143,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="NewConsumptionWindow"/>
         <Button x:Name="AddConsumerBtn" Content="Add Consumer" HorizontalAlignment="Left" Height="26" Margin="10,174,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="AddNewEntity"/>
         <Button x:Name="DeleteConsumerBtn" Content="Delete Consumer" HorizontalAlignment="Left" Height="26" Margin="10,205,0,0" VerticalAlignment="Top" Width="104" Cursor="Hand" Background="SteelBlue" Foreground="White" Click="DeleteConsumer"/>
-        <TextBlock x:Name="datelbl" FontSize="11" HorizontalAlignment="Left" Height="19" Margin="3,301,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="123" Foreground="Blue" Background="White" FontWeight="Bold"/>
+        <TextBlock x:Name="datelbl" Style="{StaticResource TextBlockStyle}" HorizontalAlignment="Left" Margin="3,307,0,20" TextWrapping="Wrap" Text="" Width="123" Background="White" FontWeight="Bold"/>
     </Grid>
 </Window>

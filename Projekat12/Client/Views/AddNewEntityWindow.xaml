@@ -6,8 +6,20 @@
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
              d:DesignHeight="280" d:DesignWidth="370">
+
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="LabelTxt">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Margin" Value="0,40,10,10"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Label x:Name="TitleLabel" Content="Add new consumer: " HorizontalAlignment="Left" Height="29" Margin="129,10,0,0" VerticalAlignment="Top" Width="130"/>
+        <Label x:Name="TitleLabel"  Style="{StaticResource LabelTxt}" Content="Add new consumer: " HorizontalAlignment="Left" Height="29" Margin="121,10,0,0" VerticalAlignment="Top" Width="174"/>
         <Label x:Name="IdLabel" Content="Consumer id: " HorizontalAlignment="Left" Height="29" Margin="75,56,0,0" VerticalAlignment="Top" Width="110"/>
         <Label x:Name="RegionLabel" Content="Consumer region: " HorizontalAlignment="Left" Height="29" Margin="75,90,0,0" VerticalAlignment="Top" Width="110"/>
         <Label x:Name="CityLabel" Content="City: " HorizontalAlignment="Left" Height="29" Margin="75,124,0,0" VerticalAlignment="Top" Width="110"/>

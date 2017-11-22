@@ -20,6 +20,8 @@ namespace Server
         {
             List<string> roles = new List<string>();
             roles.Add("reader");
+            roles.Add("admin");
+            roles.Add("editor");
 
             return roles;
 
@@ -120,7 +122,6 @@ namespace Server
 
             //if (!principal.IsInRole("PrikazInformacija"))
                 //return null;
-            
 
             return Program.lokalnaBaza;
         }
@@ -169,9 +170,6 @@ namespace Server
             return ac;
         }
 
-            return Program.lokalnaBaza;
-            {
-                Program.tajm = false; // bilo je ispod lock
         
 
         

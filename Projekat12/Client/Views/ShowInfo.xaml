@@ -5,8 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" Height="280" Width="370">
+
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="LabelTxt">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Margin" Value="0,40,10,10"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Label x:Name="TitleLabel" Content="System informations:" HorizontalAlignment="Left" Height="26" Margin="121,10,0,0" VerticalAlignment="Top" Width="135"/>
+        <Label x:Name="TitleLabel" Style="{StaticResource LabelTxt }" Content="System informations:" HorizontalAlignment="Left" Height="36" Margin="99,0,0,0" VerticalAlignment="Top" Width="185"/>
         <ListView FontSize="12" Margin="10,41,10,10" Name="lvDataBinding" >
             <ListView.View>
                 <GridView>

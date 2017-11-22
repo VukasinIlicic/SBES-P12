@@ -7,6 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300" VerticalContentAlignment="Center" HorizontalAlignment="Center">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Image x:Name="AccessIcon" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="191" Source="/Icons/Access.png"/>
+        <Image x:Name="AccessIcon" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="191" Source="/Icons/Access.png" Margin="0,-14,0,0"/>
+        <TextBlock x:Name="WelcomeTxtBlock" HorizontalAlignment="Stretch" Height="39" Margin="34,166,60,-7" TextWrapping="Wrap" Text="Welcome" VerticalAlignment="Top" FontSize="30" Foreground="Black"/>
+
     </Grid>
 </UserControl>

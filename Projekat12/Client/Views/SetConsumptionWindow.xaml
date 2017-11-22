@@ -6,8 +6,20 @@
              xmlns:local="clr-namespace:Client.Views"
              mc:Ignorable="d" 
              d:DesignHeight="280" d:DesignWidth="370">
+
+    <UserControl.Resources>
+        <Style TargetType="Label" x:Key="LabelTxt">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="#4E87D4"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="Margin" Value="0,40,10,10"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Label x:Name="TitleLabel" Content="Set new consumption:" HorizontalAlignment="Left" Height="32" Margin="144,11,0,0" VerticalAlignment="Top" Width="167"/>
+        <Label x:Name="TitleLabel" Style="{StaticResource LabelTxt}" Content="Set new consumption:" HorizontalAlignment="Left" Height="32" Margin="116,17,0,0" VerticalAlignment="Top" Width="195"/>
         <Label x:Name="NewConsumption" Content="Enter new consumption: " HorizontalAlignment="Left" Height="26" Margin="116,49,0,0" VerticalAlignment="Top" Width="137"/>
         <TextBox x:Name="ConsumptionTxtBox" HorizontalAlignment="Left" Height="24" Margin="116,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
         <Label x:Name="MonthLabel" Content="Choose month: " HorizontalAlignment="Left" Height="27" Margin="116,122,0,0" VerticalAlignment="Top" Width="137"/>
