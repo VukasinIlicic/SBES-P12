@@ -16,6 +16,13 @@ namespace Server
     {
         public static readonly Object lockObject = new Object();
 
+        public List<string> GetRoles()
+        {
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            return principal.Roles;
+        }
+
         public bool AzurirajPotrosnju(string id, int month_, double consumption)
         {
             if(consumption<0)

@@ -20,6 +20,9 @@ namespace Common.Contracts
 		bool DodajEntitet(DataObj noviPotrosac);
 
 		[OperationContract]
-		bool ObrisiEntitet(string id); 
+		bool ObrisiEntitet(string id);
+
+        [OperationContract]
+        List<string> GetRoles();
     }
 }
