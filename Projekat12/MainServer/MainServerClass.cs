@@ -19,7 +19,6 @@ namespace MainServer
 	{
 		private static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
         private static readonly Object lockNeprijavljeni = new Object();
-        private static readonly Object lockDic = new object();
         private static string neprijavljeni = "";
 
         public static void Provera()
@@ -30,23 +29,21 @@ namespace MainServer
 
 				neprijavljeni = "";
 
-                int brojac = 0;
-                Thread[] tredovi = new Thread[serveri.Count]; // sta ako ovde bude 2 pa dodje jos jedan dok ne stigne do foreach ... mozda je najbolje da se koristi lock ili da se brojac stavi na serveri.Count pa u foreach ako bude manje od 0 izadji
+                List<Thread> tredovi = new List<Thread>(serveri.Count);
 
                 foreach (var server in serveri)
                 {
-                    tredovi[brojac] = new Thread(() => TreadFunkcija(server));
-                    tredovi[brojac].Start();
-                    brojac++;
-                }
-                
-                for (int i = 0; i < brojac; i++)
-                {
-                    tredovi[i].Join();
-                    //tredovi[i].Abort();
+                    tredovi.Add(new Thread(() => TreadFunkcija(server)));
+                    tredovi[tredovi.Count - 1].Start();
                 }
 
-                if (neprijavljeni != "")            // kad se jednom ugasi stalno ce posle da ide u catch cak i isti port da ima, mozda ovde da izbacimo iz serveri sve one koji su ispali ( ??? )
+                for (int i = 0; i < tredovi.Count; i++)
+                {
+                    tredovi[i].Join();
+                }
+
+
+                if (neprijavljeni != "")            
                 {
                     VezaSaAuditom.PrijaviNeprijavljene(neprijavljeni);
                 }
@@ -78,6 +75,8 @@ namespace MainServer
                 lock(lockNeprijavljeni)
                 {
                     neprijavljeni += server.Key + ';';
+                    Server outObjekat;
+                    serveri.TryRemove(server.Key, out outObjekat);
                 }
             }           
         }
@@ -90,12 +89,12 @@ namespace MainServer
 			if (adresa.Equals(IPAdressHelper.VratiIP()))
 				adresa = "localhost";
 
-			DodajProxy(adresa, port.ToString(), imeServera);
+			DodajServer(adresa, port.ToString(), imeServera);
 		}
 
-		private void DodajProxy(string adresa, string port, string imeServera)
+		private void DodajServer(string adresa, string port, string imeServera)
 		{
-			serveri.TryAdd(imeServera, new Server() {Ime = imeServera, Proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server")}); // ako proba da doda u serveri a gore se radi foreach nad njim da li to znaci da onda nece dodati ili da ce cekati dok se foreach ne zavrsi ??
+			serveri.TryAdd(imeServera, new Server() {Ime = imeServera, Proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server")}); // dodaj WinAuth 
 		}
 	}
 }
