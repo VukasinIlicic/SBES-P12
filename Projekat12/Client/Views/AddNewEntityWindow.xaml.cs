@@ -86,7 +86,16 @@ namespace Client.Views
                 }
 
                 DataObj newConsumer = new DataObj(id, region, city, year_);
-                bool added = proxy.DodajEntitet(newConsumer);
+                bool added = false;
+
+                try
+                {
+                    added = proxy.DodajEntitet(newConsumer);
+                }
+                catch
+                {
+
+                }
 
                 if (!added)
                 {

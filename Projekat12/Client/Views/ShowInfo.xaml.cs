@@ -29,7 +29,17 @@ namespace Client.Views
             //DataObj dd = new DataObj("1", "Vojvodina", "NS", 2017);
             //Dictionary<string, DataObj> infoDic = new Dictionary<string, DataObj>();
             //infoDic.Add("1", dd);
-            Dictionary<string, DataObj> infoDic = p.PrikazInformacija();
+            Dictionary<string, DataObj> infoDic = new Dictionary<string, DataObj>();
+
+            try
+            {
+                infoDic = p.PrikazInformacija();
+            }
+            catch
+            {
+
+            }
+
             List<DataObj> dataObjList = GetDataObjList(infoDic);
             dataObjList = dataObjList.OrderBy(o => o.Id).ToList();
             this.DataContext = dataObjList;

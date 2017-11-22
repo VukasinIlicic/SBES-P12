@@ -127,7 +127,7 @@ namespace Server
 
 			}
             //if (!principal.IsInRole("PrikazInformacija"))
-                //return null;
+            //    return null;
 			return false;
 		}
 

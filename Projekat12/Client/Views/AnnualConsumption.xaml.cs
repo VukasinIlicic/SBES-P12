@@ -120,7 +120,14 @@ namespace Client.Views
                 return;
             }
 
-            AnnualConsume = proxy.SrednjaVrednostPotrosnje(cityName, year_);
+            try
+            {
+                AnnualConsume = proxy.SrednjaVrednostPotrosnje(cityName, year_);
+            }
+            catch
+            {
+
+            }
 
             if((AnnualConsume.ToString()).Length>8)
             {

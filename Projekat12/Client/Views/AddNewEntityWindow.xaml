@@ -8,18 +8,16 @@
              d:DesignHeight="280" d:DesignWidth="370">
 
     <UserControl.Resources>
-        <Style TargetType="Label" x:Key="LabelTxt">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="DockPanel.Dock" Value="Top"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="#4E87D4"/>
-            <Setter Property="FontFamily" Value="Trebuchet MS"/>
-            <Setter Property="Margin" Value="0,40,10,10"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
-
+    
     <Grid>
-        <Label x:Name="TitleLabel"  Style="{StaticResource LabelTxt}" Content="Add new consumer: " HorizontalAlignment="Left" Height="29" Margin="121,10,0,0" VerticalAlignment="Top" Width="174"/>
+        <Label x:Name="TitleLabel"  Style="{StaticResource ResourceKey=LabelTxt}" Content="Add new consumer: " HorizontalAlignment="Left" Height="29" Margin="121,10,0,0" VerticalAlignment="Top" Width="174"/>
         <Label x:Name="IdLabel" Content="Consumer id: " HorizontalAlignment="Left" Height="29" Margin="75,56,0,0" VerticalAlignment="Top" Width="110"/>
         <Label x:Name="RegionLabel" Content="Consumer region: " HorizontalAlignment="Left" Height="29" Margin="75,90,0,0" VerticalAlignment="Top" Width="110"/>
         <Label x:Name="CityLabel" Content="City: " HorizontalAlignment="Left" Height="29" Margin="75,124,0,0" VerticalAlignment="Top" Width="110"/>
@@ -28,7 +26,7 @@
         <TextBox x:Name="ConsumerRegionTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="CityTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
         <TextBox x:Name="YearTxtBox" HorizontalAlignment="Left" Height="29" Margin="190,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
-        <Button x:Name="ConfirmBtn" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="129,227,0,0" VerticalAlignment="Top" Width="123" Click="ConfirmBtn_Click" IsDefault="True"/>
+        <Button x:Name="ConfirmBtn" Style="{StaticResource ResourceKey=ButtonTemp}" Content="Add new consumer" HorizontalAlignment="Left" Height="25" Margin="126,227,0,0" VerticalAlignment="Top" Width="139" Click="ConfirmBtn_Click" IsDefault="True"/>
         <Label x:Name="LabelMsg" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="30" Margin="10,192,0,0" VerticalAlignment="Top" Width="350" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
         <Image x:Name="CheckImg" HorizontalAlignment="Left" Height="40" Margin="268,222,0,0" VerticalAlignment="Top" Width="40" Source="/Icons/Allowed.png" Visibility="Hidden"/>
     </Grid>
