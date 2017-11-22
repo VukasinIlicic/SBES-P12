@@ -16,11 +16,11 @@ namespace Server
 	{
 		private static IMainServer proxy;
 
-		public static void PoveziSe()
+		public static void PoveziSe(string adresa)
 		{
-			proxy = ClientProxy.GetProxy<IMainServer>("localhost", "51000", "MainServer", AuthType.WinAuth);
-			string myIp = IPAdressHelper.VratiIP();
-			proxy.PosaljiSvojePodatke(myIp, Program.portServera, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
-		}
-	}
+            proxy = ClientProxy.GetProxy<IMainServer>(adresa, "51000", "MainServer", AuthType.WinAuth);
+            string myIp = IPAdressHelper.VratiIP();
+            proxy.PosaljiSvojePodatke(myIp, Program.portServera, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+        }
+    }
 }
