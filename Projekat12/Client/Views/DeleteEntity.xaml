@@ -8,14 +8,12 @@
              d:DesignHeight="280" d:DesignWidth="370" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
 
     <UserControl.Resources>
-        <Style TargetType="Label" x:Key="LabelTxt">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="DockPanel.Dock" Value="Top"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="#4E87D4"/>
-            <Setter Property="FontFamily" Value="Trebuchet MS"/>
-            <Setter Property="Margin" Value="0,40,10,10"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid >
@@ -23,7 +21,7 @@
         <Label x:Name="IdLabel" Content="Enter user id:" HorizontalAlignment="Left" Height="26" Margin="15,40,0,0" VerticalAlignment="Top" Width="81"/>
         <ComboBox x:Name="IdComboBox" HorizontalAlignment="Left" Height="24" Margin="101,42,0,0" VerticalAlignment="Top" Width="124" SelectedIndex="0"/>
         <Label x:Name="ValidationLabel" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" Height="29" Margin="1,87,0,0" VerticalAlignment="Top" Width="240" Foreground="Red"/>
-        <Button x:Name="DeleteBtn" Content="Delete consumer" HorizontalAlignment="Left" Height="27" Margin="69,121,0,0" VerticalAlignment="Top" Width="111" Click="DeleteConsumer" IsDefault="True"/>
+        <Button x:Name="DeleteBtn" Style="{StaticResource ResourceKey=ButtonTemp}" Content="Delete consumer" HorizontalAlignment="Left" Height="27" Margin="69,121,0,0" VerticalAlignment="Top" Width="111" Click="DeleteConsumer" IsDefault="True"/>
         <Image x:Name="CheckImg" HorizontalAlignment="Left" Height="40" Margin="191,116,0,0" VerticalAlignment="Top" Width="40" Source="/Icons/Allowed.png" Visibility="Hidden"/>
     </Grid>
 </UserControl>

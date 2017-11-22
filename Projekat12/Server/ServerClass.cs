@@ -67,11 +67,11 @@ namespace Server
 
 		public bool DodajEntitet(DataObj noviPotrosac)
 		{
-			var principal = Thread.CurrentPrincipal as CustomPrincipal;
+            var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-			if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
+            if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
 
-			if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+            if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
 			{
 				if (Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   
 					return false;

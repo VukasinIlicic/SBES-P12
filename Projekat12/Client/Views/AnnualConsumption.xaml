@@ -8,14 +8,12 @@
              d:DesignHeight="280" d:DesignWidth="370">
 
     <UserControl.Resources>
-        <Style TargetType="Label" x:Key="LabelTxt">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="DockPanel.Dock" Value="Top"/>
-            <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Foreground" Value="#4E87D4"/>
-            <Setter Property="FontFamily" Value="Trebuchet MS"/>
-            <Setter Property="Margin" Value="0,40,10,10"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
@@ -24,7 +22,7 @@
         <TextBox x:Name="CityNameTxtBox" HorizontalAlignment="Left" Height="22" Margin="167,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
         <Label x:Name="YearLabel" Content="Enter year: " HorizontalAlignment="Left" Height="27" Margin="64,94,0,0" VerticalAlignment="Top" Width="132"/>
         <TextBox x:Name="YearTxtBox" HorizontalAlignment="Left" Height="22" Margin="167,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-        <Button x:Name="GetConsumptionsBtn" Content="Get Consumptions" HorizontalAlignment="Left" Height="29" Margin="167,159,0,0" VerticalAlignment="Top" Width="104" Click="GetConsumptionsBtn_Click" IsDefault="True"/>
+        <Button x:Name="GetConsumptionsBtn" Style="{StaticResource ResourceKey=ButtonTemp}" Content="Get Consumptions" HorizontalAlignment="Left" Height="29" Margin="164,159,0,0" VerticalAlignment="Top" Width="113" Click="GetConsumptionsBtn_Click" IsDefault="True"/>
         <Label x:Name="ValidationMsg" Content="{Binding Path=Validation, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="28" Margin="109,126,0,0" VerticalAlignment="Top" Width="209" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Bold"/>
         <Label x:Name="ResultLabel" Content="Result: " HorizontalAlignment="Left" Height="29" Margin="152,203,0,0" VerticalAlignment="Top" Width="52"/>
         <Label x:Name="Res" Content="{Binding Path=StringResult, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="29" Margin="209,203,0,0" VerticalAlignment="Top" Width="98" Foreground="Blue" FontWeight="Bold"/>

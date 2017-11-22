@@ -40,6 +40,7 @@ namespace Server
             OtvoriServer();
             Console.WriteLine("Unesite adresu main servera");
             var adresa = Console.ReadLine();
+
             //VezaSaGlavnim.PoveziSe(adresa);
 
             Console.ReadLine();
