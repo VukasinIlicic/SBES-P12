@@ -53,12 +53,6 @@ namespace MainServer
             {
                 razlika = 8 - razlika;
 
-                /*while (razlika > 0)
-                {
-                    original += ';';
-                    razlika--;
-                }*/
-
                 StringBuilder sb = new StringBuilder(original);
                 sb.Append(';', razlika);
 

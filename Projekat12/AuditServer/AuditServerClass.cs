@@ -70,11 +70,6 @@ namespace AuditServer
 
             CryptoStream cryptoStream = new CryptoStream(stream, desEncript, CryptoStreamMode.Read);
 
-            /*byte[] dekriptovana = new byte[stream.Length];
-            cryptoStream.Read(dekriptovana, 0, dekriptovana.Length);
-
-            string poruka = Encoding.ASCII.GetString(dekriptovana);*/
-
             StreamReader reader = new StreamReader(cryptoStream);
             string poruka = reader.ReadToEnd();
 

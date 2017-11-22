@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
@@ -14,8 +15,20 @@ namespace Common.CertManager
 
             return certCollection.Cast<X509Certificate2>().FirstOrDefault(c => IsEqual(c.SubjectName.Name, subjectName));
         }
+		public static string GetSrvCertCn(string path)
+		{
+			string srvCertCn;
 
-        private static bool IsEqual(string param, string subjectName)
+			var stream = File.Open(path, FileMode.Open, FileAccess.Read);
+			using (stream)
+			using (var sr = new StreamReader(stream))
+			{
+				srvCertCn = sr.ReadLine();
+				sr.Close();
+			}
+			return srvCertCn;
+		}
+		private static bool IsEqual(string param, string subjectName)
         {
             var grupe = param.Split(' ');
             if (grupe.Length > 1 && grupe[0].Equals($"CN=\"{subjectName}"))

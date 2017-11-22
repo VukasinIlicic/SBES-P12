@@ -73,8 +73,8 @@ namespace Server
 
 			if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
 			{
-				if (Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
-					return false;                                           // mora novo polje
+				if (Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   
+					return false;
 
 				lock (lockObject)
 				{
@@ -108,27 +108,22 @@ namespace Server
 
 			if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
 
-			if (Program.lokalnaBaza.ContainsKey(id))
-			{
-				try
-				{
-					lock (lockObject)
-					{
-						Program.lokalnaBaza[id].Obrisan = true;
-					}
-					Audit.BrisanjeEntiteta(Program.customLog);
-                    _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
-                    return true;
-				}
-				catch
-				{
-					return false;
-				}
+			if (!Program.lokalnaBaza.ContainsKey(id)) return false;
 
+			try
+			{
+				lock (lockObject)
+				{
+					Program.lokalnaBaza[id].Obrisan = true;
+				}
+				Audit.BrisanjeEntiteta(Program.customLog);
+				_xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
+				return true;
 			}
-            //if (!principal.IsInRole("PrikazInformacija"))
-                //return null;
-			return false;
+			catch
+			{
+				return false;
+			}
 		}
 
 		public Dictionary<string, DataObj> PrikazInformacija()
@@ -171,7 +166,6 @@ namespace Server
 				{
 					personalConsumption += obj.Potrosnja[i];
 				}
-
 
 				personalConsumption /= obj.Potrosnja.Count;
 				ac += personalConsumption;
