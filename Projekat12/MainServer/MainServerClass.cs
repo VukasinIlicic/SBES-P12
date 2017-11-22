@@ -20,6 +20,7 @@ namespace MainServer
 		private static ConcurrentDictionary<string, Server> serveri = new ConcurrentDictionary<string, Server>();
         private static readonly Object lockNeprijavljeni = new Object();
         private static string neprijavljeni = "";
+        private static bool vratiBazuAkoNeRadiMerge = true;
 
         public static void Provera()
 		{
@@ -30,6 +31,8 @@ namespace MainServer
 				neprijavljeni = "";
 
                 List<Thread> tredovi = new List<Thread>(serveri.Count);
+
+                vratiBazuAkoNeRadiMerge = false;
 
                 foreach (var server in serveri)
                 {
@@ -42,6 +45,7 @@ namespace MainServer
                     tredovi[i].Join();
                 }
 
+                vratiBazuAkoNeRadiMerge = true;
 
                 if (neprijavljeni != "")            
                 {
@@ -81,15 +85,20 @@ namespace MainServer
             }           
         }
 
-        public void PosaljiSvojePodatke(string adresa, int port, string imeServera)
+        public Dictionary<string, DataObj> PosaljiSvojePodatke(string adresa, int port, string imeServera)
 		{
 			if (serveri.ContainsKey(imeServera))
-                return;
+                return null;
 
 			if (adresa.Equals(IPAdressHelper.VratiIP()))
 				adresa = "localhost";
 
 			DodajServer(adresa, port.ToString(), imeServera);
+
+            while (!vratiBazuAkoNeRadiMerge)
+                Thread.Sleep(100);
+
+            return Program.glavnaBaza;
 		}
 
 		private void DodajServer(string adresa, string port, string imeServera)

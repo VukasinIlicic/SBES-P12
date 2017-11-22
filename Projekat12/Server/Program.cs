@@ -35,6 +35,7 @@ namespace Server
         {
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
+
             OtvoriServer();
             Console.WriteLine("Unesite adresu main servera");
             var adresa = Console.ReadLine();
