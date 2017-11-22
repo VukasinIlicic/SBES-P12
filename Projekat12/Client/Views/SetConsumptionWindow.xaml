@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
                 <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/TextboxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -19,7 +20,7 @@
     <Grid>
         <Label x:Name="TitleLabel" Style="{StaticResource ResourceKey=LabelTxt}" Content="Set new consumption:" HorizontalAlignment="Left" Height="32" Margin="116,17,0,0" VerticalAlignment="Top" Width="195"/>
         <Label x:Name="NewConsumption" Content="Enter new consumption: " HorizontalAlignment="Left" Height="26" Margin="116,49,0,0" VerticalAlignment="Top" Width="137"/>
-        <TextBox x:Name="ConsumptionTxtBox" HorizontalAlignment="Left" Height="24" Margin="116,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
+        <TextBox x:Name="ConsumptionTxtBox" HorizontalAlignment="Left" Height="25" Margin="116,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="184"/>
         <Label x:Name="MonthLabel" Content="Choose month: " HorizontalAlignment="Left" Height="27" Margin="116,122,0,0" VerticalAlignment="Top" Width="137"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="27" Margin="219,122,0,0" VerticalAlignment="Top" Width="81" SelectedIndex="0">
             <ComboBoxItem Name="cbi1">January</ComboBoxItem>

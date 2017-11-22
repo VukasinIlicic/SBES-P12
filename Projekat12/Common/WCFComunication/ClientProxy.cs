@@ -24,8 +24,10 @@ namespace Common
 
 			if (authType == AuthType.CertAuth)
 			{
+				var servCertCn = CertificateManager.GetSrvCertCn(Konstanta.TXT_KONFIGURACIJA);
+
 				binding.Security.Transport.ClientCredentialType = TcpClientCredentialType.Certificate;
-				var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, Konstanta.SRV_CERT_CN);
+				var srvCert = CertificateManager.GetCertificateFromStorage(StoreName.TrustedPeople, StoreLocation.LocalMachine, servCertCn);
 
 				factory = new ChannelFactory<TInterface>(binding,
 					new EndpointAddress(new Uri($"net.tcp://{address}:{port}/{endpointName}"), new X509CertificateEndpointIdentity(srvCert)));

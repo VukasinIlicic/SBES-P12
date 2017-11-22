@@ -67,8 +67,6 @@ namespace Client.Views
 
         public void ConnectToServer(string adresa, string port)
         {
-            InitializeComponent();
-
 	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", AuthType.CertAuth);
         }
 

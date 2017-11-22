@@ -12,6 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Templates/LabelTemplate.xaml"/>
                 <ResourceDictionary Source="../Templates/ButtonTemplate.xaml"/>
+                <ResourceDictionary Source="../Templates/TextboxTemplate.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

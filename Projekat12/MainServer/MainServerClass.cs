@@ -61,11 +61,10 @@ namespace MainServer
                 
                 foreach (var s in serveri)
 				{
-					if (s.Value.JavioSe)
-					{
-						s.Value.JavioSe = false;
-						s.Value.Proxy.VratiKonzistentnuBazu(glavnaBaza);
-					}
+					if (!s.Value.JavioSe) continue;
+
+					s.Value.JavioSe = false;
+					s.Value.Proxy.VratiKonzistentnuBazu(glavnaBaza);
 				}
 			}
 		}

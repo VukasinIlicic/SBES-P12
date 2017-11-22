@@ -13,25 +13,42 @@ namespace Common
 	{
 		public void UpisiUXml(Dictionary<string, DataObj> podaci, string imeBaze)
 		{
+			var listaPodataka = podaci.Select(p => p.Value).ToList();
+
 			using (var streamWriter = new StreamWriter(imeBaze))
 			{
-				var xmlSerializer = new XmlSerializer(typeof (Dictionary<string, DataObj>));
-				xmlSerializer.Serialize(streamWriter, podaci);
+				try
+				{
+					var xmlSerializer = new XmlSerializer(typeof (List<DataObj>));
+					xmlSerializer.Serialize(streamWriter, listaPodataka);
+				}
+				catch
+				{
+					Console.WriteLine("Neuspesno upisivanje u xml");
+				}
 			}
 		}
 
 		public Dictionary<string, DataObj> IscitajIzXml(string imeBaze)
 		{
-			Dictionary<string, DataObj> podaci;
+			var listaPodataka = new List<DataObj>();
 
-            if (!File.Exists(imeBaze))
-                return new Dictionary<string, DataObj>();
+			if (!File.Exists(imeBaze))
+				return new Dictionary<string, DataObj>();
 
 			using (var streamReader = new StreamReader(imeBaze))
 			{
-				var serializer = new XmlSerializer(typeof (Dictionary<string, DataObj>));
-				podaci = (Dictionary<string, DataObj>) serializer.Deserialize(streamReader);
+				try
+				{
+					var serializer = new XmlSerializer(typeof (List<DataObj>));
+					listaPodataka = (List<DataObj>) serializer.Deserialize(streamReader);
+				}
+				catch
+				{
+					Console.WriteLine("Neuspesno citanje iz xml");
+				}
 			}
+			var podaci = listaPodataka.ToDictionary(x => x.Id);
 
 			return podaci;
 		}
