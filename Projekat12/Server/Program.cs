@@ -23,34 +23,43 @@ namespace Server
     {
 
         private static ServerHost<IServer, ServerClass> svc;
-		private static ServerClass sc = new ServerClass();
-		public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
+        private static ServerHost<IUpdate, VezaSaGlavnim> svcGlavni;
+        private static ServerClass sc = new ServerClass();
+        public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
         public static EventLog customLog;
         public static MergeBaza mb = new MergeBaza();
         public static bool tajm = false;
-        public static int portServera;
+        public static int portServeraZaGlavni;
 
         public static void Main(string[] args)
         {
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
+            Console.WriteLine("Unesite adresu main servera");
+            var adresa = Console.ReadLine();
+            //VezaSaGlavnim.PoveziSe(adresa);
 
-            VezaSaGlavnim.PoveziSe();
-
-            Console.ReadLine();    
+            Console.ReadLine();
             svc.Close();
+            svcGlavni.Close();
         }
 
-		private static void OtvoriServer()
-		{
-			Console.WriteLine("Unesi port");
-			string port = Console.ReadLine(); //pazi na validaciju
-            portServera = Convert.ToInt32(port);
+        private static void OtvoriServer()
+        {
+            Console.WriteLine("Unesi port za klijente");
+            string port = Console.ReadLine(); //pazi na validaciju
+                                              //portServera = Convert.ToInt32(port);
 
-			svc = new ServerHost<IServer,ServerClass>("Server", port, AuthType.CertAuth);
-			svc.Open();
-			Console.WriteLine("Otvorio");
-		}
-	}
+            svc = new ServerHost<IServer, ServerClass>("Server", port, AuthType.CertAuth);
+            svc.Open();
+            Console.WriteLine("Otvorio za klijente");
+
+            Console.WriteLine("Unesi port za glavni");
+            portServeraZaGlavni = Convert.ToInt32(Console.ReadLine());
+            svcGlavni = new ServerHost<IUpdate, VezaSaGlavnim>("VezaSaGlavnim", portServeraZaGlavni.ToString(), AuthType.WinAuth);
+            svcGlavni.Open();
+            Console.WriteLine("Otvorio za glavni");
+        }
+    }
 }

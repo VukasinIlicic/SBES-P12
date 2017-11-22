@@ -5,7 +5,7 @@ using Common.Entiteti;
 namespace Common.Contracts
 {
 	[ServiceContract]
-	public interface IServer : IUpdate
+	public interface IServer
 	{
 		[OperationContract]
 		Dictionary<string, DataObj> PrikazInformacija();
