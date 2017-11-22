@@ -9,170 +9,178 @@ using Common.Contracts;
 using Common.Entiteti;
 using Common.Authorization;
 using System.Threading;
+using System.Security;
 
 namespace Server
 {
-    public class ServerClass : IServer
-    {
-        public static readonly Object lockObject = new Object();
+	public class ServerClass : IServer
+	{
+		public static readonly Object lockObject = new Object();
+        private readonly XmlRepository _xR = new XmlRepository();
 
         public List<string> GetRoles()
         {
-            List<string> roles = new List<string>();
-            roles.Add("reader");
-            roles.Add("admin");
-            roles.Add("editor");
+            //List<string> roles = new List<string>();
+            //roles.Add("reader");
+            //roles.Add("admin");
+            //roles.Add("editor");
 
-            return roles;
+            //return roles;
 
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            return principal.Roles;
-        }
+			return principal.Roles;
+		}
 
-        public bool AzurirajPotrosnju(string id, int month_, double consumption)
-        {
-            if(consumption<0)
-            {
-                return false;
-            }
+		public bool AzurirajPotrosnju(string id, int month_, double consumption)
+		{
+			var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            Audit.AzuriranjePotrosnje(Program.customLog);
+			if (!principal.IsInRole("editor")) throw new SecurityException("Access Denied");
 
-            try
-            {
-                lock(lockObject)
-                {
-                    if (Program.tajm)
-                        Program.lokalnaBaza[id].AzuriranUTajmu[month_] = true;
+			if (consumption < 0)
+			{
+				return false;
+			}
 
-                    Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
-                    Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
+			try
+			{
+				lock (lockObject)
+				{
+					if (Program.tajm)
+						Program.lokalnaBaza[id].AzuriranUTajmu[month_] = true;
+
+					Program.lokalnaBaza[id].Potrosnja[month_] = consumption;
+					Program.lokalnaBaza[id].AzurirajPotrosnju(month_, true);
+                    Audit.AzuriranjePotrosnje(Program.customLog);
+                    _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
+                    
                 }
-                
-                return true;
-            }
-            catch
-            {
-                return false;
-            }       
-        }
 
-        public bool DodajEntitet(DataObj noviPotrosac)
-        {
-            if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
-            {
-                if(Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
-                    return false;                                           // mora novo polje
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 
-                lock(lockObject)
-                {
-                    Program.lokalnaBaza.Remove(noviPotrosac.Id);
-                    noviPotrosac.AzuriranCeo = true;
-                }  
-            }                    
+		public bool DodajEntitet(DataObj noviPotrosac)
+		{
+			var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            
-            try
-            {
-                lock(lockObject)
-                {
-                    if (Program.tajm)
-                        noviPotrosac.DodatUTajmu = true;
+			if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
 
-                    Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);
+			if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+			{
+				if (Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
+					return false;                                           // mora novo polje
+
+				lock (lockObject)
+				{
+					Program.lokalnaBaza.Remove(noviPotrosac.Id);
+					noviPotrosac.AzuriranCeo = true;
+				}
+			}
+
+			try
+			{
+				lock (lockObject)
+				{
+					if (Program.tajm)
+						noviPotrosac.DodatUTajmu = true;
+
+					Program.lokalnaBaza.Add(noviPotrosac.Id, noviPotrosac);  
                 }
-    
                 Audit.DodavanjeEntiteta(Program.customLog);
+                _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
                 return true;
-            }
-            catch { }
-            
-            
-            return false;
-        }
+			}
+			catch { }
 
-        public bool ObrisiEntitet(string id)
-        {
-            if(Program.lokalnaBaza.ContainsKey(id))
-            {
-                try
-                {
-                    lock(lockObject)
-                    {
-                        Program.lokalnaBaza[id].Obrisan = true;
-                    }
-                        
-                    Audit.BrisanjeEntiteta(Program.customLog);
+
+			return false;
+		}
+
+		public bool ObrisiEntitet(string id)
+		{
+			var principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+			if (!principal.IsInRole("admin")) throw new SecurityException("Access Denied");
+
+			if (Program.lokalnaBaza.ContainsKey(id))
+			{
+				try
+				{
+					lock (lockObject)
+					{
+						Program.lokalnaBaza[id].Obrisan = true;
+					}
+					Audit.BrisanjeEntiteta(Program.customLog);
+                    _xR.UpisiUXml(Program.lokalnaBaza, Program.IME_LOKALNE_BAZE);
                     return true;
-                }
-                catch
-                {
-                    return false;
-                }
-                
-            }
+				}
+				catch
+				{
+					return false;
+				}
 
-            return false;
-        }
-        
-        public Dictionary<string,DataObj> PrikazInformacija()
-        {
-            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
-
+			}
             //if (!principal.IsInRole("PrikazInformacija"))
                 //return null;
+			return false;
+		}
 
-            return Program.lokalnaBaza;
-        }
+		public Dictionary<string, DataObj> PrikazInformacija()
+		{
+			var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-        public double SrednjaVrednostPotrosnje(string grad, int year)
-        {
-            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+			if (!principal.IsInRole("reader")) throw new SecurityException("Access Denied");
 
-            //if (!principal.IsInRole("PrikazInformacija"))
-                //return -1;
+			return Program.lokalnaBaza;
+		}
 
-            Dictionary<string, DataObj> info = Program.lokalnaBaza;
-            List<DataObj> objectList = new List<DataObj>();
+		public double SrednjaVrednostPotrosnje(string grad, int year)
+		{
+			var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            foreach(KeyValuePair<string,DataObj> kv in info)
-            {
-                if(kv.Value.Grad == grad && kv.Value.Godina == year && kv.Value.Obrisan == false)
-                {
-                    objectList.Add(kv.Value);
-                }
-            }
+			if (!principal.IsInRole("reader")) throw new SecurityException("Access Denied");
 
-            double retVal = AnnualConsumption(objectList);
-            return retVal;
-        }
+			Dictionary<string, DataObj> info = Program.lokalnaBaza;
+			List<DataObj> objectList = new List<DataObj>();
 
-        private double AnnualConsumption(List<DataObj> data)
-        {
-            double ac = 0;
-            foreach (DataObj obj in data)
-            {
-                double personalConsumption = 0;
-                for (int i = 0; i < obj.Potrosnja.Count; i++)
-                {
-                    personalConsumption += obj.Potrosnja[i];
-                }
+			foreach (KeyValuePair<string, DataObj> kv in info)
+			{
+				if (kv.Value.Grad == grad && kv.Value.Godina == year && kv.Value.Obrisan == false)
+				{
+					objectList.Add(kv.Value);
+				}
+			}
+
+			double retVal = AnnualConsumption(objectList);
+			return retVal;
+		}
+
+		private double AnnualConsumption(List<DataObj> data)
+		{
+			double ac = 0;
+			foreach (DataObj obj in data)
+			{
+				double personalConsumption = 0;
+				for (int i = 0; i < obj.Potrosnja.Count; i++)
+				{
+					personalConsumption += obj.Potrosnja[i];
+				}
 
 
-                personalConsumption /= obj.Potrosnja.Count;
-                ac += personalConsumption;
-            }
+				personalConsumption /= obj.Potrosnja.Count;
+				ac += personalConsumption;
+			}
 
-            if (data.Count != 0)
-                ac /= data.Count;
+			if (data.Count != 0)
+				ac /= data.Count;
 
-            return ac;
-        }
-
-        
-
-        
-          
-    }
+			return ac;
+		}
+	}
 }

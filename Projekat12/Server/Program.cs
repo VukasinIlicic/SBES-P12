@@ -30,11 +30,13 @@ namespace Server
         public static MergeBaza mb = new MergeBaza();
         public static bool tajm = false;
         public static int portServeraZaGlavni;
+        public static string IME_LOKALNE_BAZE = String.Format("{0}_Baza.xml", Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
 
         public static void Main(string[] args)
         {
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
+
             OtvoriServer();
             Console.WriteLine("Unesite adresu main servera");
             var adresa = Console.ReadLine();
@@ -48,10 +50,8 @@ namespace Server
         private static void OtvoriServer()
         {
             Console.WriteLine("Unesi port za klijente");
-            string port = Console.ReadLine(); //pazi na validaciju
-                                              //portServera = Convert.ToInt32(port);
-
-            svc = new ServerHost<IServer, ServerClass>("Server", port, AuthType.NoAuth);
+            string port = Console.ReadLine(); 
+            svc = new ServerHost<IServer, ServerClass>("Server", port, AuthType.CertAuth);
             svc.Open();
             Console.WriteLine("Otvorio za klijente");
 

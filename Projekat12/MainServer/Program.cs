@@ -17,7 +17,6 @@ namespace MainServer
 	public class Program
 	{
 		private static ServerHost<IMainServer, MainServerClass> svc;
-		public static Dictionary<string, DataObj> glavnaBaza = new Dictionary<string, DataObj>();
 		public static MergeBaza mb = new MergeBaza();
 
 		public static void Main(string[] args)

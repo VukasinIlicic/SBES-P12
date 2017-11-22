@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Common.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +15,5 @@ namespace Common
         public const int MERGE_SA_LOKALNIM = 1;
 	    public const string SRV_CERT_CN = "wcfservice"; // ovde se menja
 		public const string IME_BAZE = "Baza.xml";
-
 	}
 }

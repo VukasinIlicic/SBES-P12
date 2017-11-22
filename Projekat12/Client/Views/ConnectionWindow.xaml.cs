@@ -69,7 +69,7 @@ namespace Client.Views
         {
             InitializeComponent();
 
-	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", AuthType.NoAuth);
+	        proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server", AuthType.CertAuth);
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)

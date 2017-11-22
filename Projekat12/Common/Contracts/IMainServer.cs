@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Common.Entiteti;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace Common.Contracts
@@ -10,6 +11,6 @@ namespace Common.Contracts
 		//Dictionary<string, DataObj> IntegrityUpdate(Dictionary<string, DataObj> lokalnaBazaServera, string imeServera);
 
         [OperationContract]
-        void PosaljiSvojePodatke(string adresa, int port, string imeServera);
+        Dictionary<string, DataObj> PosaljiSvojePodatke(string adresa, int port, string imeServera);
 	}
 }
