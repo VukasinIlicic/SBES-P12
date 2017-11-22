@@ -23,9 +23,14 @@ namespace Server
     {
 
         private static ServerHost<IServer, ServerClass> svc;
+<<<<<<< HEAD
         private static ServerHost<IUpdate, VezaSaGlavnim> svcGlavni;
 		private static ServerClass sc = new ServerClass();
 		public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
+=======
+        private static ServerClass sc = new ServerClass();
+        public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
+>>>>>>> bdab9792c6b5984797338dde9d5970ed63f1a318
         public static EventLog customLog;
         public static MergeBaza mb = new MergeBaza();
         public static bool tajm = false;
@@ -36,14 +41,16 @@ namespace Server
             string ime = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
             customLog = Audit.KreirajAudit(String.Format("LogoviServera({0})", ime), String.Format("Server({0})", ime));
             OtvoriServer();
+            Console.WriteLine("Unesite adresu main servera");
+            var adresa = Console.ReadLine();
+            //VezaSaGlavnim.PoveziSe(adresa);
 
-           //VezaSaGlavnim.PoveziSe();
-            
-            Console.ReadLine();    
+            Console.ReadLine();
             svc.Close();
             svcGlavni.Close();
         }
 
+<<<<<<< HEAD
 		private static void OtvoriServer()
 		{
 			Console.WriteLine("Unesi port za klijente");
@@ -61,4 +68,17 @@ namespace Server
             Console.WriteLine("Otvorio za glavni");
 		}
 	}
+=======
+        private static void OtvoriServer()
+        {
+            Console.WriteLine("Unesite port za hostovanje");
+            string port = Console.ReadLine();
+            portServera = Convert.ToInt32(port);
+
+            svc = new ServerHost<IServer, ServerClass>("Server", port, AuthType.CertAuth);
+            svc.Open();
+            Console.WriteLine("Service host je otvoren");
+        }
+    }
+>>>>>>> bdab9792c6b5984797338dde9d5970ed63f1a318
 }
