@@ -25,7 +25,12 @@ namespace Server
 
         public bool AzurirajPotrosnju(string id, int month_, double consumption)
         {
-            if(consumption<0)
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            if (!principal.IsInRole("AzurirajPotrosnju"))
+                return false;
+
+            if (consumption<0)
             {
                 return false;
             }
@@ -53,7 +58,12 @@ namespace Server
 
         public bool DodajEntitet(DataObj noviPotrosac)
         {
-            if(Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            if (!principal.IsInRole("DodajEntitet"))
+                return false;
+
+            if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
             {
                 if(Program.lokalnaBaza[noviPotrosac.Id].Obrisan == false)   // izbrise pa doda isti, ali godina ostane losa (mozda neki bool za godinu pa da na glavnom vidimo da li je na true i onda izmenimo godinu)
                     return false;                                           // mora novo polje
@@ -64,8 +74,7 @@ namespace Server
                     noviPotrosac.AzuriranCeo = true;
                 }  
             }                    
-
-            
+           
             try
             {
                 lock(lockObject)
@@ -80,14 +89,18 @@ namespace Server
                 return true;
             }
             catch { }
-            
-            
+                        
             return false;
         }
 
         public bool ObrisiEntitet(string id)
         {
-            if(Program.lokalnaBaza.ContainsKey(id))
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            if (!principal.IsInRole("ObrisiEntitet"))
+                return false;
+
+            if (Program.lokalnaBaza.ContainsKey(id))
             {
                 try
                 {
@@ -111,11 +124,21 @@ namespace Server
         
         public Dictionary<string,DataObj> PrikazInformacija()
         {
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            if (!principal.IsInRole("PrikazInformacija"))
+                return null;
+            
             return Program.lokalnaBaza;
         }
 
         public double SrednjaVrednostPotrosnje(string grad, int year)
         {
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+
+            if (!principal.IsInRole("PrikazInformacija"))
+                return -1;
+
             Dictionary<string, DataObj> info = Program.lokalnaBaza;
             List<DataObj> objectList = new List<DataObj>();
 
@@ -164,12 +187,12 @@ namespace Server
         {
             lock (ServerClass.lockObject)
             {
+                Program.tajm = false; // bilo je ispod lock
                 Dictionary<string, bool[]> pomocniDic = NapraviDic();
                 Program.mb.Merge(Program.lokalnaBaza, glavna, Konstanta.MERGE_SA_LOKALNIM);
                 Program.lokalnaBaza = glavna;
                 ProveraAzuriranjaUTajmu(pomocniDic);
-            }
-            Program.tajm = false; // ili mozda pre ovoga
+            } 
         }
 
         private static Dictionary<string, bool[]> NapraviDic()
@@ -198,11 +221,13 @@ namespace Server
 
                 bool[] hehe = dic[lb.Key];
                 for (int i = 0; i < 12; i++)
+                {
                     if (hehe[i])
                     {
                         lb.Value.Azuriran[i] = true;
                         lb.Value.AzuriranUTajmu[i] = false;
                     }
+                }    
             }
         }
           

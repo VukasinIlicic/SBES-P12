@@ -43,18 +43,9 @@ namespace Common.Authorization
             get { return this.identity; }
         }
 
-        public bool IsInRole(string role)
+        public bool IsInRole(string funkcija)
         {
-            bool IsAuthz = false;
-            foreach (var r in roles)
-            {
-                if (r.Equals(role))
-                {
-                    IsAuthz = true;
-                    break;
-                }
-            }
-            return IsAuthz;
+            return MapiranjeUloga.Provera(funkcija, roles);
         }
     }
 }
