@@ -17,9 +17,14 @@ namespace Server
 	{
 		public static readonly Object lockObject = new Object();
 
-		public List<string> GetRoles()
-		{
-			CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
+        public List<string> GetRoles()
+        {
+            List<string> roles = new List<string>();
+            roles.Add("reader");
+
+            return roles;
+
+            CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
 			return principal.Roles;
 		}
