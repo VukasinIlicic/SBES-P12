@@ -23,12 +23,13 @@ namespace Server
     {
 
         private static ServerHost<IServer, ServerClass> svc;
+        private static ServerHost<IUpdate, VezaSaGlavnim> svcGlavni;
 		private static ServerClass sc = new ServerClass();
 		public static Dictionary<string, DataObj> lokalnaBaza = new Dictionary<string, DataObj>();
         public static EventLog customLog;
         public static MergeBaza mb = new MergeBaza();
         public static bool tajm = false;
-        public static int portServera;
+        public static int portServeraZaGlavni;
 
         public static void Main(string[] args)
         {
@@ -40,17 +41,24 @@ namespace Server
             
             Console.ReadLine();    
             svc.Close();
+            svcGlavni.Close();
         }
 
 		private static void OtvoriServer()
 		{
-			Console.WriteLine("Unesi port");
+			Console.WriteLine("Unesi port za klijente");
 			string port = Console.ReadLine(); //pazi na validaciju
-            portServera = Convert.ToInt32(port);
+            //portServera = Convert.ToInt32(port);
 
 			svc = new ServerHost<IServer,ServerClass>("Server", port, AuthType.CertAuth);
 			svc.Open();
-			Console.WriteLine("Otvorio");
+			Console.WriteLine("Otvorio za klijente");
+
+            Console.WriteLine("Unesi port za glavni");
+            portServeraZaGlavni = Convert.ToInt32(Console.ReadLine());
+            svcGlavni = new ServerHost<IUpdate, VezaSaGlavnim>("VezaSaGlavnim", portServeraZaGlavni.ToString(), AuthType.WinAuth);
+            svcGlavni.Open();
+            Console.WriteLine("Otvorio za glavni");
 		}
 	}
 }

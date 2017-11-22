@@ -94,7 +94,7 @@ namespace MainServer
 
 		private void DodajServer(string adresa, string port, string imeServera)
 		{
-			serveri.TryAdd(imeServera, new Server() {Ime = imeServera, Proxy = ClientProxy.GetProxy<IServer>(adresa, port, "Server")}); // dodaj WinAuth 
+			serveri.TryAdd(imeServera, new Server() {Ime = imeServera, Proxy = ClientProxy.GetProxy<IUpdate>(adresa, port, "VezaSaGlavnim", AuthType.WinAuth) });
 		}
 	}
 }

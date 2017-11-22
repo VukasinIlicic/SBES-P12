@@ -4,7 +4,7 @@ namespace Common.Entiteti
 {
 	public class Server
 	{
-		public IServer Proxy { get; set; }
+		public IUpdate Proxy { get; set; }
 
 		public string Ime { get; set; }
 
