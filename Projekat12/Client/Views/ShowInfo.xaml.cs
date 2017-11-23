@@ -66,5 +66,16 @@ namespace Client.Views
 
             return returnList;
         }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as DataObj;
+            if (item != null)
+            {
+                ProzorPotrosnje pp = new ProzorPotrosnje();
+                pp.Postavi(item.Potrosnja);
+                pp.ShowDialog();
+            }
+        }
     }
 }
