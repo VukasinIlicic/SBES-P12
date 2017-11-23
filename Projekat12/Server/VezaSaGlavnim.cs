@@ -18,7 +18,7 @@ namespace Server
         private readonly XmlRepository _xR = new XmlRepository();
 		public static void PoveziSe(string adresa)
 		{
-			proxy = ClientProxy.GetProxy<IMainServer>("localhost", "51000", "MainServer", AuthType.WinAuth);
+			proxy = ClientProxy.GetProxy<IMainServer>(adresa, "51000", "MainServer", AuthType.WinAuth);
 			string myIp = IPAdressHelper.VratiIP();
 			Program.lokalnaBaza = proxy.PosaljiSvojePodatke(myIp, Program.portServeraZaGlavni, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
 

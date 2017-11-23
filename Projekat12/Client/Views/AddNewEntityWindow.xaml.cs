@@ -16,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Common.Contracts;
 using Common.Entiteti;
+using System.ServiceModel;
+using System.Threading;
 
 namespace Client.Views
 {
@@ -92,9 +94,19 @@ namespace Client.Views
                 {
                     added = proxy.DodajEntitet(newConsumer);
                 }
-                catch
+                catch(Exception ex)
                 {
-
+                    var AuthException = ex as FaultException<AuthorizationException>;
+                    if (AuthException == null)
+                    {
+                        MessageBox.Show("Server has not responded. Application will shutdown now.");
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        Validation = "Access denied";
+                        return;
+                    }
                 }
 
                 if (!added)

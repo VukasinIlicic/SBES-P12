@@ -25,7 +25,10 @@ namespace MainServer
 			OtvoriServer();
 			Thread t1 = new Thread(MainServerClass.Provera); // odavde pokrecemo proveru
 			t1.Start();
-			VezaSaAuditom.PoveziSe();
+
+            Console.WriteLine("Unesi adresu audit servera");
+            string adresa = Console.ReadLine();
+            VezaSaAuditom.PoveziSe(adresa);
 
 			Console.ReadLine();
 			t1.Abort();

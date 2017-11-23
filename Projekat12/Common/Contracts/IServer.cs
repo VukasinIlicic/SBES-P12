@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ServiceModel;
 using Common.Entiteti;
+using System.Security;
 
 namespace Common.Contracts
 {
@@ -8,21 +9,27 @@ namespace Common.Contracts
 	public interface IServer
 	{
 		[OperationContract]
+        [FaultContract(typeof(AuthorizationException))]
 		Dictionary<string, DataObj> PrikazInformacija();
 
 		[OperationContract]
-		double SrednjaVrednostPotrosnje(string grad, int year);
+        [FaultContract(typeof(AuthorizationException))]
+        double SrednjaVrednostPotrosnje(string grad, int year);
 
 		[OperationContract]
-		bool AzurirajPotrosnju(string id, int month, double consumption);
+        [FaultContract(typeof(AuthorizationException))]
+        bool AzurirajPotrosnju(string id, int month, double consumption);
 
 		[OperationContract]
-		bool DodajEntitet(DataObj noviPotrosac);
+        [FaultContract(typeof(AuthorizationException))]
+        bool DodajEntitet(DataObj noviPotrosac);
 
 		[OperationContract]
-		bool ObrisiEntitet(string id);
+        [FaultContract(typeof(AuthorizationException))]
+        bool ObrisiEntitet(string id);
 
         [OperationContract]
+        [FaultContract(typeof(AuthorizationException))]
         List<string> GetRoles();
     }
 }
