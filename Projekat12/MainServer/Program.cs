@@ -21,9 +21,8 @@ namespace MainServer
 
 		public static void Main(string[] args)
 		{
-			//Audit.KreirajAudit("MainServer", WindowsIdentity.GetCurrent().Name);
 			OtvoriServer();
-			Thread t1 = new Thread(MainServerClass.Provera); // odavde pokrecemo proveru
+			Thread t1 = new Thread(MainServerClass.Provera); 
 			t1.Start();
 
             Console.WriteLine("Unesi adresu audit servera");

@@ -19,8 +19,7 @@ namespace MainServer
         private static string kljucSesije;
 
         public static void PoveziSe(string adresa)
-        {
-           
+        {           
 	        proxy = ClientProxy.GetProxy<IAuditServer>(adresa, "13000", "AuditServer", AuthType.WinAuth);
             GenerisiKljucSesije();
         }
