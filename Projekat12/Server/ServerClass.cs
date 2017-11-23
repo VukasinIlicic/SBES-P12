@@ -22,12 +22,12 @@ namespace Server
 
         public List<string> GetRoles()
         {
-            //List<string> roles = new List<string>();
-            //roles.Add("reader");
-            //roles.Add("admin");
-            //roles.Add("editor");
+            List<string> roles = new List<string>();
+            roles.Add("reader");
+            roles.Add("admin");
+            roles.Add("editor");
 
-            //return roles;
+            return roles;
 
             CustomPrincipal principal = Thread.CurrentPrincipal as CustomPrincipal;
 
@@ -38,7 +38,7 @@ namespace Server
         {
             var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("editor")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
+            //if (!principal.IsInRole("editor")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
 
             if (consumption < 0)
             {
@@ -71,7 +71,7 @@ namespace Server
         {
             var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("admin")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
+            //if (!principal.IsInRole("admin")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
 
             if (Program.lokalnaBaza.ContainsKey(noviPotrosac.Id))
             {
@@ -108,7 +108,7 @@ namespace Server
         {
             var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("admin")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
+            //if (!principal.IsInRole("admin")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
 
             if (!Program.lokalnaBaza.ContainsKey(id)) return false;
 
@@ -132,7 +132,7 @@ namespace Server
         {
             var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("reader")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
+            //if (!principal.IsInRole("reader")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
 
             return Program.lokalnaBaza;
         }
@@ -141,7 +141,7 @@ namespace Server
         {
             var principal = Thread.CurrentPrincipal as CustomPrincipal;
 
-            if (!principal.IsInRole("reader")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
+            //if (!principal.IsInRole("reader")) throw new FaultException<AuthorizationException>(new AuthorizationException() { Message = "Access Denied" });
 
             Dictionary<string, DataObj> info = Program.lokalnaBaza;
             List<DataObj> objectList = new List<DataObj>();

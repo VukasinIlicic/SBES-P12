@@ -25,6 +25,7 @@ namespace Common
 			var endpoint = $"net.tcp://localhost:{port}/{endpointName}";
 			_serviceHost = new ServiceHost(typeof (TClass));
 			var binding = new NetTcpBinding();
+            binding.ReceiveTimeout = new TimeSpan(23, 59, 59);
 
 			if (authType == AuthType.CertAuth)
 			{

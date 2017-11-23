@@ -54,7 +54,6 @@ namespace AuditServer
                 if(server != "")
                     poruka += String.Format("Server {0} se nije javio\n", server);
 
-            //Console.WriteLine(poruka);
             Audit.AuditServerLog(Program.customLog, poruka);
         }
 

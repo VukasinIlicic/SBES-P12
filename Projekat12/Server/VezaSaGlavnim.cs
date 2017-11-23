@@ -20,7 +20,8 @@ namespace Server
 		{
 			proxy = ClientProxy.GetProxy<IMainServer>(adresa, "51000", "MainServer", AuthType.WinAuth);
 			string myIp = IPAdressHelper.VratiIP();
-			Program.lokalnaBaza = proxy.PosaljiSvojePodatke(myIp, Program.portServeraZaGlavni, Formatter.ParseName(WindowsIdentity.GetCurrent().Name));
+
+			Program.lokalnaBaza = proxy.PosaljiSvojePodatke(myIp, Program.portServeraZaGlavni, WindowsIdentity.GetCurrent().Name);
 
             if (Program.lokalnaBaza == null)
                 Environment.Exit(0);

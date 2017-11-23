@@ -21,8 +21,9 @@ namespace Common
 		{
 			var binding = new NetTcpBinding();
 			ChannelFactory<TInterface> factory;
+            binding.SendTimeout = new TimeSpan(23, 59, 59);
 
-			if (authType == AuthType.CertAuth)
+            if (authType == AuthType.CertAuth)
 			{
 				var servCertCn = CertificateManager.GetSrvCertCn(Konstanta.TXT_KONFIGURACIJA);
 
