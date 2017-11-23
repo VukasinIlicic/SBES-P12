@@ -41,7 +41,7 @@ namespace Server
             Console.WriteLine("Unesite adresu main servera");
             var adresa = Console.ReadLine();
 
-            //VezaSaGlavnim.PoveziSe(adresa);
+            VezaSaGlavnim.PoveziSe(adresa);
 
             Console.ReadLine();
             svc.Close();

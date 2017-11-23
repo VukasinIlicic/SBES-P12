@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Common.Contracts;
 using Common.Entiteti;
+using System.ServiceModel;
 
 namespace Client.Views
 {
@@ -35,9 +36,14 @@ namespace Client.Views
             {
                 infoDic = p.PrikazInformacija();
             }
-            catch
+            catch(Exception ex)
             {
-
+                var AuthException = ex as FaultException<AuthorizationException>;
+                if (AuthException == null)
+                {
+                    MessageBox.Show("Server has not responded. Application will shutdown now.");
+                    Environment.Exit(0);
+                }
             }
 
             List<DataObj> dataObjList = GetDataObjList(infoDic);

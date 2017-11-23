@@ -102,11 +102,6 @@ namespace Client.Views
                         MessageBox.Show("Server has not responded. Application will shutdown now.");
                         Environment.Exit(0);
                     }
-                    else
-                    {
-                        Validation = "Access denied";
-                        return;
-                    }
                 }
 
                 if (!added)

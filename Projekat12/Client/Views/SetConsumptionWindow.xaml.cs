@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Common.Contracts;
 using Common.Entiteti;
+using System.ServiceModel;
 
 namespace Client.Views
 {
@@ -87,8 +88,20 @@ namespace Client.Views
                 if(edited)
                     CheckImg.Visibility = Visibility.Visible;
             }
-            catch
+            catch(Exception ex)
             {
+                var AuthException = ex as FaultException<AuthorizationException>;
+                if (AuthException == null)
+                {
+                    MessageBox.Show("Server has not responded. Application will shutdown now.");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Validation = "Access denied";
+                    return;
+                }
+
                 Validation = "Consumption must be a number.";
                 return;
             }
