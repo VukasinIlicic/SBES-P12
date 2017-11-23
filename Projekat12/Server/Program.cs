@@ -50,15 +50,15 @@ namespace Server
 
         private static void OtvoriServer()
         {
-            Console.WriteLine("Unesi port za klijente");
-            string port = Console.ReadLine(); 
+            Console.WriteLine("Unesi port");
+            string port = Console.ReadLine();
+            portServeraZaGlavni = Convert.ToInt32(port);
+
             svc = new ServerHost<IServer, ServerClass>("Server", port, AuthType.CertAuth);
             svc.Open();
             Console.WriteLine("Otvorio za klijente");
 
-            Console.WriteLine("Unesi port za glavni");
-            portServeraZaGlavni = Convert.ToInt32(Console.ReadLine());
-            svcGlavni = new ServerHost<IUpdate, VezaSaGlavnim>("VezaSaGlavnim", portServeraZaGlavni.ToString(), AuthType.WinAuth);
+            svcGlavni = new ServerHost<IUpdate, VezaSaGlavnim>("VezaSaGlavnim", port, AuthType.WinAuth);
             svcGlavni.Open();
             Console.WriteLine("Otvorio za glavni");
         }

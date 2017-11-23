@@ -73,7 +73,7 @@ namespace AuditServer
 
         public static void OtvoriServer()
         {
-            svc = new ServerHost<IAuditServer, AuditServerClass>("localhost", "13000", AuthType.WinAuth);
+            svc = new ServerHost<IAuditServer, AuditServerClass>("AuditServer", "13000", AuthType.WinAuth);
             svc.Open();
 
             Console.WriteLine("Otvorio");

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 
 namespace Common.Helpers
 {
@@ -11,7 +12,7 @@ namespace Common.Helpers
 			string myIP = null;
 			var hostEntry = Dns.GetHostEntry(myHost);
 
-			var ipAddress = hostEntry.AddressList.LastOrDefault(address => address.IsIPv6LinkLocal.Equals(false));
+			var ipAddress = hostEntry.AddressList.FirstOrDefault(address => address.AddressFamily.Equals(AddressFamily.InterNetwork));
 			if (ipAddress != null)
 				myIP = ipAddress.ToString();
 
