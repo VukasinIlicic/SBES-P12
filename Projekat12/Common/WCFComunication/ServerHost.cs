@@ -26,8 +26,9 @@ namespace Common
 			_serviceHost = new ServiceHost(typeof (TClass));
 			var binding = new NetTcpBinding();
             binding.ReceiveTimeout = new TimeSpan(23, 59, 59);
+            binding.SendTimeout = new TimeSpan(23, 59, 59);
 
-			if (authType == AuthType.CertAuth)
+            if (authType == AuthType.CertAuth)
 			{
 				var srvCertCN = Formatter.ParseName(WindowsIdentity.GetCurrent().Name);
 
